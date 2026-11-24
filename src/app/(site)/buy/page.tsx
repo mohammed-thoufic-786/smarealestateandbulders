@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/page-header";
 import { ListingView } from "@/components/property/listing-view";
 import type { RawSearchParams } from "@/lib/search-params";
+import styles from "./buy.module.css";
 
 export const metadata: Metadata = {
   title: "Buy Properties in Tamil Nadu",
@@ -16,13 +18,20 @@ export default async function BuyPage({
 }) {
   const sp = await searchParams;
   return (
-    <ListingView
-      basePath="/buy"
-      eyebrow="For sale"
-      title="Properties for sale"
-      description="Explore homes, plots and commercial spaces listed for sale across Tamil Nadu. Filter by location, budget and type to find your fit."
-      searchParams={sp}
-      preset={{ listingType: "buy" }}
-    />
+    <div className="bg-cream">
+      <PageHeader
+        eyebrow="For sale"
+        title="Properties for sale"
+        description="Explore homes, plots and commercial spaces listed for sale across Tamil Nadu. Filter by location, budget and type to find your fit."
+        breadcrumb={[{ href: "/buy", label: "Buy" }]}
+      />
+      <div className={styles.buyPage}>
+        <ListingView
+          basePath="/buy"
+          searchParams={sp}
+          preset={{ listingType: "buy" }}
+        />
+      </div>
+    </div>
   );
 }

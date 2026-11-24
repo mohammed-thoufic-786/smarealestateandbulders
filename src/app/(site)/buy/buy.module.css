@@ -1,0 +1,87 @@
+.buyPage {
+  --buy-primary: #123f2b;
+  --buy-deep: #0b2d20;
+  --buy-gold: #c6a052;
+  --buy-border: #d8c69e;
+  --buy-text: #183c2c;
+  --buy-muted: #6f756d;
+  --buy-cream: #f8f5ed;
+}
+
+.buyPage :global(article) {
+  border-color: rgba(216, 198, 158, 0.85) !important;
+  background: var(--buy-cream) !important;
+  box-shadow: 0 14px 40px rgba(11, 45, 32, 0.08);
+}
+
+.buyPage :global(article):hover {
+  border-color: var(--buy-gold) !important;
+  box-shadow: 0 18px 48px rgba(198, 160, 82, 0.22);
+}
+
+.buyPage :global(article) > :global(a) > :global(div):first-child {
+  border: 1px solid rgba(198, 160, 82, 0.35);
+  border-radius: 1rem;
+  background: var(--buy-primary);
+}
+
+.buyPage :global(article) img {
+  background: var(--buy-primary);
+}
+
+.buyPage :global(article) :global(.inline-flex) {
+  border-color: rgba(198, 160, 82, 0.55) !important;
+  background: rgba(11, 45, 32, 0.78) !important;
+  color: #ffffff !important;
+}
+
+.buyPage :global(article) :global(h3) {
+  color: var(--buy-text) !important;
+}
+
+.buyPage :global(article) :global(h3) :global(a) {
+  color: var(--buy-text) !important;
+}
+
+.buyPage :global(article) :global(h3) :global(a):hover {
+  color: var(--buy-gold) !important;
+}
+
+.buyPage :global(article) :global(p) {
+  color: var(--buy-muted);
+}
+
+.buyPage :global(article) :global(.lucide-map-pin) {
+  color: var(--buy-gold) !important;
+}
+
+.buyPage :global(article) :global(.mt-auto) > :global(a):first-child {
+  border-color: var(--buy-border) !important;
+  background: #ffffff !important;
+  color: var(--buy-primary) !important;
+}
+
+.buyPage :global(article) :global(.mt-auto) > :global(a):first-child:hover {
+  border-color: var(--buy-gold) !important;
+  background: var(--buy-gold) !important;
+  color: var(--buy-deep) !important;
+}
+
+.buyPage :global(article) :global(.mt-auto) > :global(a):last-child {
+  border-color: var(--buy-primary) !important;
+  background: var(--buy-primary) !important;
+  color: #ffffff !important;
+}
+
+.buyPage :global(article) :global(.mt-auto) > :global(a):last-child:hover {
+  border-color: var(--buy-deep) !important;
+  background: var(--buy-deep) !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 640px) {
+  .buyPage :global(article) :global(.mt-auto) > :global(a) {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}

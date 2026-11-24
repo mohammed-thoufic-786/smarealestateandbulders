@@ -33,6 +33,7 @@ const allRoutes = [
   "/",
   "/buy",
   "/property/kurunji-garden",
+  "/property/prestige-garden",
   "/locations",
   "/about",
   "/contact",
@@ -131,22 +132,31 @@ for (const viewport of desktopViewports) {
     expect(headerBox?.height).toBeGreaterThanOrEqual(80);
     expect(headerBox?.height).toBeLessThanOrEqual(91);
 
-    const containerBox = await header.locator(".container-x").first().boundingBox();
+    const background = await header.evaluate((element) => getComputedStyle(element).backgroundColor);
+    expect(background).toContain("248, 245, 237");
+
     const logoBox = await header.getByRole("link", { name: /SMA Real Estate/i }).first().boundingBox();
-    const expectedLogoX = (containerBox?.x ?? 0) + (viewport.width < 640 ? 20 : 32);
-    expect(Math.abs((logoBox?.x ?? 0) - expectedLogoX)).toBeLessThan(4);
+    expect(logoBox?.x ?? 0).toBeGreaterThan(24);
 
     const nav = header.getByRole("navigation", { name: "Primary" });
     await expect(nav).toBeVisible();
     const navBox = await nav.boundingBox();
     expect(Math.abs((logoBox?.y ?? 0) - (navBox?.y ?? 0))).toBeLessThan(24);
     expect(navBox?.height).toBeLessThanOrEqual(44);
+    const navCenter = (navBox?.x ?? 0) + (navBox?.width ?? 0) / 2;
+    expect(Math.abs(navCenter - viewport.width / 2)).toBeLessThan(160);
 
-    const phone = header.getByRole("link", { name: /\+91 91501 28777/ });
-    await expect(phone).toBeVisible();
-    const phoneBox = await phone.boundingBox();
-    expect(phoneBox?.height).toBeLessThanOrEqual(32);
-    expect(phoneBox?.x ?? 0).toBeGreaterThan(navBox?.x ?? 0);
+    const contact = header.getByRole("link", { name: "Contact Us", exact: true });
+    await expect(contact).toBeVisible();
+    const browse = header.getByRole("link", { name: "Browse Properties", exact: true });
+    await expect(browse).toBeVisible();
+    const browseBackground = await browse.evaluate((element) => getComputedStyle(element).backgroundColor);
+    expect(browseBackground).toContain("18, 63, 43");
+    const contactBox = await contact.boundingBox();
+    const browseBox = await browse.boundingBox();
+    expect(contactBox?.height).toBeLessThanOrEqual(44);
+    expect(browseBox?.height).toBeLessThanOrEqual(48);
+    expect(browseBox?.x ?? 0).toBeGreaterThan(contactBox?.x ?? 0);
 
     await expectNoHorizontalOverflow(page, viewport.width);
     await page.screenshot({ path: `test-results/header-${viewport.name}.png`, fullPage: false });
@@ -166,7 +176,7 @@ for (const viewport of mobileViewports) {
 
     const drawer = page.getByRole("dialog", { name: /site navigation/i });
     await expect(drawer).toBeVisible();
-    for (const label of ["Home", "Buy", "Locations", "About", "Contact"]) {
+    for (const label of ["Home", "Buy", "Location", "About", "Contact"]) {
       await expect(drawer.getByRole("link", { name: label, exact: true })).toBeVisible();
     }
     await expect(drawer.getByRole("link", { name: /browse properties/i })).toBeVisible();
@@ -242,12 +252,34 @@ test("explore by location cards expand with the section", async ({ page }) => {
     const section = page.locator("section").filter({ hasText: "Where we operate" }).first();
     const sectionBox = await section.boundingBox();
     const gridBox = await section.locator(".grid").first().boundingBox();
-    const padding = viewport.width < 640 ? 20 : 32;
+    const padding = await section.evaluate((element) => parseFloat(getComputedStyle(element).paddingLeft));
 
     expect(sectionBox?.x ?? 0).toBeLessThanOrEqual(1);
     expect(sectionBox?.width ?? 0).toBeGreaterThanOrEqual(viewport.width - 2);
     expect(Math.abs((gridBox?.x ?? 0) - padding)).toBeLessThan(4);
     expect(gridBox?.width ?? 0).toBeGreaterThanOrEqual(viewport.width - padding * 2 - 4);
     await expectNoHorizontalOverflow(page, viewport.width);
+  }
+});
+
+test("locations page counts match listing results for Villupuram and Salem", async ({ page }) => {
+  for (const viewport of [...desktopViewports, ...mobileViewports]) {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height });
+    await page.goto("/locations");
+
+    const cards = page.locator('a[href^="/buy?q="]');
+    await expect(cards).toHaveCount(2);
+    await expect(page.getByRole("heading", { name: "Villupuram", exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Salem", exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Omalur", exact: true })).toHaveCount(0);
+
+    for (const city of ["Villupuram", "Salem"]) {
+      const card = page.locator(`a[href="/buy?q=${city}"]`);
+      await expect(card.getByText(/2 properties/)).toBeVisible();
+      await card.click();
+      await expect(page).toHaveURL(`/buy?q=${city}`);
+      await expect(page.getByText(/2 properties found/)).toBeVisible();
+      await page.goto("/locations");
+    }
   }
 });

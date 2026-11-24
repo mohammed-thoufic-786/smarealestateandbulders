@@ -9,9 +9,17 @@ test("home page renders and links into the catalogue", async ({ page }) => {
 
 test("home page features only the official SMA properties", async ({ page }) => {
   await page.goto("/");
-  for (const slug of ["kurunji-garden", "kmb-garden", "sma-garden"]) {
+  const expectedSlugs = ["kurunji-garden", "kmb-garden", "sma-garden", "prestige-garden"];
+  for (const slug of expectedSlugs) {
     await expect(page.locator(`a[href="/property/${slug}"]`).first()).toBeVisible();
   }
+
+  const uniqueSlugs = await page
+    .locator('a[href^="/property/"]')
+    .evaluateAll((links) =>
+      Array.from(new Set(links.map((link) => link.getAttribute("href")?.split("/").pop() ?? ""))),
+    );
+  expect(uniqueSlugs.sort()).toEqual(expectedSlugs.sort());
 });
 
 test("home page keeps property type and location exploration separate", async ({ page }) => {
@@ -30,10 +38,10 @@ test("primary navigation reaches the buy page", async ({ page }) => {
 
 test("home page shows the supplied customer reviews and avatars", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByText(/Site visit romba nalla explain panninga/)).toBeVisible();
-  await expect(page.getByText(/selva sezipa irunga/)).toBeVisible();
-  await expect(page.getByText(/romba trustable and good service/)).toBeVisible();
-  await expect(page.getByText(/customer service ku 9\/10 kudukala/)).toBeVisible();
+  await expect(page.getByText(/Naanga plot vaanganum nu search pannitu irundhom/)).toBeVisible();
+  await expect(page.getByText(/Starting la konjam doubts irundhuchu/)).toBeVisible();
+  await expect(page.getByText(/Property details, location and layout pathi clear-ah information kuduthanga/)).toBeVisible();
+  await expect(page.getByText(/SMA Real Estate & Builders team-oda experience nalla irundhuchu/)).toBeVisible();
   for (const name of ["Iyyanar Appan", "Vengatesh", "Mohammed Thoufic", "Saranraj"]) {
     await expect(page.locator(`img[alt="${name}"]`)).toBeVisible();
   }

@@ -9,15 +9,15 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-espresso text-gold border border-gold/40 hover:border-gold hover:bg-deep active:scale-[0.98]",
+    "bg-primary text-white border border-primary hover:border-primary-deep hover:bg-primary-deep active:scale-[0.98]",
   secondary:
-    "bg-cream text-espresso border border-line hover:bg-surface active:scale-[0.98]",
+    "bg-surface text-primary border border-line hover:bg-cream active:scale-[0.98]",
   ghost:
-    "bg-transparent text-white hover:bg-white/[0.06] active:scale-[0.98]",
+    "bg-transparent text-primary hover:bg-primary/5 active:scale-[0.98]",
   outline:
-    "border border-gold/45 text-white hover:border-gold hover:bg-gold/[0.08] active:scale-[0.98]",
+    "border border-line text-primary hover:border-gold hover:bg-gold/10 active:scale-[0.98]",
   light:
-    "bg-cream text-espresso border border-line hover:bg-surface active:scale-[0.98]",
+    "bg-cream text-primary border border-line hover:bg-surface active:scale-[0.98]",
   danger:
     "bg-deep text-danger border border-danger/40 hover:border-danger hover:bg-espresso active:scale-[0.98]",
 };

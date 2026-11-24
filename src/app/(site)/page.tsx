@@ -12,6 +12,7 @@ import { FinalCta } from "@/components/home/final-cta";
 import { AboutUs } from "@/components/home/about-us";
 import { StoryCommitment } from "@/components/home/story-commitment";
 import { site } from "@/lib/site";
+import styles from "./home.module.css";
 
 export const metadata: Metadata = {
   title: `${site.name} — ${site.tagline}`,
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <>
+    <main className={styles.home}>
       {/* 01 */} <Hero />
       {/* 02 */} <Founder />
       {/* 03 */} <SuccessInNumbers />
@@ -34,6 +35,6 @@ export default function HomePage() {
       {/* 10 */} <FinalCta />
       {/* 11 */} <AboutUs />
       {/* 12 */} <StoryCommitment />
-    </>
+    </main>
   );
 }

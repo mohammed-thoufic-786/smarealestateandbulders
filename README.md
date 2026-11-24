@@ -1,12 +1,12 @@
 # SMA Real Estate & Builders — Real Estate Platform for Tamil Nadu
 
-A public real-estate website for SMA Real Estate & Builders, built with **Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS**. It publishes exactly three official SMA properties sourced from the supplied brochures, with no accounts or sign-in.
+A public real-estate website for SMA Real Estate & Builders, built with **Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS**. It publishes exactly four official SMA properties sourced from the supplied brochures, with no accounts or sign-in.
 
 ---
 
 ## Highlights
 
-- **Official catalogue only** — KURUNJI GARDEN, K.M.B GARDEN and S.M.A GARDEN. No demo listings or placeholder prices.
+- **Official catalogue only** — KURUNJI GARDEN, K.M.B GARDEN, S.M.A GARDEN and PRESTIGE GARDEN. No demo listings or placeholder prices.
 - **Original brochure assets** — extracted layout and site images served from `public/properties/`, with the source PDFs kept alongside them.
 - **Layout viewer** — zoom, pan, reset and fullscreen controls for each original approved layout.
 - **Enquiries & site visits** — validated, rate-limited forms that save real records with the correct property association.
@@ -68,7 +68,7 @@ Copy `.env.example` to `.env.local` and fill in values as needed.
 
 The data layer lives in `src/lib/data/`.
 
-- **Official catalogue.** `properties.ts` is the single source of truth for the three SMA properties. It uses exact brochure locations, official approval text, public image paths and `price: 0` (displayed as "Price on request"). No coordinates are stored, so the site shows location text instead of an unverified map.
+- **Official catalogue.** `properties.ts` is the single source of truth for the four SMA properties. It uses exact brochure locations, official approval text, public image paths and `price: 0` (displayed as "Price on request"). No coordinates are stored, so the site shows location text instead of an unverified map.
 - **Without MongoDB.** `repository.ts` serves the official catalogue and persists leads/site visits to local JSON files under `data/` (gitignored). Server-side route handlers canonicalise the property ID so a submission cannot be attached to the wrong property.
 - **With MongoDB.** Set `MONGODB_URI` and run `npm run seed`. The same repository functions read and write through Mongoose models (`src/lib/db/models.ts`).
 
@@ -108,7 +108,7 @@ tests/                 Vitest unit tests
 e2e/                   Playwright end-to-end tests
 scripts/seed.ts        MongoDB seed script
 playwright.config.ts   Playwright config (starts its own server on port 3100)
-public/properties/     Original brochure images and PDFs for the 3 properties
+public/properties/     Original brochure images and PDFs for the 4 properties
 ```
 
 ---
@@ -151,7 +151,7 @@ Run behind a reverse proxy (Nginx/Caddy) with TLS. The `data/` directory must be
 
 ### Database
 
-Create a MongoDB Atlas cluster (or any MongoDB 6+), set `MONGODB_URI`, then `npm run seed` to load the three official properties.
+Create a MongoDB Atlas cluster (or any MongoDB 6+), set `MONGODB_URI`, then `npm run seed` to load the four official properties.
 
 ---
 

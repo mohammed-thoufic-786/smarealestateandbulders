@@ -7,6 +7,22 @@ const INSTAGRAM_URL =
 const GENERAL_MESSAGE =
   "Hello SMA Real Estate & Builders, I would like to enquire about your properties and services. Please contact me.";
 
+const LOCATIONS = [
+  "Salem",
+  "Ulundurpet",
+  "Villupuram",
+  "Vikaravandi",
+  "Acharapakam",
+  "Melmaruvathur",
+  "Madurantakam",
+  "Kanchipuram",
+  "Vandavasi",
+];
+
+function locationMessage(location: string) {
+  return `Hello SMA Real Estate & Builders, I am interested in properties in ${location}. Please share more details about the available properties in this location. Thank you.`;
+}
+
 test("WhatsApp and social links use the business configuration", async ({ page }) => {
   await page.goto("/");
 
@@ -61,10 +77,21 @@ test("explore by property type opens WhatsApp directly", async ({ page }) => {
   expect(decodeURIComponent(href)).toContain(GENERAL_MESSAGE);
 });
 
-test("explore by location opens WhatsApp directly", async ({ page }) => {
+test("explore by location opens WhatsApp with the clicked location", async ({ page }) => {
   await page.goto("/");
 
-  const link = page.getByRole("link", { name: /villupuram/i }).first();
-  const href = (await link.getAttribute("href")) ?? "";
-  expect(decodeURIComponent(href)).toContain(GENERAL_MESSAGE);
+  for (const location of LOCATIONS) {
+    const link = page.getByRole("link", {
+      name: `Enquire about properties in ${location}`,
+      exact: true,
+    });
+    const href = (await link.getAttribute("href")) ?? "";
+    expect(href).toContain(`https://wa.me/${WHATSAPP_NUMBER}`);
+    expect(decodeURIComponent(href)).toContain(locationMessage(location));
+
+    const popupPromise = page.waitForEvent("popup");
+    await link.click();
+    const popup = await popupPromise;
+    await popup.close();
+  }
 });

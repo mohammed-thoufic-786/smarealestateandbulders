@@ -1,7 +1,11 @@
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { DEFAULT_WHATSAPP_MESSAGE, whatsappLink } from "@/lib/business-config";
+import { whatsappLink } from "@/lib/business-config";
 import { SectionHeading } from "./section-heading";
+
+function locationWhatsappMessage(location: string) {
+  return `Hello SMA Real Estate & Builders, I am interested in properties in ${location}. Please share more details about the available properties in this location. Thank you.`;
+}
 
 const LOCATIONS = [
   "Salem",
@@ -28,7 +32,7 @@ export function ExploreByLocation() {
         {LOCATIONS.map((location) => (
           <a
             key={location}
-            href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
+            href={whatsappLink(locationWhatsappMessage(location))}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Enquire about properties in ${location}`}

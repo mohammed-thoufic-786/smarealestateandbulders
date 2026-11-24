@@ -19,15 +19,15 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer className="relative mt-10 border-t border-gold/25 bg-espresso text-white sm:mt-24">
+    <footer className="relative mt-10 border-t border-gold/25 bg-primary-deep text-white sm:mt-24">
       <div className="container-x py-10 sm:py-16">
         <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div>
             <Logo light />
-            <p className="mt-5 max-w-sm text-body leading-relaxed text-line">
+            <p className="mt-5 max-w-sm text-body leading-relaxed text-cream/80">
               {site.description}
             </p>
-            <div className="mt-6 space-y-3 text-body text-line">
+            <div className="mt-6 space-y-3 text-body text-cream/80">
               <p className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 shrink-0 text-gold/80" /> {site.address}
               </p>
@@ -59,7 +59,7 @@ export function Footer() {
                 <ul className="mt-4 space-y-3">
                   {col.links.map((link) => (
                     <li key={link.href}>
-                      <Link href={link.href} className="text-body text-line transition-colors hover:text-white">
+                      <Link href={link.href} className="text-body text-cream/80 transition-colors hover:text-white">
                         {link.label}
                       </Link>
                     </li>
@@ -79,13 +79,13 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="grid h-9 w-9 place-items-center rounded-full border border-gold/20 text-line transition-colors hover:border-gold hover:bg-gold hover:text-espresso"
+                className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-gold transition-colors hover:border-gold hover:bg-gold hover:text-primary-deep"
               >
                 <Icon className="h-4 w-4" />
               </a>
             ))}
           </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-line/80">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-cream/70">
             {FOOTER_LINKS.legal.map((link) => (
               <Link key={link.href} href={link.href} className="hover:text-white">
                 {link.label}
@@ -96,7 +96,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-6 text-sm text-line/60 sm:mt-8">
+        <p className="mt-6 text-sm text-cream/60 sm:mt-8">
           © {new Date().getFullYear()} {site.legalName}. All rights reserved.
         </p>
       </div>

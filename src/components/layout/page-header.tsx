@@ -17,7 +17,7 @@ export function PageHeader({
   align?: "left" | "center";
 }) {
   return (
-    <header className="border-b border-gold/20 bg-foreground pt-20 sm:pt-28">
+    <header className="border-b border-gold/20 bg-primary-deep pt-20 sm:pt-28">
       <div className="container-x py-8 sm:py-16">
         {breadcrumb && (
           <nav className="mb-4 flex flex-wrap items-center gap-2 text-sm text-line sm:mb-5">

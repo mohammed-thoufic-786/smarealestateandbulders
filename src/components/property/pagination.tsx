@@ -34,8 +34,8 @@ export function Pagination({
         href={href(Math.max(1, page - 1))}
         aria-disabled={page === 1}
         className={cn(
-          "grid h-10 w-10 place-items-center rounded-full border border-line text-foreground transition-colors",
-          page === 1 ? "pointer-events-none opacity-40" : "hover:border-gold/60 hover:text-gold",
+          "grid h-10 w-10 place-items-center rounded-full border border-line bg-surface text-primary shadow-soft transition-colors",
+          page === 1 ? "pointer-events-none opacity-40" : "hover:border-gold hover:bg-gold/10 hover:text-primary-deep",
         )}
       >
         <ChevronLeft className="h-4 w-4" />
@@ -46,10 +46,10 @@ export function Pagination({
           key={n}
           href={href(n)}
           className={cn(
-            "grid h-10 min-w-10 place-items-center rounded-full border px-3 text-nav transition-colors",
+            "grid h-10 min-w-10 place-items-center rounded-full border px-3 text-nav shadow-soft transition-colors",
             n === page
-              ? "border-gold bg-gold font-semibold text-ink"
-              : "border-line text-foreground hover:border-gold hover:text-gold",
+              ? "border-gold bg-gold font-semibold text-primary-deep"
+              : "border-line bg-surface text-primary hover:border-gold hover:bg-gold/10 hover:text-primary-deep",
           )}
         >
           {n}
@@ -60,8 +60,8 @@ export function Pagination({
         href={href(Math.min(pages, page + 1))}
         aria-disabled={page === pages}
         className={cn(
-          "grid h-10 w-10 place-items-center rounded-full border border-line text-foreground transition-colors",
-          page === pages ? "pointer-events-none opacity-40" : "hover:border-gold/60 hover:text-gold",
+          "grid h-10 w-10 place-items-center rounded-full border border-line bg-surface text-primary shadow-soft transition-colors",
+          page === pages ? "pointer-events-none opacity-40" : "hover:border-gold hover:bg-gold/10 hover:text-primary-deep",
         )}
       >
         <ChevronRight className="h-4 w-4" />

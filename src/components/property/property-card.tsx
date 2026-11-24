@@ -19,6 +19,7 @@ export function PropertyCard({
   showLocation = true,
   compactTypography = false,
   className,
+  priceClassName,
 }: {
   property: Property;
   priority?: boolean;
@@ -26,6 +27,7 @@ export function PropertyCard({
   showLocation?: boolean;
   compactTypography?: boolean;
   className?: string;
+  priceClassName?: string;
 }) {
   const cardImage = CARD_IMAGE_OVERRIDES[property.slug];
   const cover = cardImage
@@ -99,7 +101,9 @@ export function PropertyCard({
 
         <p
           className={cn(
-            compactTypography ? "text-[13px] font-medium text-muted" : "text-price font-semibold text-muted",
+            compactTypography
+              ? "text-[13px] font-medium text-muted"
+              : cn(priceClassName ?? "text-price", "font-semibold text-muted"),
             showLocation ? "mt-3" : "mt-4",
           )}
         >

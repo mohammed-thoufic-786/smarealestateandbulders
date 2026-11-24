@@ -34,69 +34,73 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /* Black + Gold ultra luxury palette */
-        background: "#F5F1E8",
-        surface: "#FDFBF6",
-        foreground: "#0D0D0D",
-        line: "#D8CDB6",
-        white: "#EDEDED",
+        /* SMA dark green, gold and cream brand palette */
+        background: "#F8F5ED",
+        surface: "#FFFFFF",
+        foreground: "#183C2C",
+        line: "#D8C69E",
+        white: "#FFFFFF",
 
-        mocha: {
-          DEFAULT: "#BFA054",
-          700: "#8F7437",
-          600: "#6E5829",
+        primary: {
+          DEFAULT: "#123F2B",
+          deep: "#0B2D20",
         },
-        espresso: "#0D0D0D",
+        mocha: {
+          DEFAULT: "#C6A052",
+          700: "#183C2C",
+          600: "#6F756D",
+        },
+        espresso: "#0B2D20",
         gold: {
-          DEFAULT: "#BFA054",
-          600: "#8F7437",
-          400: "#D4B36A",
+          DEFAULT: "#C6A052",
+          600: "#C6A052",
+          400: "#D8C69E",
         },
         champagne: {
-          DEFAULT: "#F5F1E8",
-          100: "#FDFBF6",
-          200: "#EDE6D7",
-          300: "#D8CDB6",
+          DEFAULT: "#F8F5ED",
+          100: "#FFFFFF",
+          200: "#F8F5ED",
+          300: "#D8C69E",
         },
         charcoal: {
-          DEFAULT: "#0D0D0D",
-          700: "#2A261E",
-          500: "#7A6F59",
+          DEFAULT: "#0B2D20",
+          700: "#183C2C",
+          500: "#6F756D",
         },
-        stone: "#7A6F59",
+        stone: "#6F756D",
 
         /* Semantic aliases */
-        midnight: "#0D0D0D",
-        deep: "#17150F",
+        midnight: "#0B2D20",
+        deep: "#0B2D20",
         copper: {
-          DEFAULT: "#BFA054",
-          600: "#8F7437",
-          400: "#D4B36A",
+          DEFAULT: "#C6A052",
+          600: "#183C2C",
+          400: "#D8C69E",
         },
         ivory: {
-          DEFAULT: "#F5F1E8",
-          100: "#FDFBF6",
-          200: "#EDE6D7",
-          300: "#D8CDB6",
+          DEFAULT: "#F8F5ED",
+          100: "#FFFFFF",
+          200: "#F8F5ED",
+          300: "#D8C69E",
         },
 
-        /* Legacy aliases remapped for the black + gold palette */
+        /* Legacy aliases remapped for the SMA palette */
         ink: {
-          DEFAULT: "#0D0D0D",
-          800: "#17150F",
-          700: "#2A261E",
-          600: "#7A6F59",
+          DEFAULT: "#123F2B",
+          800: "#0B2D20",
+          700: "#183C2C",
+          600: "#6F756D",
         },
         navy: {
-          DEFAULT: "#0D0D0D",
-          light: "#2A261E",
+          DEFAULT: "#123F2B",
+          light: "#183C2C",
         },
         cream: {
-          DEFAULT: "#F5F1E8",
-          light: "#FDFBF6",
+          DEFAULT: "#F8F5ED",
+          light: "#FFFFFF",
         },
-        muted: "#7A6F59",
-        success: "#BFA054",
+        muted: "#6F756D",
+        success: "#C6A052",
         danger: "#C9845A",
       },
       fontFamily: {
@@ -131,10 +135,10 @@ const config: Config = {
         "3xl": "1.75rem",
       },
       boxShadow: {
-        soft: "0 1px 2px rgba(13,13,13,0.12), 0 12px 30px -18px rgba(13,13,13,0.24)",
-        lift: "0 30px 60px -34px rgba(13,13,13,0.55)",
-        glow: "0 0 0 1px rgba(191,160,84,0.22), 0 20px 50px -28px rgba(191,160,84,0.35)",
-        luxe: "0 40px 80px -40px rgba(13,13,13,0.7)",
+        soft: "0 1px 2px rgba(11,45,32,0.10), 0 12px 30px -18px rgba(11,45,32,0.22)",
+        lift: "0 30px 60px -34px rgba(11,45,32,0.5)",
+        glow: "0 0 0 1px rgba(198,160,82,0.22), 0 20px 50px -28px rgba(198,160,82,0.35)",
+        luxe: "0 40px 80px -40px rgba(11,45,32,0.6)",
       },
       keyframes: {
         "fade-up": {

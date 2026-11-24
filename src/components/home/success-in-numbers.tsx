@@ -4,7 +4,7 @@ import { SectionHeading } from "./section-heading";
 
 const METRICS = [
   { icon: Building2, value: 100, suffix: "+", label: "Delivered projects" },
-  { icon: Layers, value: 1000, suffix: "+", label: "Units handed over" },
+  { icon: Layers, value: 1000, suffix: "+", label: "Happy Families" },
   { icon: MapPin, value: 7, suffix: "+", label: "Operating districts" },
   { icon: Building, value: 500, suffix: "+", label: "Properties listed" },
   { icon: MapPinned, value: 10, suffix: "+", label: "Cities & towns covered" },

@@ -3,11 +3,11 @@ import type { Testimonial } from "../types";
 export const FAQS = [
   {
     q: "Which properties can I enquire about?",
-    a: "We currently publish three official SMA properties: KURUNJI GARDEN, K.M.B GARDEN and S.M.A GARDEN. Each has its original layout drawing available to inspect.",
+    a: "We currently publish four official SMA properties: KURUNJI GARDEN, K.M.B GARDEN, S.M.A GARDEN and PRESTIGE GARDEN. Each has its original layout drawing available to inspect.",
   },
   {
     q: "Where are the properties located?",
-    a: "KURUNJI GARDEN is in Narasinganur near Kootteradu on the Villupuram–Gingee National Highway, K.M.B GARDEN is in Omalur, and S.M.A GARDEN is near Orathur Koot Road on the Villupuram–Gingee Road.",
+    a: "KURUNJI GARDEN is in Narasinganur near Kootteradu on the Villupuram–Gingee National Highway, K.M.B GARDEN is in Omalur, S.M.A GARDEN is near Orathur Koot Road on the Villupuram–Gingee Road, and PRESTIGE GARDEN is in Karipatti village, Salem District.",
   },
   {
     q: "Can I inspect the original layout drawing?",
@@ -42,7 +42,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Property buyer",
     location: "Tamil Nadu",
     quote:
-      "Customer service uh Site visit romba nalla explain panninga Innu onga kita plot vaanga Aasa padra Thanks to Sma Real estate & builders",
+      "Naanga plot vaanganum nu search pannitu irundhom. SMA Real Estate team romba friendly-ah guide pannanga. Ella details-um clear-ah explain pannanga. Overall experience romba nalla irundhuchu. Thank you SMA team!",
     rating: 5,
     avatar: "/reviews/iyyanar-appan.jpeg",
   },
@@ -51,7 +51,8 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Vengatesh",
     role: "Property buyer",
     location: "Tamil Nadu",
-    quote: "Sma realestate and builders kitta plot vaanguga selva sezipa irunga",
+    quote:
+      "Starting la konjam doubts irundhuchu, but SMA team ellathayum patiently explain pannanga. Enga requirements-ku suitable-ah properties suggest pannanga. Response-um quick-ah irundhuchu. Good service!",
     rating: 5,
     avatar: "/reviews/vengatesh.jpeg",
   },
@@ -60,7 +61,8 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Mohammed Thoufic",
     role: "Customer",
     location: "Tamil Nadu",
-    quote: "sma realstate romba trustable and good service",
+    quote:
+      "Property details, location and layout pathi clear-ah information kuduthanga. Edhuvum hurry pannama engalukku understand aagura maari explain pannanga. Customer satisfaction-ku importance kudukkuranga. Really appreciate the team!",
     rating: 5,
     avatar: "/reviews/mohammed-thoufic.jpeg",
   },
@@ -70,7 +72,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: "Land buyer",
     location: "Vikravandi",
     quote:
-      "Vikravandi la land purchase panna customer service ku 9/10 kudukala Rate uh Resonable ah iruku thanks to SMA REAL ESTATE  and builders",
+      "SMA Real Estate & Builders team-oda experience nalla irundhuchu. Site details paakuradhula irundhu enquiry varaikkum proper-ah support pannanga. Friendly approach and professional service. Definitely worth contacting!",
     rating: 4.5,
     avatar: "/reviews/saranraj.jpeg",
   },

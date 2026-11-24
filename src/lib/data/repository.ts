@@ -14,11 +14,10 @@ import { PropertyModel, LeadModel, SiteVisitModel } from "../db/models";
 import { safeJson } from "../utils";
 
 /* -------------------------------------------------------------------------- */
-/*  Runtime store: the three official properties plus persisted enquiries      */
+/*  Runtime store: the official properties plus persisted enquiries           */
 /* -------------------------------------------------------------------------- */
 
 interface Store {
-  properties: Property[];
   leads: Lead[];
   siteVisits: SiteVisit[];
 }
@@ -26,7 +25,6 @@ declare global {
   var _estateStore: Store | undefined;
 }
 const store: Store = global._estateStore ?? {
-  properties: [...OFFICIAL_PROPERTIES],
   leads: readStored<Lead>("enquiries"),
   siteVisits: readStored<SiteVisit>("site-visits"),
 };
@@ -34,9 +32,9 @@ global._estateStore = store;
 
 const uid = () => `enq-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
 
-/** The published catalogue contains only the three official SMA properties. */
+/** The published catalogue contains only the official SMA properties. */
 function allProperties(): Property[] {
-  return store.properties;
+  return OFFICIAL_PROPERTIES;
 }
 
 /** Resolve a submitted property ID from the official catalogue, never from client text. */
@@ -224,9 +222,10 @@ export async function getPropertiesByIds(ids: string[]): Promise<Property[]> {
 }
 
 export async function getFeaturedProperties(limit = 6): Promise<Property[]> {
-  const featured = allProperties().filter((p) => p.featured);
-  const pool = featured.length >= limit ? featured : [...featured, ...allProperties()];
-  return pool.slice(0, limit);
+  const properties = allProperties();
+  const featured = properties.filter((p) => p.featured);
+  const others = properties.filter((p) => !p.featured);
+  return [...featured, ...others].slice(0, limit);
 }
 
 export async function getSimilarProperties(property: Property, limit = 3): Promise<Property[]> {

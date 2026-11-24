@@ -4,11 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Phone, ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import { Logo } from "./logo";
 import { NAV_LINKS, site } from "@/lib/site";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+const NAVBAR_BG = "bg-background";
+const NAVBAR_BORDER = "border-line";
+const BRAND_SIZE =
+  "shrink-0 [&_img]:mix-blend-darken [&_img]:h-[47px] md:[&_img]:h-9 lg:[&_img]:h-10 xl:[&_img]:h-[52px] [&_span>span:first-child]:text-[20px]/[1.4] md:[&_span>span:first-child]:text-nav xl:[&_span>span:first-child]:text-[22px]/[1.4] [&_span>span:last-child]:text-[17.5px]/[1.5] md:[&_span>span:last-child]:text-eyebrow xl:[&_span>span:last-child]:text-[18.5px]/[1.5]";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -46,54 +51,60 @@ export function Navbar() {
       <header
         data-testid="site-header"
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b border-gold/20 bg-espresso backdrop-blur-md transition-shadow duration-500 ease-smooth",
-          scrolled ? "shadow-luxe" : "shadow-none",
+          "fixed inset-x-0 top-0 z-50 h-20 border-b sm:h-[88px]",
+          NAVBAR_BG,
+          NAVBAR_BORDER,
+          scrolled && "shadow-[0_8px_24px_rgba(11,45,32,0.08)]",
         )}
       >
-        <div className="container-x flex h-20 items-center gap-4 md:gap-5 lg:gap-8 xl:gap-12">
-          <Logo light className="shrink-0" />
+        <div className="container-x flex h-full items-center pl-8 sm:pl-[41px]">
+          <Logo className={BRAND_SIZE} />
 
-          <nav aria-label="Primary" className="hidden shrink-0 items-center gap-0.5 md:flex xl:gap-2">
+          <nav
+            aria-label="Primary"
+            className="hidden flex-1 items-center justify-center gap-5 md:flex lg:-translate-x-[27px] lg:gap-11"
+          >
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 className={cn(
-                  "whitespace-nowrap rounded-md px-2 py-2 text-sm font-semibold transition-colors xl:px-3 xl:text-nav",
-                  isActive(link.href) ? "text-gold" : "text-white/75 hover:text-white",
+                  "whitespace-nowrap text-sm font-medium transition-colors lg:text-[18px]",
+                  isActive(link.href)
+                    ? "text-primary"
+                    : "text-muted hover:text-primary",
                 )}
               >
-                {link.label}
+                {link.label === "Locations" ? "Location" : link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="ml-auto flex shrink-0 items-center justify-end gap-3 lg:gap-4">
-            <a
-              href={`tel:${site.phone.replace(/\s/g, "")}`}
-              className="hidden items-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold text-white/75 transition-colors hover:text-white md:inline-flex xl:text-nav"
+          <div className="ml-auto hidden shrink-0 items-center gap-5 md:flex lg:gap-[42px]">
+            <Link
+              href="/contact"
+              className="whitespace-nowrap text-sm font-semibold text-primary transition-colors hover:text-primary-deep lg:text-[17px]"
             >
-              <Phone className="h-4 w-4 shrink-0 text-gold" />
-              {site.phone}
-            </a>
-
+              Contact Us
+            </Link>
             <Link
               href="/buy"
-              className={buttonVariants({ size: "sm", className: "hidden lg:inline-flex whitespace-nowrap" })}
+              className="inline-flex h-10 -translate-y-[2px] items-center justify-center whitespace-nowrap rounded-full bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-deep lg:h-11 lg:px-[25px] lg:text-[17px]"
             >
-              Browse Properties <ArrowRight className="h-4 w-4" />
+              Browse Properties
             </Link>
-
-            <button
-              onClick={() => setOpen(true)}
-              className="grid h-10 w-10 place-items-center rounded-md text-white transition-colors hover:bg-white/10 md:hidden"
-              aria-label="Open menu"
-              aria-expanded={open}
-            >
-              <Menu className="h-5 w-5" />
-            </button>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="ml-auto grid h-11 w-11 shrink-0 place-items-center rounded-full text-primary transition-colors hover:bg-primary/5 md:hidden"
+            aria-label="Open menu"
+            aria-expanded={open}
+          >
+            <Menu className="h-5 w-5" />
+          </button>
         </div>
       </header>
 
@@ -106,22 +117,26 @@ export function Navbar() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-[90] md:hidden"
           >
-            <div className="absolute inset-0 bg-espresso/80 backdrop-blur-sm" onClick={() => setOpen(false)} />
+            <div className="absolute inset-0 bg-primary-deep/50 backdrop-blur-sm" onClick={() => setOpen(false)} />
+
             <motion.div
               role="dialog"
               aria-modal="true"
               aria-label="Site navigation"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="absolute inset-y-0 right-0 flex w-[88%] max-w-sm flex-col overflow-x-hidden border-l border-gold/25 bg-espresso shadow-lift"
+              initial={{ opacity: 0, y: -16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -16, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className={cn(
+                "absolute inset-x-3 bottom-3 top-3 flex flex-col overflow-hidden rounded-[28px] border border-line bg-background shadow-lift",
+              )}
             >
-              <div className="flex items-center justify-between gap-3 border-b border-gold/20 px-5 py-4">
-                <Logo light />
+              <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
+                <Logo className={BRAND_SIZE} />
                 <button
+                  type="button"
                   onClick={() => setOpen(false)}
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-line hover:bg-gold/10 hover:text-gold"
+                  className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-primary transition-colors hover:bg-primary/5"
                   aria-label="Close menu"
                 >
                   <X className="h-5 w-5" />
@@ -134,29 +149,39 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "flex items-center justify-between rounded-xl px-4 py-3.5 text-nav font-semibold transition-colors",
+                      "flex items-center justify-between rounded-2xl px-4 py-3.5 text-nav font-semibold transition-colors",
                       isActive(link.href)
-                        ? "bg-gold/10 text-gold"
-                        : "text-line hover:bg-gold/[0.06] hover:text-white",
+                        ? "bg-primary text-white"
+                        : "text-muted hover:bg-primary/5 hover:text-primary",
                     )}
                   >
-                    {link.label}
+                    {link.label === "Locations" ? "Location" : link.label}
                     <ChevronRight className="h-4 w-4 opacity-40" />
                   </Link>
                 ))}
               </div>
 
-              <div className="space-y-2.5 border-t border-gold/20 p-5" onClick={() => setOpen(false)}>
-                <Link href="/buy" className={buttonVariants({ size: "lg", className: "w-full whitespace-nowrap" })}>
+              <div className="space-y-2.5 border-t border-line p-5" onClick={() => setOpen(false)}>
+                <Link href="/contact" className={buttonVariants({ size: "lg", className: "w-full whitespace-nowrap" })}>
+                  Contact Us
+                </Link>
+                <Link
+                  href="/buy"
+                  className={buttonVariants({
+                    size: "lg",
+                    className: "w-full whitespace-nowrap border-transparent text-white",
+                    variant: "primary",
+                  })}
+                >
                   Browse Properties <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
                   href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className={buttonVariants({ variant: "outline", size: "lg", className: "w-full whitespace-nowrap" })}
+                  className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-muted"
                 >
-                  <Phone className="h-4 w-4 shrink-0" /> {site.phone}
+                  <Phone className="h-4 w-4 shrink-0 text-primary" /> {site.phone}
                 </a>
-                <p className="pt-1 text-center text-sm text-line">
+                <p className="pt-1 text-center text-sm text-muted">
                   Available 9am–8pm · Tamil Nadu
                 </p>
               </div>

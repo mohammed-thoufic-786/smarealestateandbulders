@@ -35,11 +35,6 @@ export default async function AboutPage() {
         <div className="grid gap-8 sm:gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <h2 className="font-display text-display-3 font-bold text-foreground">Our mission</h2>
-            <p className="mt-5 text-pretty text-body leading-relaxed text-muted">
-              Buying land or a home in India is often confusing — unclear pricing, incomplete documents and
-              pressure to decide fast. We set out to change that by putting the buyer first and doing every
-              deal the right way.
-            </p>
             <p className="mt-4 text-pretty text-body leading-relaxed text-muted">
               Our SMA real-estate company is built around one idea: the buyer should never be the last to
               know. We list real properties, check real documents and keep our advice honest.
@@ -47,7 +42,7 @@ export default async function AboutPage() {
             <div className="mt-6 grid grid-cols-3 gap-6 sm:mt-8">
               {[
                 { label: "Listings", value: stats.properties },
-                { label: "Locations", value: stats.cities },
+                { label: "Locations", value: 9 },
                 { label: "Years", value: 40 },
               ].map((s) => (
                 <div key={s.label}>

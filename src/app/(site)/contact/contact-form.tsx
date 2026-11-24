@@ -40,7 +40,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={submit} className="min-w-0 space-y-4 rounded-2xl border border-gold/25 bg-deep p-6 sm:p-8">
+    <form onSubmit={submit} className="min-w-0 space-y-4 rounded-2xl border border-line bg-surface p-6 shadow-soft sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <Input
           label="Full name"
@@ -78,7 +78,7 @@ export function ContactForm() {
         placeholder="Tell us how we can help…"
         required
       />
-      <p className="text-sm leading-relaxed text-white/60">
+      <p className="text-sm leading-relaxed text-muted">
         Submitting opens WhatsApp with your details prefilled. You can review and send the message there.
       </p>
       <Button type="submit" size="lg" className="w-full">

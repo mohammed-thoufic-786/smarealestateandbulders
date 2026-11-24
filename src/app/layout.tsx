@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     "agricultural land",
   ],
   authors: [{ name: site.legalName }],
+  icons: {
+    icon: [{ url: "/brand/sma-logo.png", type: "image/png", sizes: "1024x1024" }],
+    shortcut: ["/brand/sma-logo.png"],
+    apple: [{ url: "/brand/sma-logo.png", type: "image/png", sizes: "1024x1024" }],
+  },
   openGraph: {
     type: "website",
     locale: site.locale,
@@ -59,7 +64,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0D0D0D",
+  themeColor: "#0B2D20",
   width: "device-width",
   initialScale: 1,
 };
@@ -70,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-0 overflow-x-clip bg-background text-foreground antialiased sm:min-h-screen">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-espresso focus:px-4 focus:py-2 focus:text-gold"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-primary-deep focus:px-4 focus:py-2 focus:text-gold"
         >
           Skip to content
         </a>

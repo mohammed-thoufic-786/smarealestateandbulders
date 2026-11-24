@@ -1,11 +1,11 @@
 /**
- * Seed script — publishes the three official SMA properties to MongoDB.
+ * Seed script — publishes the four official SMA properties to MongoDB.
  *
  * Usage:
  *   npm run seed
  *
  * Requires MONGODB_URI to be set (see .env.example). Without it, the app uses
- * the same three properties from the local catalogue and this script exits.
+ * the same four properties from the local catalogue and this script exits.
  */
 import { connectDB, isDatabaseEnabled } from "../src/lib/db/connect";
 import { PropertyModel } from "../src/lib/db/models";

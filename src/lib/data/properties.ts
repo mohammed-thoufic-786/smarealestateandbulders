@@ -27,6 +27,7 @@ export const OFFICIAL_PROPERTY_IDS = [
   "kurunji-garden",
   "kmb-garden",
   "sma-garden",
+  "prestige-garden",
 ] as const;
 
 export type OfficialPropertyId = (typeof OFFICIAL_PROPERTY_IDS)[number];
@@ -42,7 +43,7 @@ export const OFFICIAL_PROPERTIES: Property[] = [
     slug: "kurunji-garden",
     title: "KURUNJI GARDEN",
     description:
-      "KURUNJI GARDEN is located in Narasinganur, near Kootteradu, on the Villupuram–Gingee National Highway, Tamil Nadu. The brochure prints DTCP No. 223/2024. Inspect the original layout drawing below to see plot numbers, boundaries and roads.",
+      "KURUNJI GARDEN is located in Narasinganur, near Junction Road, Villupuram, Tamil Nadu. The brochure displays DTCP Approval No. 223/2024. Please refer to the original layout plan below for plot numbers, property boundaries, and road details.",
     location: {
       address: "Narasinganur, near Kootteradu, Villupuram–Gingee National Highway, Tamil Nadu",
       shortLocation: "Narasinganur, Villupuram",
@@ -96,8 +97,8 @@ export const OFFICIAL_PROPERTIES: Property[] = [
       {
         url: "/properties/kmb-garden/layout.jpg",
         alt: "Original approved layout drawing of K.M.B GARDEN",
-        width: 1744,
-        height: 1240,
+        width: 3369,
+        height: 2382,
         isCover: true,
       },
     ],
@@ -116,7 +117,7 @@ export const OFFICIAL_PROPERTIES: Property[] = [
     slug: "sma-garden",
     title: "S.M.A GARDEN",
     description:
-      "S.M.A GARDEN is located near Orathur Koot Road, Villupuram–Gingee Road, Tamil Nadu. The information shown here is taken from page one of the original brochure. Inspect the layout drawing below for plot numbers, boundaries and roads.",
+      "S.M.A GARDEN is located in Orathur, along the Villupuram to Gingee National Highway, opposite Swami Vivekananda Arts and Science College,Villupuram, Tamil Nadu. The information shown here is taken from the first page of the original brochure. Please refer to the layout drawing below for plot numbers, property boundaries, and road details.",
     location: {
       address: "Near Orathur Koot Road, Villupuram–Gingee Road, Tamil Nadu",
       shortLocation: "Orathur, Villupuram",
@@ -149,6 +150,48 @@ export const OFFICIAL_PROPERTIES: Property[] = [
       },
     ],
     approvalNotes: "Details are limited to those visible in the original brochure.",
+  },
+  {
+    ...common,
+    _id: "prestige-garden",
+    slug: "prestige-garden",
+    title: "PRESTIGE GARDEN",
+    description:
+      "PRESTIGE GARDEN is a DTCP-approved plotted development located in Karipatti Village, Valappadi Taluk, Salem District, Tamil Nadu, along the Ayothiyapattinam–Salem Road. The information shown here is taken from the original brochure. Please refer to the original layout drawing below for further details.",
+    location: {
+      address:
+        "Karipatti village, Valappadi taluk, Salem District, Tamil Nadu, on the Ayothiyapattinam–Salem 12 m road",
+      shortLocation: "Karipatti, Salem",
+      area: "Karipatti",
+      city: "Salem",
+      district: "Salem",
+      state: "Tamil Nadu",
+      pincode: "",
+    },
+    images: [
+      {
+        url: "/properties/prestige-garden/card.webp",
+        alt: "PRESTIGE GARDEN plotted development card image from the original brochure",
+        width: 500,
+        height: 375,
+        isCover: true,
+      },
+      {
+        url: "/properties/prestige-garden/layout.jpg",
+        alt: "Original DTCP-approved layout plan of PRESTIGE GARDEN",
+        width: 3369,
+        height: 2382,
+      },
+    ],
+    documents: [
+      {
+        label: "Original brochure (source PDF)",
+        url: "/properties/prestige-garden/brochure.pdf",
+        verified: false,
+      },
+    ],
+    approvalNotes:
+      "DTCP-approved plots as stated in the original brochure; Survey No. 92/2A7. No approval number is printed on the supplied pages.",
   },
 ];
 

@@ -5,7 +5,7 @@ const DEFAULT_FACEBOOK_URL = "https://www.facebook.com/share/1UP65RyDmK/?mibexti
 const DEFAULT_INSTAGRAM_URL =
   "https://www.instagram.com/s.m.a_realestate_and_builders?cnvx=MTl2cDgwZnpxcXEyaQ%3D%3D&utm_source=qr";
 
-const DEFAULT_BUSINESS_EMAIL = "sma.realestatereal@gmail.com";
+const DEFAULT_BUSINESS_EMAIL = "smarealestatereal@gmail.com";
 
 export const DEFAULT_WHATSAPP_MESSAGE =
   "Hello SMA Real Estate & Builders, I would like to enquire about your properties and services. Please contact me.";

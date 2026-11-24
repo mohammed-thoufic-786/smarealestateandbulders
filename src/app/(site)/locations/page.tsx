@@ -3,17 +3,28 @@ import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { SmartImage } from "@/components/ui/smart-image";
-import { getLocationStats } from "@/lib/data/repository";
+import { getLocationStats, listProperties } from "@/lib/data/repository";
 
 export const metadata: Metadata = {
   title: "Explore Locations in Tamil Nadu",
   description:
-    "Explore the exact locations of the three official SMA properties in Tamil Nadu.",
+    "Explore the exact locations of the four official SMA properties in Tamil Nadu.",
   alternates: { canonical: "/locations" },
 };
 
 export default async function LocationsPage() {
-  const locations = await getLocationStats();
+  const locations = await Promise.all(
+    (await getLocationStats())
+      .filter((loc) => loc.city !== "Omalur")
+      .map(async (loc) => {
+        const { items } = await listProperties({
+          q: loc.city,
+          listingType: "buy",
+          limit: 48,
+        });
+        return { ...loc, count: new Set(items.map((property) => property._id)).size };
+      }),
+  );
 
   return (
     <div className="bg-cream">

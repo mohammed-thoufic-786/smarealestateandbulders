@@ -6,10 +6,10 @@ import { site } from "@/lib/site";
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={cn("h-8 w-8", className)} aria-hidden>
-      <rect width="32" height="32" rx="9" fill="#0D0D0D" />
+      <rect width="32" height="32" rx="9" fill="#123F2B" />
       <path
         d="M8 17.2 16 10l8 7.2"
-        stroke="#BFA054"
+        stroke="#C6A052"
         strokeWidth="2"
         fill="none"
         strokeLinecap="round"
@@ -17,7 +17,7 @@ export function LogoMark({ className }: { className?: string }) {
       />
       <path
         d="M10.5 16.4V23h11v-6.6"
-        stroke="#BFA054"
+        stroke="#C6A052"
         strokeWidth="2"
         fill="none"
         strokeLinecap="round"
@@ -33,8 +33,8 @@ export function Logo({ className, light = false }: { className?: string; light?:
       <Image
         src="/brand/sma-logo.png"
         alt=""
-        width={64}
-        height={40}
+        width={1024}
+        height={1024}
         priority
         className="h-9 w-auto shrink-0 object-contain transition-transform duration-300 group-hover:scale-105 lg:h-10"
       />

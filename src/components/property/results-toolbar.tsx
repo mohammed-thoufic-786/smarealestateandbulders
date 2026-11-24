@@ -70,7 +70,7 @@ export function ResultsToolbar({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-body text-muted">
-          <span className="font-semibold text-foreground">{total}</span> {total === 1 ? "property" : "properties"} found
+          <span className="font-semibold text-primary">{total}</span> {total === 1 ? "property" : "properties"} found
         </p>
 
         <div className="flex items-center gap-2">
@@ -79,7 +79,7 @@ export function ResultsToolbar({
             trigger={({ toggle }) => (
               <button
                 onClick={toggle}
-                className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-nav text-foreground transition-colors hover:border-gold"
+                className="flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-nav text-primary shadow-soft transition-colors hover:border-gold hover:bg-gold/10"
               >
                 Sort: {sortLabel}
               </button>
@@ -91,7 +91,7 @@ export function ResultsToolbar({
                 onClick={() => update({ sort: opt.value })}
                 className={cn(
                   "block w-full rounded-lg px-3 py-2 text-left text-nav transition-colors hover:bg-gold/10",
-                  sort === opt.value ? "text-gold" : "text-line",
+                  sort === opt.value ? "font-semibold text-gold" : "text-cream/80",
                 )}
               >
                 {opt.label}
@@ -99,14 +99,14 @@ export function ResultsToolbar({
             ))}
           </Popover>
 
-          <div className="flex items-center rounded-full border border-line p-1">
+          <div className="flex items-center rounded-full border border-line bg-surface p-1 shadow-soft">
             {(["grid", "list"] as const).map((v) => (
               <button
                 key={v}
                 onClick={() => update({ view: v === "grid" ? null : v })}
                 className={cn(
                   "grid h-8 w-8 place-items-center rounded-full transition-colors",
-                  view === v ? "bg-gold text-ink" : "text-muted hover:text-gold",
+                  view === v ? "bg-gold text-primary-deep" : "text-muted hover:bg-gold/10 hover:text-primary",
                 )}
                 aria-label={`${v} view`}
                 aria-pressed={view === v}
@@ -124,15 +124,15 @@ export function ResultsToolbar({
             <button
               key={chip.key}
               onClick={() => removeChip(chip.key)}
-              className="group flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm capitalize text-foreground transition-colors hover:border-gold/60"
+              className="group flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-sm capitalize text-primary transition-colors hover:border-gold hover:bg-gold/10"
             >
               {chip.label}
-              <X className="h-3 w-3 text-muted group-hover:text-danger" />
+              <X className="h-3 w-3 text-muted group-hover:text-primary" />
             </button>
           ))}
           <button
             onClick={() => router.push(basePath, { scroll: false })}
-            className="text-nav font-semibold text-gold hover:underline"
+            className="text-nav font-semibold text-gold transition-colors hover:text-primary"
           >
             Clear all
           </button>

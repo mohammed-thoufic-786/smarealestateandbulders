@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 const fieldBase =
-  "w-full rounded-xl border border-gold/25 bg-deep px-4 py-3 text-body text-white placeholder:text-line/70 transition-colors focus:border-gold/60 focus:outline-none focus:ring-0 disabled:opacity-50";
+  "w-full rounded-xl border border-line bg-surface px-4 py-3 text-body text-primary placeholder:text-muted transition-colors focus:border-gold focus:outline-none focus:ring-0 disabled:opacity-50";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -16,7 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-line">
+          <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-muted">
             {label}
           </label>
         )}
@@ -30,7 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {error ? (
           <p className="mt-1.5 text-sm text-danger">{error}</p>
         ) : hint ? (
-          <p className="mt-1.5 text-sm text-line">{hint}</p>
+          <p className="mt-1.5 text-sm text-muted">{hint}</p>
         ) : null}
       </div>
     );
@@ -49,7 +49,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-line">
+          <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-muted">
             {label}
           </label>
         )}
@@ -78,7 +78,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-line">
+          <label htmlFor={inputId} className="mb-1.5 block text-sm font-semibold text-muted">
             {label}
           </label>
         )}
@@ -89,7 +89,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           aria-invalid={Boolean(error)}
           style={{
             backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23BFA054' stroke-width='1.5' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23C6A052' stroke-width='1.5' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "right 14px center",
           }}
