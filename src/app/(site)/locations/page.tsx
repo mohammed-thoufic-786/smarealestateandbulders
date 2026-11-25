@@ -25,7 +25,7 @@ export default async function LocationsPage() {
       return {
         ...location,
         count: properties.length,
-        image: cover?.url ?? "/home/sma-hero-background.png",
+        image: cover?.url ?? "/home/sma-hero-background.webp",
       };
     }),
   );

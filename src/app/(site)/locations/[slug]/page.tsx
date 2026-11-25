@@ -32,13 +32,22 @@ export async function generateMetadata({
       title: "Location not found",
       description: "The requested SMA service location is not available.",
       path: "/locations",
+      robots: { index: false, follow: false },
     });
   }
 
+  const properties = await getPropertiesByIds(location.propertySlugs);
+  const hasListings = properties.length > 0;
+
   return pageMetadata({
-    title: `Plots for Sale in ${location.name}, Tamil Nadu`,
-    description: `${location.intro} Browse official SMA properties, layout plans and enquiry options.`,
+    title: hasListings
+      ? `Plots for Sale in ${location.name}, Tamil Nadu`
+      : `${location.name} Enquiries, Tamil Nadu`,
+    description: hasListings
+      ? `${location.intro} Browse official SMA properties, layout plans and enquiry options.`
+      : `${location.intro} Ask our team about current availability and documents.`,
     path: `/locations/${location.slug}`,
+    robots: hasListings ? undefined : { index: false, follow: true },
   });
 }
 
@@ -52,6 +61,7 @@ export default async function LocationPage({
   if (!location) notFound();
 
   const properties = await getPropertiesByIds(location.propertySlugs);
+  const hasListings = properties.length > 0;
   const nearby = location.nearbyAreas
     .map((areaSlug) => getServiceLocation(areaSlug))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
@@ -74,7 +84,11 @@ export default async function LocationPage({
     <div className="bg-cream">
       <PageHeader
         eyebrow="Location"
-        title={`Plots for Sale in ${location.name}, Tamil Nadu`}
+        title={
+          hasListings
+            ? `Plots for Sale in ${location.name}, Tamil Nadu`
+            : `Property enquiries in ${location.name}, Tamil Nadu`
+        }
         description={location.intro}
       />
 
@@ -98,7 +112,7 @@ export default async function LocationPage({
 
         <section className="mt-12" aria-labelledby="location-properties">
           <h2 id="location-properties" className="font-display text-heading font-bold text-foreground">
-            SMA properties in {location.name}
+            {hasListings ? `SMA properties in ${location.name}` : `Property enquiries in ${location.name}`}
           </h2>
           {properties.length > 0 ? (
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -107,7 +121,6 @@ export default async function LocationPage({
               ))}
             </div>
           ) : (
-            // TODO: Owner should add verified local copy if this location page stays thin.
             <div className="mt-6 rounded-2xl border border-gold/25 bg-surface p-6 text-body leading-relaxed text-muted">
               <p>
                 We do not currently publish a property in {location.name}. Tell us what you are looking
@@ -134,7 +147,7 @@ export default async function LocationPage({
 
         <section className="mt-12 max-w-3xl">
           <h2 className="font-display text-heading font-bold text-foreground">
-            Property enquiries in {location.name}
+            Ask about availability and documents
           </h2>
           <p className="mt-3 text-body leading-relaxed text-muted">
             Ask about current availability, documents and site visits. Prices are shared on request.

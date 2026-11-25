@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { buttonVariants } from "@/components/ui/button";
 import { SmartImage } from "@/components/ui/smart-image";
 import { getSiteStats } from "@/lib/data/repository";
-import { LOCATIONS_SERVED, YEARS_EXPERIENCE } from "@/lib/data/site-metrics";
+import { LOCATIONS_SERVED } from "@/lib/data/site-metrics";
 import { founder } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -13,18 +13,18 @@ export function generateMetadata(): Metadata {
   return pageMetadata({
     title: "About SMA Real Estate",
     description:
-      "Meet SMA Real Estate & Builders of Villupuram, led by Haji S.M. Abdul Hakkim. 40+ years of document-first property guidance in Tamil Nadu.",
+      "Meet SMA Real Estate & Builders of Villupuram, led by Haji S.M. Abdul Hakkim. Document-first property guidance in Tamil Nadu.",
     path: "/about",
   });
 }
 
 const VALUES = [
   { icon: Compass, title: "Clarity over noise", body: "Every page is designed to help you to understand and decide." },
-  { icon: Sparkles, title: "On the ground", body: "Four decades of buying, building and selling across Tamil Nadu — experience you can walk into." },
+  { icon: Sparkles, title: "On the ground", body: "Local property knowledge across Tamil Nadu — guidance you can act on." },
 ];
 
 export default async function AboutPage() {
-  const stats = await getSiteStats();
+  const siteStats = await getSiteStats();
 
   return (
     <div className="bg-cream">
@@ -45,12 +45,12 @@ export default async function AboutPage() {
             </p>
             <div className="mt-6 grid grid-cols-3 gap-6 sm:mt-8">
               {[
-                { label: "Listings", value: stats.properties },
-                { label: "Locations", value: LOCATIONS_SERVED },
-                { label: "Years", value: YEARS_EXPERIENCE },
+                { label: "Listings", value: siteStats.properties },
+                { label: "Districts", value: siteStats.cities },
+                { label: "Service locations", value: LOCATIONS_SERVED },
               ].map((s) => (
                 <div key={s.label}>
-                  <p className="font-display text-2xl font-bold text-foreground">{s.value}+</p>
+                  <p className="font-display text-2xl font-bold text-foreground">{s.value}</p>
                   <p className="text-body text-muted">{s.label}</p>
                 </div>
               ))}

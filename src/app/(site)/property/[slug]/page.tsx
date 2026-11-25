@@ -25,7 +25,8 @@ export async function generateMetadata({
     return pageMetadata({
       title: "Property not found",
       description: "The requested SMA property is not available.",
-      path: "/property/not-found",
+      path: "/buy",
+      robots: { index: false, follow: false },
     });
   }
 

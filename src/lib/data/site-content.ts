@@ -57,16 +57,6 @@ export const TESTIMONIALS: Testimonial[] = [
     avatar: "/reviews/vengatesh.jpeg",
   },
   {
-    _id: "t3",
-    name: "Mohammed Thoufic",
-    role: "Customer",
-    location: "Tamil Nadu",
-    quote:
-      "Property details, location and layout pathi clear-ah information kuduthanga. Edhuvum hurry pannama engalukku understand aagura maari explain pannanga. Customer satisfaction-ku importance kudukkuranga. Really appreciate the team!",
-    rating: 5,
-    avatar: "/reviews/mohammed-thoufic.jpeg",
-  },
-  {
     _id: "t4",
     name: "Saranraj",
     role: "Land buyer",

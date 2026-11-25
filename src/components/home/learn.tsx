@@ -6,7 +6,7 @@ const LOANS = [
   {
     icon: Landmark,
     title: "Plot loans",
-    body: "Finance for DTCP & CMDA-approved residential plots and commercial land, through lenders who understand land purchases.",
+    body: "Finance guidance for residential plots and commercial land, through lenders who understand land purchases.",
     points: ["Residential plot financing", "Commercial land loan", "Guidance on documents & approval checks"],
   },
   {

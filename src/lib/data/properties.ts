@@ -36,6 +36,13 @@ export function isOfficialPropertyId(id?: string | null): id is OfficialProperty
   return OFFICIAL_PROPERTY_IDS.includes(id as OfficialPropertyId);
 }
 
+export function isPublishedProperty(property: Property): boolean {
+  if (property.isDemo || property.approvalStatus !== "approved") return false;
+  if (["draft", "sold", "rented", "reserved"].includes(property.availabilityStatus)) return false;
+  if (property.publishedAt && new Date(property.publishedAt).getTime() > Date.now()) return false;
+  return true;
+}
+
 export const OFFICIAL_PROPERTIES: Property[] = [
   {
     ...common,
@@ -63,7 +70,7 @@ export const OFFICIAL_PROPERTIES: Property[] = [
       },
       {
         url: "/properties/kurunji-garden/layout.png",
-        alt: "Original DTCP-approved layout drawing of KURUNJI GARDEN, Narasinganur, Villupuram",
+        alt: "Original KURUNJI GARDEN layout drawing with DTCP approval as printed in brochure, Narasinganur, Villupuram",
         width: 2776,
         height: 1570,
       },
@@ -158,7 +165,7 @@ export const OFFICIAL_PROPERTIES: Property[] = [
     slug: "prestige-garden",
     title: "PRESTIGE GARDEN",
     description:
-      "PRESTIGE GARDEN is a DTCP-approved plotted development located in Karipatti Village, Valappadi Taluk, Salem District, Tamil Nadu, along the Ayothiyapattinam–Salem Road. The information shown here is taken from the original brochure. Please refer to the original layout drawing below for further details.",
+      "PRESTIGE GARDEN is a plotted development located in Karipatti Village, Valappadi Taluk, Salem District, Tamil Nadu, along the Ayothiyapattinam–Salem Road. The original brochure states DTCP approval. Please refer to the original layout drawing below for further details.",
     location: {
       address:
         "Karipatti village, Valappadi taluk, Salem District, Tamil Nadu, on the Ayothiyapattinam–Salem 12 m road",
@@ -172,14 +179,14 @@ export const OFFICIAL_PROPERTIES: Property[] = [
     images: [
       {
         url: "/properties/prestige-garden/card.webp",
-        alt: "PRESTIGE GARDEN DTCP-approved plotted development, Karipatti, Salem",
+        alt: "PRESTIGE GARDEN plotted development brochure image, Karipatti, Salem",
         width: 500,
         height: 375,
         isCover: true,
       },
       {
         url: "/properties/prestige-garden/layout.jpg",
-        alt: "Original DTCP-approved layout plan of PRESTIGE GARDEN, Karipatti, Salem",
+        alt: "Original PRESTIGE GARDEN layout plan with DTCP approval as stated in brochure, Karipatti, Salem",
         width: 3369,
         height: 2382,
       },

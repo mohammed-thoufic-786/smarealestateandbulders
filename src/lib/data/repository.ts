@@ -6,7 +6,7 @@ import type {
   SiteVisit,
   Testimonial,
 } from "../types";
-import { OFFICIAL_PROPERTIES, getOfficialProperty } from "./properties";
+import { OFFICIAL_PROPERTIES, getOfficialProperty, isPublishedProperty } from "./properties";
 import { TESTIMONIALS } from "./site-content";
 import { readStored, writeStored } from "./lead-store";
 import { connectDB, isDatabaseEnabled } from "../db/connect";
@@ -36,6 +36,17 @@ const uid = () => `enq-${Date.now().toString(36)}-${Math.random().toString(36).s
 function allProperties(): Property[] {
   return OFFICIAL_PROPERTIES;
 }
+
+const PUBLIC_PROPERTY_FILTER: Record<string, unknown> = {
+  approvalStatus: "approved",
+  availabilityStatus: { $nin: ["draft", "sold", "rented", "reserved"] },
+  isDemo: { $ne: true },
+  $or: [
+    { publishedAt: { $exists: false } },
+    { publishedAt: null },
+    { publishedAt: { $lte: new Date() } },
+  ],
+};
 
 /** Resolve a submitted property ID from the official catalogue, never from client text. */
 function propertyRef(propertyId?: string | null): { _id: string; title: string; slug: string } | null {
@@ -144,7 +155,7 @@ export async function listProperties(q: PropertyQuery = {}): Promise<Paginated<P
   if (isDatabaseEnabled()) {
     try {
       await connectDB();
-      const filter: Record<string, unknown> = { approvalStatus: "approved" };
+      const filter: Record<string, unknown> = { ...PUBLIC_PROPERTY_FILTER };
       if (q.listingType) filter.listingType = q.listingType;
       if (q.category) filter.category = q.category;
       else if (q.categories?.length) filter.category = { $in: q.categories };
@@ -181,7 +192,7 @@ export async function listProperties(q: PropertyQuery = {}): Promise<Paginated<P
     }
   }
 
-  items = allProperties().filter((p) => matchesQuery(p, q));
+  items = allProperties().filter((p) => isPublishedProperty(p) && matchesQuery(p, q));
   if (q.sort === "relevant") {
     items = items.sort((a, b) => relevanceScore(b, q) - relevanceScore(a, q));
   } else {
@@ -202,13 +213,13 @@ export async function getPropertyBySlug(slug: string): Promise<Property | null> 
   if (isDatabaseEnabled()) {
     try {
       await connectDB();
-      const doc = await PropertyModel.findOne({ slug }).lean();
+      const doc = await PropertyModel.findOne({ slug, ...PUBLIC_PROPERTY_FILTER }).lean();
       if (doc) return safeJson<Property | null>(doc, null);
     } catch {
       /* fall through */
     }
   }
-  return allProperties().find((p) => p.slug === slug) ?? null;
+  return allProperties().find((p) => p.slug === slug && isPublishedProperty(p)) ?? null;
 }
 
 export async function getPropertyById(id: string): Promise<Property | null> {
@@ -217,7 +228,7 @@ export async function getPropertyById(id: string): Promise<Property | null> {
 
 export async function getPropertiesByIds(ids: string[]): Promise<Property[]> {
   return ids
-    .map((id) => allProperties().find((p) => p._id === id || p.slug === id))
+    .map((id) => allProperties().find((p) => (p._id === id || p.slug === id) && isPublishedProperty(p)))
     .filter((p): p is Property => Boolean(p));
 }
 

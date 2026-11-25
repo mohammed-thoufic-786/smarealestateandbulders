@@ -9,7 +9,7 @@ export function generateMetadata(): Metadata {
   return pageMetadata({
     title: "Plots & Villas for Sale in Tamil Nadu",
     description:
-      "Browse DTCP-approved residential plots, villas, agricultural land and homes for sale across Villupuram, Salem and Tamil Nadu. Price on request.",
+      "Browse official residential plots and enquire about villas, agricultural land and homes across Villupuram, Salem and Tamil Nadu. Price on request.",
     path: "/buy",
   });
 }

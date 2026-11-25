@@ -8,9 +8,11 @@ function absolute(path: string): string {
 }
 
 export function siteJsonLd() {
+  const organizationId = `${SITE.url}#organization`;
+
   const realEstateAgent = {
-    "@context": "https://schema.org",
     "@type": "RealEstateAgent",
+    "@id": organizationId,
     name: SITE.name,
     url: SITE.url,
     logo: absolute("/brand/sma-logo.png"),
@@ -38,21 +40,42 @@ export function siteJsonLd() {
   };
 
   const webSite = {
-    "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE.url}#website`,
     name: SITE.name,
     url: SITE.url,
     inLanguage: "en-IN",
-    publisher: { "@type": "RealEstateAgent", name: SITE.name },
+    publisher: { "@id": organizationId },
   };
 
-  return [realEstateAgent, webSite];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [realEstateAgent, webSite],
+  };
+}
+
+export function breadcrumbJsonLd(items: { label: string; href?: string }[]) {
+  const trail = [{ label: "Home", href: "/" }, ...items];
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${SITE.url}#breadcrumb`,
+    itemListElement: trail.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.label,
+      ...(item.href && index < trail.length - 1
+        ? { item: `${SITE.url}${item.href.startsWith("/") ? item.href : `/${item.href}`}` }
+        : {}),
+    })),
+  };
 }
 
 export function faqJsonLd(faqs: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${SITE.url}/faq#faq`,
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.q,
@@ -61,13 +84,13 @@ export function faqJsonLd(faqs: { q: string; a: string }[]) {
   };
 }
 
-// TODO: Add Offer, AggregateRating or Review schema only when prices and reviews are real and verified.
 export function propertyJsonLd(property: Property) {
   const { locality, district } = propertyPlace(property);
 
   return {
     "@context": "https://schema.org",
     "@type": "Place",
+    "@id": absolute(`/property/${property.slug}#property`),
     name: property.title,
     description: propertyDescription(property),
     url: absolute(`/property/${property.slug}`),
@@ -78,5 +101,6 @@ export function propertyJsonLd(property: Property) {
       addressRegion: district,
       addressCountry: "IN",
     },
+    publisher: { "@id": `${SITE.url}#organization` },
   };
 }

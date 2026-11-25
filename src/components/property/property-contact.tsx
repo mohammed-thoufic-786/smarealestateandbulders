@@ -6,6 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { SiteVisitModal } from "./site-visit-modal";
 import { ShareButton } from "./share-button";
 import { site, whatsappLink } from "@/lib/site";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import { propertyWhatsappMessage } from "@/lib/business-config";
 
 interface Summary {
@@ -21,6 +22,8 @@ interface Summary {
 export function EnquiryPanel({ property }: { property: Summary }) {
   const priceText = property.price > 0 ? formatINR(property.price, { compact: true }) : "Price on request";
   const waMsg = propertyWhatsappMessage(property.title, property.slug);
+  const trackLead = () =>
+    trackAnalyticsEvent("Lead", { content_name: "Property enquiry", content_category: property.slug });
 
   return (
     <div className="space-y-4 sm:sticky sm:top-24">
@@ -33,6 +36,7 @@ export function EnquiryPanel({ property }: { property: Summary }) {
             href={whatsappLink(waMsg)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={trackLead}
             className={buttonVariants({ size: "lg", className: "w-full" })}
           >
             <MessageCircle className="h-4 w-4" /> Enquire now
@@ -54,14 +58,15 @@ export function EnquiryPanel({ property }: { property: Summary }) {
             >
               <Phone className="h-4 w-4" /> Call
             </a>
-            <a
-              href={whatsappLink(waMsg)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-full border border-gold/30 py-2.5 text-nav font-semibold text-white transition-colors hover:border-gold hover:text-gold"
-            >
-              <MessageCircle className="h-4 w-4" /> WhatsApp
-            </a>
+          <a
+            href={whatsappLink(waMsg)}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={trackLead}
+            className="flex items-center justify-center gap-2 rounded-full border border-gold/30 py-2.5 text-nav font-semibold text-white transition-colors hover:border-gold hover:text-gold"
+          >
+            <MessageCircle className="h-4 w-4" /> WhatsApp
+          </a>
           </div>
           <a
             href="#brochure"
@@ -85,6 +90,8 @@ export function EnquiryPanel({ property }: { property: Summary }) {
 
 export function MobileActionBar({ property }: { property: Summary }) {
   const waMsg = propertyWhatsappMessage(property.title, property.slug);
+  const trackLead = () =>
+    trackAnalyticsEvent("Lead", { content_name: "Property enquiry", content_category: property.slug });
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-espresso/95 px-3 py-2.5 backdrop-blur-lg lg:hidden">
@@ -100,6 +107,7 @@ export function MobileActionBar({ property }: { property: Summary }) {
           href={whatsappLink(waMsg)}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={trackLead}
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold/30 text-white transition-colors hover:border-gold hover:text-gold"
           aria-label="Chat with SMA Real Estate & Builders on WhatsApp"
         >
@@ -109,6 +117,7 @@ export function MobileActionBar({ property }: { property: Summary }) {
           href={whatsappLink(waMsg)}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={trackLead}
           className={buttonVariants({ size: "lg", className: "flex-1" })}
         >
           <MessageCircle className="h-4 w-4" /> Enquire

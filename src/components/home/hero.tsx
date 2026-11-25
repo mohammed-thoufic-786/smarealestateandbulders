@@ -15,7 +15,7 @@ export function Hero() {
   return (
     <section className={styles.hero} aria-label="SMA Estates & Builders">
       <SmartImage
-        src="/home/sma-hero-background.png"
+        src="/home/sma-hero-background.webp"
         alt="SMA Real Estate & Builders homes and plotted developments in Tamil Nadu"
         fill
         priority
@@ -23,14 +23,9 @@ export function Hero() {
         className={styles.heroImage}
       />
       <div className={styles.copy}>
-        <motion.div
-          className={styles.copyInner}
-          initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <div className={styles.copyInner}>
           <h1 className={`${styles.title} text-balance font-display`}>
-            <span className={styles.titleLine}>DTCP-Approved Plots &amp; Villas</span>{" "}
+            <span className={styles.titleLine}>Plots &amp; Villas in Tamil Nadu</span>{" "}
             <span className={styles.titleAccent}>in Villupuram, Salem &amp; Tamil Nadu</span>
           </h1>
           <p className={styles.subtitle}>Trust Begins Here, Your Future Starts Here.</p>
@@ -59,7 +54,7 @@ export function Hero() {
               <PhoneCall className="h-4 w-4" /> Talk to our team
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <p className={`${styles.trustText} text-pretty`}>

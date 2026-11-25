@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { metaPath } from "@/lib/seo";
-import { SITE } from "@/lib/site";
+import { breadcrumbJsonLd } from "@/lib/schema";
 
 export interface BreadcrumbItem {
   label: string;
@@ -10,16 +9,7 @@ export interface BreadcrumbItem {
 
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   const trail: BreadcrumbItem[] = [{ label: "Home", href: "/" }, ...items];
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: trail.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.label,
-      ...(item.href ? { item: `${SITE.url}${metaPath(item.href)}` } : {}),
-    })),
-  };
+  const jsonLd = breadcrumbJsonLd(items);
 
   return (
     <>

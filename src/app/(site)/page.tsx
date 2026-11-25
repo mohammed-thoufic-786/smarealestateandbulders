@@ -25,7 +25,7 @@ export function generateMetadata(): Metadata {
 
 export default function HomePage() {
   return (
-    <main className={styles.home}>
+    <div className={styles.home}>
       {/* 01 */} <Hero />
       {/* 02 */} <Founder />
       {/* 03 */} <SuccessInNumbers />
@@ -38,6 +38,6 @@ export default function HomePage() {
       {/* 10 */} <FinalCta />
       {/* 11 */} <AboutUs />
       {/* 12 */} <StoryCommitment />
-    </main>
+    </div>
   );
 }

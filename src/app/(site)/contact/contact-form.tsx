@@ -5,6 +5,7 @@ import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import { useToast } from "@/components/providers/app-providers";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import { isValidMobile } from "@/lib/validation";
 import { contactWhatsappMessage } from "@/lib/business-config";
 import { openWhatsApp } from "@/lib/whatsapp";
@@ -34,6 +35,7 @@ export function ContactForm() {
     if (!validate()) return;
 
     openWhatsApp(contactWhatsappMessage(form));
+    trackAnalyticsEvent("Contact", { content_name: "Contact form" });
     toast("Your enquiry is ready in WhatsApp. Please press send there.", "success");
     setErrors({});
     setForm(emptyForm());

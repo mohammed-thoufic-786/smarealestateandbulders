@@ -1,13 +1,11 @@
-import { Building2, Layers, MapPinned, Building, CalendarCheck2, MapPin } from "lucide-react";
+import { Building2, CalendarCheck2, MapPin, MapPinned } from "lucide-react";
 import { Counter } from "@/components/ui/counter";
 import { SITE_METRICS } from "@/lib/data/site-metrics";
 import { SectionHeading } from "./section-heading";
 
 const ICONS = {
   projects: Building2,
-  families: Layers,
   districts: MapPin,
-  listed: Building,
   towns: MapPinned,
   experience: CalendarCheck2,
 } as const;
@@ -18,7 +16,7 @@ export function SuccessInNumbers() {
       <div className="container-x py-12 sm:py-24">
         <SectionHeading
           title="Our success in numbers"
-          description="Four decades of building across Tamil Nadu — delivered projects, homes handed over and the ground we cover today."
+          description="Official SMA properties, districts with listings and the service locations listed on this site."
           align="center"
           inverted
         />

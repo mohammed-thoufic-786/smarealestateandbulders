@@ -4,7 +4,6 @@ import { Rating } from "@/components/ui/rating";
 import { SmartImage } from "@/components/ui/smart-image";
 import { SectionHeading } from "./section-heading";
 
-// TODO: Every review must be genuine and verified before any Review or AggregateRating schema is added.
 export function Testimonials() {
   const testimonials = getTestimonials();
   if (testimonials.length === 0) return null;
@@ -15,7 +14,7 @@ export function Testimonials() {
         <SectionHeading
           title="In their words"
           subtitle="What our customers say"
-          description="Real experiences shared with permission. We publish reviews only after they are verified."
+          description="Customer feedback shared with SMA Real Estate & Builders."
           inverted
         />
         <div className="mt-6 grid gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-2">

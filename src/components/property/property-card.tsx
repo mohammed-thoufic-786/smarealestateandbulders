@@ -100,10 +100,10 @@ export function PropertyCard({
           </p>
         )}
 
-        {(property.dtcpNumber || property.tnreraRegistration) && (
+        {(property.verified || property.tnreraRegistration) && (
           <p className="mt-1.5 text-sm text-muted">
-            {property.dtcpNumber ? `DTCP No. ${property.dtcpNumber}` : ""}
-            {property.dtcpNumber && property.tnreraRegistration ? " · " : ""}
+            {property.verified && property.dtcpNumber ? `DTCP No. ${property.dtcpNumber}` : ""}
+            {property.verified && property.dtcpNumber && property.tnreraRegistration ? " · " : ""}
             {property.tnreraRegistration ? `TNRERA: ${property.tnreraRegistration}` : ""}
           </p>
         )}

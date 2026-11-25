@@ -29,13 +29,26 @@ export async function generateMetadata({
       title: "Property type not found",
       description: "The requested SMA property type is not available.",
       path: "/buy",
+      robots: { index: false, follow: false },
     });
   }
 
+  const { items } = await listProperties({
+    category: type.category,
+    listingType: "buy",
+    limit: 48,
+  });
+  const hasListings = items.length > 0;
+
   return pageMetadata({
-    title: `${type.label} for Sale in Tamil Nadu`,
-    description: `${type.intro} View official SMA listings, layout plans and enquiry options.`,
+    title: hasListings
+      ? `${type.label} for Sale in Tamil Nadu`
+      : `${type.label} Enquiries, Tamil Nadu`,
+    description: hasListings
+      ? `${type.intro} View official SMA listings, layout plans and enquiry options.`
+      : `${type.intro} Ask our team about current availability and documents.`,
     path: `/buy/type/${type.slug}`,
+    robots: hasListings ? undefined : { index: false, follow: true },
   });
 }
 
@@ -53,12 +66,13 @@ export default async function PropertyTypePage({
     listingType: "buy",
     limit: 48,
   });
+  const hasListings = items.length > 0;
 
   return (
     <div className="bg-cream">
       <PageHeader
         eyebrow="Property type"
-        title={`${type.label} for Sale`}
+        title={hasListings ? `${type.label} for Sale` : `${type.label} enquiries`}
         description={type.intro}
       />
 
@@ -72,7 +86,9 @@ export default async function PropertyTypePage({
 
         <section className="mt-8 max-w-3xl">
           <h2 className="font-display text-heading font-bold text-foreground">
-            Browse {type.label.toLowerCase()} options
+            {hasListings
+              ? `Browse ${type.label.toLowerCase()} options`
+              : `Ask about ${type.label.toLowerCase()} options`}
           </h2>
           <p className="mt-3 text-pretty text-body leading-relaxed text-muted">{type.intro}</p>
         </section>
@@ -88,7 +104,6 @@ export default async function PropertyTypePage({
               ))}
             </div>
           ) : (
-            // TODO: Owner should add verified listings or local copy if this type page stays thin.
             <div className="mt-6 rounded-2xl border border-gold/25 bg-surface p-6 text-body leading-relaxed text-muted">
               <p>
                 We do not currently publish an official {type.label.toLowerCase()} on this website.

@@ -14,11 +14,10 @@ export async function FeaturedProperties() {
         action={{ href: "/buy", label: "View all properties" }}
       />
       <div className="mt-6 grid gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
-        {properties.map((property, i) => (
+        {properties.map((property) => (
           <PropertyCard
             key={property._id}
             property={property}
-            priority={i === 0}
             showLocation={false}
             compactTypography
           />

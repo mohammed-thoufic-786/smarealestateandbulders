@@ -39,8 +39,8 @@ export function AboutUs() {
               How we work — and what we stand for
             </h2>
             <p className="mt-4 text-pretty text-body leading-relaxed text-white/70">
-              {site.name} brings four decades of buying, building and selling across Tamil Nadu —
-              done the honest way, with the buyer at the centre of every decision.
+              {site.name} brings local property knowledge and a document-first process across Tamil
+              Nadu — done the honest way, with the buyer at the centre of every decision.
             </p>
 
             <Link

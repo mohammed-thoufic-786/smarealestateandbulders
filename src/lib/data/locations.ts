@@ -1,4 +1,3 @@
-// TODO: Owner must replace each placeholder intro and confirm the nearby-area relationships.
 export interface ServiceLocation {
   slug: string;
   name: string;
@@ -14,7 +13,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Salem",
     district: "Salem",
     intro:
-      "SMA Real Estate & Builders helps buyers enquire about plots in and around Salem, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders helps buyers enquire about plots in and around Salem, Tamil Nadu. Our official Salem listings are PRESTIGE GARDEN in Karipatti and K.M.B GARDEN in Omalur, with original layout drawings available to inspect.",
     nearbyAreas: [],
     propertySlugs: ["prestige-garden", "kmb-garden"],
   },
@@ -23,7 +22,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Ulundurpet",
     district: "Villupuram",
     intro:
-      "SMA Real Estate & Builders assists buyers looking for plots and homes in Ulundurpet, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders helps buyers enquire about property options in Ulundurpet, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across Villupuram district.",
     nearbyAreas: ["villupuram", "vikravandi"],
     propertySlugs: [],
   },
@@ -32,7 +31,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Villupuram",
     district: "Villupuram",
     intro:
-      "SMA Real Estate & Builders publishes official plotted developments around Villupuram, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders publishes official plotted developments around Villupuram, Tamil Nadu. KURUNJI GARDEN in Narasinganur and S.M.A GARDEN near Orathur Koot Road have original layout drawings available to inspect.",
     nearbyAreas: ["vikravandi", "ulundurpet"],
     propertySlugs: ["kurunji-garden", "sma-garden"],
   },
@@ -41,7 +40,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Vikravandi",
     district: "Villupuram",
     intro:
-      "SMA Real Estate & Builders assists buyers looking for plots and homes in Vikravandi, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders helps buyers enquire about property options in Vikravandi, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across Villupuram district.",
     nearbyAreas: ["villupuram", "ulundurpet"],
     propertySlugs: [],
   },
@@ -50,7 +49,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Acharapakam",
     district: "Tamil Nadu",
     intro:
-      "SMA Real Estate & Builders assists buyers looking for plots and homes in Acharapakam, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders helps buyers enquire about property options in Acharapakam, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across nearby Tamil Nadu locations.",
     nearbyAreas: ["madurantakam", "melmaruvathur"],
     propertySlugs: [],
   },
@@ -59,7 +58,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Melmaruvathur",
     district: "Tamil Nadu",
     intro:
-      "SMA Real Estate & Builders assists buyers looking for plots and homes in Melmaruvathur, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders helps buyers enquire about property options in Melmaruvathur, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across nearby Tamil Nadu locations.",
     nearbyAreas: ["acharapakam", "madurantakam"],
     propertySlugs: [],
   },
@@ -68,7 +67,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Madurantakam",
     district: "Tamil Nadu",
     intro:
-      "SMA Real Estate & Builders assists buyers looking for plots and homes in Madurantakam, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders helps buyers enquire about property options in Madurantakam, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across nearby Tamil Nadu locations.",
     nearbyAreas: ["melmaruvathur", "acharapakam"],
     propertySlugs: [],
   },
@@ -77,7 +76,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Kanchipuram",
     district: "Kanchipuram",
     intro:
-      "SMA Real Estate & Builders assists buyers looking for plots and homes in Kanchipuram, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders helps buyers enquire about property options in Kanchipuram, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across Kanchipuram district.",
     nearbyAreas: ["vandavasi", "madurantakam"],
     propertySlugs: [],
   },
@@ -86,7 +85,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     name: "Vandavasi",
     district: "Tamil Nadu",
     intro:
-      "SMA Real Estate & Builders assists buyers looking for plots and homes in Vandavasi, Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders helps buyers enquire about property options in Vandavasi, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across nearby Tamil Nadu locations.",
     nearbyAreas: ["kanchipuram", "melmaruvathur"],
     propertySlugs: [],
   },

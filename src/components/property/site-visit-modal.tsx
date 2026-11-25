@@ -6,6 +6,7 @@ import { Modal } from "@/components/ui/modal";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input, Select, Textarea } from "@/components/ui/input";
 import { useToast } from "@/components/providers/app-providers";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import { isValidMobile } from "@/lib/validation";
 import { siteVisitWhatsappMessage } from "@/lib/business-config";
 import { openWhatsApp } from "@/lib/whatsapp";
@@ -70,6 +71,7 @@ export function SiteVisitModal({
         notes: form.notes,
       }),
     );
+    trackAnalyticsEvent("Lead", { content_name: "Site visit request", content_category: propertyTitle });
     toast("Your site visit request is ready in WhatsApp. Please press send there.", "success");
     setOpen(false);
     setErrors({});

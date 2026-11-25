@@ -6,8 +6,7 @@ import { Logo } from "@/components/layout/logo";
 export const metadata: Metadata = {
   title: { absolute: "Page not found | SMA Real Estate" },
   description: "The page you requested is not available. Browse SMA properties, locations or contact our team.",
-  robots: { index: false, follow: true },
-  alternates: { canonical: "/" },
+  robots: { index: false, follow: false },
 };
 
 export default function NotFound() {

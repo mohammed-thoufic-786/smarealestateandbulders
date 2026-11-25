@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
+import { AnalyticsProvider } from "@/components/analytics/analytics";
 import { AppProviders } from "@/components/providers/app-providers";
 import { siteJsonLd } from "@/lib/schema";
 import { SITE } from "@/lib/site";
@@ -77,7 +78,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <AppProviders>{children}</AppProviders>
+        <AppProviders>
+          <AnalyticsProvider>{children}</AnalyticsProvider>
+        </AppProviders>
       </body>
     </html>
   );

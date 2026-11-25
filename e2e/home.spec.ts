@@ -40,9 +40,8 @@ test("home page shows the supplied customer reviews and avatars", async ({ page 
   await page.goto("/");
   await expect(page.getByText(/Naanga plot vaanganum nu search pannitu irundhom/)).toBeVisible();
   await expect(page.getByText(/Starting la konjam doubts irundhuchu/)).toBeVisible();
-  await expect(page.getByText(/Property details, location and layout pathi clear-ah information kuduthanga/)).toBeVisible();
   await expect(page.getByText(/SMA Real Estate & Builders team-oda experience nalla irundhuchu/)).toBeVisible();
-  for (const name of ["Iyyanar Appan", "Vengatesh", "Mohammed Thoufic", "Saranraj"]) {
+  for (const name of ["Iyyanar Appan", "Vengatesh", "Saranraj"]) {
     await expect(page.locator(`img[alt="${name}"]`)).toBeVisible();
   }
 });

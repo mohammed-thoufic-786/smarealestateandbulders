@@ -12,7 +12,7 @@ export function generateMetadata(): Metadata {
   return pageMetadata({
     title: "Property Buying FAQs | Tamil Nadu | SMA",
     description:
-      "Answers about DTCP-approved plots, layout drawings, site visits, pricing on request and buying property in Tamil Nadu with SMA Real Estate.",
+      "Answers about plots, layout drawings, site visits, pricing on request and buying property in Tamil Nadu with SMA Real Estate.",
     path: "/faq",
   });
 }

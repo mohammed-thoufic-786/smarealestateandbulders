@@ -31,6 +31,27 @@ test("WhatsApp and social links use the business configuration", async ({ page }
   await expect(page.locator('footer a[aria-label="Instagram"]')).toHaveAttribute("href", INSTAGRAM_URL);
 });
 
+test("analytics consent can be accepted and persists", async ({ page }) => {
+  await page.goto("/");
+
+  const banner = page.getByRole("dialog", { name: "Analytics consent" });
+  await expect(banner).toBeVisible();
+  await banner.getByRole("button", { name: "Accept" }).click();
+  await expect(banner).toBeHidden();
+  expect(await page.evaluate(() => localStorage.getItem("sma-analytics-consent"))).toBe("accepted");
+
+  if (process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID) {
+    await expect
+      .poll(() => page.evaluate(() => typeof Reflect.get(window, "clarity") === "function"))
+      .toBe(true);
+  }
+  if (process.env.NEXT_PUBLIC_META_PIXEL_ID) {
+    await expect
+      .poll(() => page.evaluate(() => typeof Reflect.get(window, "fbq") === "function"))
+      .toBe(true);
+  }
+});
+
 test("property enquiry opens WhatsApp with the exact property message", async ({ page }) => {
   await page.goto("/property/kmb-garden");
 

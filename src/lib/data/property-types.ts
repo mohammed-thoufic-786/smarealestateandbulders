@@ -1,6 +1,5 @@
 import type { PropertyCategory } from "@/lib/types";
 
-// TODO: Owner must replace each placeholder intro before publishing these pages.
 export interface PropertyTypePage {
   slug: string;
   category: PropertyCategory;
@@ -16,7 +15,7 @@ export const PROPERTY_TYPE_PAGES: PropertyTypePage[] = [
     label: "Residential Plot",
     image: "/property-types/residential-plot.png",
     intro:
-      "SMA Real Estate & Builders publishes official residential plotted developments with original layout drawings. TODO: add verified local copy.",
+      "SMA Real Estate & Builders publishes official residential plotted developments with original layout drawings available to inspect. Our current listings are in Villupuram and Salem districts.",
   },
   {
     slug: "agricultural-land",
@@ -24,7 +23,7 @@ export const PROPERTY_TYPE_PAGES: PropertyTypePage[] = [
     label: "Agricultural Land",
     image: "/property-types/agricultural-land.jpg",
     intro:
-      "Enquire about agricultural land handled by SMA Real Estate & Builders in Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders currently does not publish an official agricultural land listing on this website. Our team can help you enquire about agricultural land options in Tamil Nadu.",
   },
   {
     slug: "villa",
@@ -32,7 +31,7 @@ export const PROPERTY_TYPE_PAGES: PropertyTypePage[] = [
     label: "Villa",
     image: "/property-types/villa.jpg",
     intro:
-      "Enquire about villas handled by SMA Real Estate & Builders in Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders currently does not publish an official villa listing on this website. Our team can help you enquire about villa options in Tamil Nadu.",
   },
   {
     slug: "apartment",
@@ -40,7 +39,7 @@ export const PROPERTY_TYPE_PAGES: PropertyTypePage[] = [
     label: "Apartment",
     image: "/property-types/apartment.jpg",
     intro:
-      "Enquire about apartments handled by SMA Real Estate & Builders in Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders currently does not publish an official apartment listing on this website. Our team can help you enquire about apartment options in Tamil Nadu.",
   },
   {
     slug: "independent-house",
@@ -48,7 +47,7 @@ export const PROPERTY_TYPE_PAGES: PropertyTypePage[] = [
     label: "Independent House",
     image: "/property-types/independent-house.jpg",
     intro:
-      "Enquire about independent houses handled by SMA Real Estate & Builders in Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders currently does not publish an official independent house listing on this website. Our team can help you enquire about independent house options in Tamil Nadu.",
   },
   {
     slug: "commercial-space",
@@ -56,7 +55,7 @@ export const PROPERTY_TYPE_PAGES: PropertyTypePage[] = [
     label: "Commercial Space",
     image: "/property-types/commercial-space.jpg",
     intro:
-      "Enquire about commercial spaces handled by SMA Real Estate & Builders in Tamil Nadu. TODO: add verified local copy.",
+      "SMA Real Estate & Builders currently does not publish an official commercial space listing on this website. Our team can help you enquire about commercial options in Tamil Nadu.",
   },
 ];
 

@@ -82,14 +82,14 @@ export const founder = {
   role: "Founder & Managing Director",
   image: "/sma-founder.jpeg",
   location: "Villupuram, Tamil Nadu",
-  experience: "40+ years in Tamil Nadu real estate",
+  experience: "Experienced in Tamil Nadu real estate",
   quote:
     "Buying land or a home should never feel like a gamble. We built this company to make every step — price, paperwork and possession — clear and honest.",
   bio: "Led by our founder, S.M. Abdul Hakkim, our company was established with a simple vision: to make property buying more transparent, reliable and rewarding for every customer. We believe that buying land is more than a financial investment — it is an important step towards building a family's future. From identifying the right property to guiding customers through documentation and the buying process, we believe in doing things the right way, with honesty and personal attention.",
   promise:
     "Every customer deserves clarity, confidence and a property decision they can feel good about.",
   highlights: [
-    "Four decades of on-ground experience across Tamil Nadu",
+    "On-ground property knowledge across Tamil Nadu",
     "A document-first process on every single listing",
     "Personal attention from first enquiry to registration",
   ],

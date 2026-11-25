@@ -3,9 +3,9 @@ import { SITE } from "./site";
 import type { Property } from "./types";
 
 const DEFAULT_OG_IMAGE = "/og-home.jpg";
+export const HOME_TITLE = "Plots & Villas in Villupuram & Salem | SMA Real Estate";
 
-export const HOME_TITLE = "DTCP Approved Plots in Villupuram & Salem | SMA Real Estate";
-export const HOME_DESCRIPTION = `DTCP-approved plots, villas and land in Villupuram, Salem and across Tamil Nadu. Document-first process, 40+ years experience. Call us on ${SITE.displayPhone}.`;
+export const HOME_DESCRIPTION = `Official plots, villas and land enquiries in Villupuram, Salem and across Tamil Nadu. Document-first process. Call us on ${SITE.displayPhone}.`;
 
 export interface MetaImage {
   url: string;
@@ -38,6 +38,7 @@ export interface PageMetaInput {
   image?: MetaImage;
   maxDescription?: number;
   absoluteTitle?: string;
+  robots?: Metadata["robots"];
 }
 
 export function pageMetadata({
@@ -47,6 +48,7 @@ export function pageMetadata({
   image = { url: DEFAULT_OG_IMAGE, width: 1200, height: 630 },
   maxDescription = 160,
   absoluteTitle,
+  robots,
 }: PageMetaInput): Metadata {
   const canonical = metaPath(path);
   const trimmed = trimAtWordBoundary(description, maxDescription);
@@ -55,6 +57,7 @@ export function pageMetadata({
   return {
     title: absoluteTitle ? { absolute: absoluteTitle } : title,
     description: trimmed,
+    ...(robots ? { robots } : {}),
     alternates: { canonical },
     openGraph: {
       type: "website",
@@ -91,11 +94,8 @@ export function propertyTitle(property: Property): string {
 
 export function propertyDescription(property: Property): string {
   const { locality, district } = propertyPlace(property);
-  const hasDtcp =
-    Boolean(property.dtcpNumber) || property.approvalNotes?.toLowerCase().includes("dtcp");
-  const approval = hasDtcp
-    ? `DTCP-approved plots${property.dtcpNumber ? ` (No. ${property.dtcpNumber})` : ""}`
-    : "Plots";
+  const hasVerifiedApproval = property.verified && Boolean(property.dtcpNumber);
+  const approval = hasVerifiedApproval ? `DTCP-approved plots (No. ${property.dtcpNumber})` : "Plots";
 
   return trimAtWordBoundary(
     `${property.title}: ${approval} in ${locality}, ${district}. View the original layout plan, brochure and enquire on WhatsApp.`,

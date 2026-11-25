@@ -72,12 +72,11 @@ export async function ListingView({
                     : "flex flex-col gap-6",
                 )}
               >
-                {result.items.map((property, i) => (
+                {result.items.map((property) => (
                   <PropertyCard
                     key={property._id}
                     property={property}
                     variant={view}
-                    priority={i === 0}
                     priceClassName="text-[13px]"
                   />
                 ))}
