@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone, Instagram, Facebook, MessageCircle, Youtube } from "lucide-react";
+import { Mail, MapPin, Phone, Instagram, Facebook, MessageCircle } from "lucide-react";
 import { Logo } from "./logo";
 import { NewsletterForm } from "./newsletter-form";
-import { FOOTER_LINKS, site } from "@/lib/site";
+import { FOOTER_LINKS, formatAddress, site } from "@/lib/site";
 
 const columns = [
   { title: "Quick Links", links: FOOTER_LINKS.explore },
@@ -14,7 +14,6 @@ const SOCIALS = [
   { href: site.social.instagram, label: "Instagram", Icon: Instagram },
   { href: site.social.facebook, label: "Facebook", Icon: Facebook },
   { href: site.social.whatsapp, label: "WhatsApp", Icon: MessageCircle },
-  { href: site.social.youtube, label: "YouTube", Icon: Youtube },
 ];
 
 export function Footer() {
@@ -29,7 +28,7 @@ export function Footer() {
             </p>
             <div className="mt-6 space-y-3 text-body text-cream/80">
               <p className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 shrink-0 text-gold/80" /> {site.address}
+                <MapPin className="h-4 w-4 shrink-0 text-gold/80" /> {formatAddress()}
               </p>
               <p className="flex items-center gap-3">
                 <Phone className="h-4 w-4 shrink-0 text-gold/80" />

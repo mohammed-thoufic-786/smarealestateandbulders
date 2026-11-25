@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Mail, MapPin, Clock } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactForm } from "./contact-form";
-import { site } from "@/lib/site";
+import { formatAddress, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -11,13 +11,14 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const mapQuery = encodeURIComponent(site.address);
+  const address = formatAddress();
+  const mapQuery = encodeURIComponent(address);
   const items = [
     { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
     {
       icon: MapPin,
       label: "Office",
-      value: site.address,
+      value: address,
       href: `https://maps.google.com/?q=${mapQuery}`,
     },
   ];

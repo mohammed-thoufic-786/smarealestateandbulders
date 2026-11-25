@@ -9,7 +9,6 @@ import { LayoutViewer } from "@/components/property/layout-viewer";
 import { PropertyMap } from "@/components/property/property-map";
 import { EnquiryPanel, MobileActionBar } from "@/components/property/property-contact";
 import { PropertyCard } from "@/components/property/property-card";
-import { site } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -31,7 +30,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${site.url}/property/${property.slug}`,
+      url: `/property/${property.slug}`,
       images: cover ? [{ url: cover }] : undefined,
       type: "article",
     },

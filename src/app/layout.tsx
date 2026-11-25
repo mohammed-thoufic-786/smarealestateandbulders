@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { AppProviders } from "@/components/providers/app-providers";
-import { site, founder } from "@/lib/site";
+import { SITE, site, founder } from "@/lib/site";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(SITE.url),
   title: {
     default: `${site.name} — ${site.tagline}`,
     template: `%s · ${site.name}`,

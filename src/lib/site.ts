@@ -4,27 +4,65 @@ import {
   whatsappLink as buildWhatsappLink,
 } from "./business-config";
 
-const whatsappNumber = businessConfig.whatsappNumber;
+const TRACKING_PARAMS = [
+  "cnvx",
+  "mibextid",
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "fbclid",
+  "gclid",
+  "igshid",
+];
 
-export const site = {
+export function stripTrackingParams(value: string): string {
+  try {
+    const url = new URL(value);
+    for (const key of TRACKING_PARAMS) url.searchParams.delete(key);
+    return url.toString();
+  } catch {
+    return value;
+  }
+}
+
+export const SITE = {
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.smarealestates.com",
   name: "SMA Real Estate & Builders",
   legalName: "SMA Real Estate & Builders",
   tagline: "Trust begins here, your future starts here.",
   description:
     "SMA Real Estate & Builders — a Tamil Nadu real-estate company helping families and investors buy plots, villas, apartments and commercial space with clear paperwork and fair pricing.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   locale: "en_IN",
-  phone: "+91 91501 28777",
-  whatsapp: whatsappNumber,
+  phone: "+919150128777",
+  displayPhone: "+91 91501 28777",
   email: businessConfig.businessEmail,
-  address: "E.S Hospital near Solai Mahal back side, SMA Apartment, Villupuram, Tamil Nadu 605602",
+  address: {
+    street: "E.S Hospital near Solai Mahal back side, SMA Apartment",
+    city: "Villupuram",
+    region: "Tamil Nadu",
+    postal: "605602",
+    country: "IN",
+  },
+  whatsapp: buildWhatsappLink(),
+  sameAs: [
+    stripTrackingParams(businessConfig.instagramUrl),
+    stripTrackingParams(businessConfig.facebookUrl),
+  ],
   social: {
-    instagram: businessConfig.instagramUrl,
-    facebook: businessConfig.facebookUrl,
+    instagram: stripTrackingParams(businessConfig.instagramUrl),
+    facebook: stripTrackingParams(businessConfig.facebookUrl),
     whatsapp: buildWhatsappLink(),
-    youtube: "https://youtube.com",
   },
 } as const;
+
+export function formatAddress(address: typeof SITE.address = SITE.address): string {
+  const country = address.country === "IN" ? "India" : address.country;
+  return `${address.street}, ${address.city}, ${address.region} ${address.postal}, ${country}`;
+}
+
+export const site = SITE;
 
 export const whatsappLink = (message: string = DEFAULT_WHATSAPP_MESSAGE) =>
   buildWhatsappLink(message);
