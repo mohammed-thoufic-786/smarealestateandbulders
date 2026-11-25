@@ -69,8 +69,9 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
+                data-active={isActive(link.href)}
                 className={cn(
-                  "whitespace-nowrap text-sm font-medium transition-colors lg:text-[18px]",
+                  "nav-link whitespace-nowrap text-sm font-medium transition-colors lg:text-[18px]",
                   isActive(link.href)
                     ? "text-primary"
                     : "text-muted hover:text-primary",

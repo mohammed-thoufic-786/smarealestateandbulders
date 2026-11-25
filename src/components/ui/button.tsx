@@ -5,7 +5,7 @@ type Variant = "primary" | "secondary" | "ghost" | "light" | "outline" | "danger
 type Size = "sm" | "md" | "lg" | "icon";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 ease-smooth disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold select-none";
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-center font-semibold transition-all duration-300 ease-smooth hover:-translate-y-px disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold select-none [&_svg]:shrink-0";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -24,8 +24,8 @@ const variants: Record<Variant, string> = {
 
 const sizes: Record<Size, string> = {
   sm: "h-9 px-4 text-nav",
-  md: "h-11 px-6 text-nav",
-  lg: "h-12 px-8 text-nav py-3.5",
+  md: "h-11 px-5 text-nav sm:px-6",
+  lg: "h-12 px-5 text-nav sm:px-7",
   icon: "h-10 w-10",
 };
 

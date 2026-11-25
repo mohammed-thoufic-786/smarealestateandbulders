@@ -39,7 +39,7 @@ export function PropertyCard({
   return (
     <article
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-cream text-foreground transition-all duration-500 ease-smooth hover:border-gold/60 hover:shadow-glow",
+        "interactive-card group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-cream text-foreground transition-all duration-500 ease-smooth hover:border-gold/60 hover:shadow-glow",
         isList && "sm:flex-row",
         className,
       )}

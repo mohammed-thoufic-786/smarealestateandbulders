@@ -100,6 +100,40 @@ test("URL query narrows the catalogue and can be cleared", async ({ page }) => {
   await expect(page.getByText(/4 properties found/)).toBeVisible();
 });
 
+test("site visit button keeps the full label visible across viewports", async ({ page }) => {
+  const viewports = [
+    { width: 1440, height: 900 },
+    { width: 768, height: 1024 },
+    { width: 390, height: 844 },
+    { width: 360, height: 780 },
+  ];
+
+  for (const viewport of viewports) {
+    await page.setViewportSize(viewport);
+    await gotoReady(page, "/property/kurunji-garden");
+
+    const button = page.getByRole("button", { name: "Schedule Site Visit", exact: true });
+    await expect(button).toBeVisible();
+
+    const metrics = await button.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {
+        label: element.textContent?.replace(/\s+/g, " ").trim(),
+        whiteSpace: style.whiteSpace,
+        scrollWidth: element.scrollWidth,
+        clientWidth: element.clientWidth,
+        scrollHeight: element.scrollHeight,
+        clientHeight: element.clientHeight,
+      };
+    });
+
+    expect(metrics.label).toBe("Schedule Site Visit");
+    expect(metrics.whiteSpace).toBe("nowrap");
+    expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
+    expect(metrics.scrollHeight).toBeLessThanOrEqual(metrics.clientHeight + 1);
+  }
+});
+
 test("enquiry opens WhatsApp with the selected official property", async ({ page }) => {
   await gotoReady(page, "/property/kmb-garden");
 

@@ -45,7 +45,7 @@ export function EnquiryPanel({ property }: { property: Summary }) {
             propertyTitle={property.title}
             triggerLabel={
               <>
-                <CalendarCheck className="h-4 w-4" /> Schedule site visit
+                <CalendarCheck className="h-4 w-4" /> Schedule Site Visit
               </>
             }
             triggerSize="lg"

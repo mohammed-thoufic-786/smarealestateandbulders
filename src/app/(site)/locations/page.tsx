@@ -25,7 +25,7 @@ export default async function LocationsPage() {
       return {
         ...location,
         count: properties.length,
-        image: cover?.url ?? "/home/sma-hero-background.webp",
+        image: location.image ?? cover?.url ?? "/home/sma-hero-background.webp",
       };
     }),
   );
@@ -45,7 +45,7 @@ export default async function LocationsPage() {
             <Link
               key={location.slug}
               href={`/locations/${location.slug}`}
-              className="group overflow-hidden rounded-2xl border border-gold/25 bg-espresso transition-colors hover:border-gold/60"
+              className="interactive-card group overflow-hidden rounded-2xl border border-gold/25 bg-espresso transition-colors hover:border-gold/60"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <SmartImage

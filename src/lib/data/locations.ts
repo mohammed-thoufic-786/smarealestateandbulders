@@ -2,6 +2,7 @@ export interface ServiceLocation {
   slug: string;
   name: string;
   district: string;
+  image?: string;
   intro: string;
   nearbyAreas: string[];
   propertySlugs: string[];
@@ -21,6 +22,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     slug: "ulundurpet",
     name: "Ulundurpet",
     district: "Villupuram",
+    image: "/locations/ulundurpet.jpg",
     intro:
       "SMA Real Estate & Builders helps buyers enquire about property options in Ulundurpet, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across Villupuram district.",
     nearbyAreas: ["villupuram", "vikravandi"],
@@ -39,6 +41,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     slug: "vikravandi",
     name: "Vikravandi",
     district: "Villupuram",
+    image: "/locations/vikravandi.jpg",
     intro:
       "SMA Real Estate & Builders helps buyers enquire about property options in Vikravandi, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across Villupuram district.",
     nearbyAreas: ["villupuram", "ulundurpet"],
@@ -48,6 +51,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     slug: "acharapakam",
     name: "Acharapakam",
     district: "Tamil Nadu",
+    image: "/locations/acharapakam.jpg",
     intro:
       "SMA Real Estate & Builders helps buyers enquire about property options in Acharapakam, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across nearby Tamil Nadu locations.",
     nearbyAreas: ["madurantakam", "melmaruvathur"],
@@ -57,6 +61,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     slug: "melmaruvathur",
     name: "Melmaruvathur",
     district: "Tamil Nadu",
+    image: "/locations/melmaruvathur.jpg",
     intro:
       "SMA Real Estate & Builders helps buyers enquire about property options in Melmaruvathur, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across nearby Tamil Nadu locations.",
     nearbyAreas: ["acharapakam", "madurantakam"],
@@ -66,6 +71,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     slug: "madurantakam",
     name: "Madurantakam",
     district: "Tamil Nadu",
+    image: "/locations/madurantakam.jpg",
     intro:
       "SMA Real Estate & Builders helps buyers enquire about property options in Madurantakam, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across nearby Tamil Nadu locations.",
     nearbyAreas: ["melmaruvathur", "acharapakam"],
@@ -75,6 +81,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     slug: "kanchipuram",
     name: "Kanchipuram",
     district: "Kanchipuram",
+    image: "/locations/kanchipuram.jpg",
     intro:
       "SMA Real Estate & Builders helps buyers enquire about property options in Kanchipuram, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across Kanchipuram district.",
     nearbyAreas: ["vandavasi", "madurantakam"],
@@ -84,6 +91,7 @@ export const SERVICE_LOCATIONS: ServiceLocation[] = [
     slug: "vandavasi",
     name: "Vandavasi",
     district: "Tamil Nadu",
+    image: "/locations/vandavasi.jpg",
     intro:
       "SMA Real Estate & Builders helps buyers enquire about property options in Vandavasi, Tamil Nadu. We do not currently publish an official property here, but our team can share available options across nearby Tamil Nadu locations.",
     nearbyAreas: ["kanchipuram", "melmaruvathur"],

@@ -50,7 +50,9 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {children}
+      <div key={pathname} className="page-transition">
+        {children}
+      </div>
       {consent === "accepted" && (
         <>
           {CLARITY_PROJECT_ID && (

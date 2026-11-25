@@ -262,6 +262,48 @@ test("explore by location cards expand with the section", async ({ page }) => {
   }
 });
 
+test("primary navigation reaches every menu item and marks the active page", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const items = [
+    { label: "Home", path: "/" },
+    { label: "Buy", path: "/buy" },
+    { label: "Location", path: "/locations" },
+    { label: "About", path: "/about" },
+    { label: "Contact", path: "/contact" },
+  ];
+
+  for (const item of items) {
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Primary" });
+    const link = nav.getByRole("link", { name: item.label, exact: true });
+    await expect(link).toBeVisible();
+    await link.click();
+
+    await expect(page).toHaveURL(item.path === "/" ? /\/$/ : new RegExp(`${item.path}/?$`));
+    await expect(link).toHaveAttribute("aria-current", "page");
+  }
+});
+
+test("location cards use the supplied town images", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/locations");
+
+  const slugs = [
+    "acharapakam",
+    "kanchipuram",
+    "madurantakam",
+    "melmaruvathur",
+    "ulundurpet",
+    "vandavasi",
+    "vikravandi",
+  ];
+
+  for (const slug of slugs) {
+    const image = page.locator(`a[href="/locations/${slug}"] img`);
+    await expect(image).toHaveAttribute("src", new RegExp(`%2Flocations%2F${slug}\\.jpg`));
+  }
+});
+
 test("locations page links to crawlable location pages", async ({ page }) => {
   for (const viewport of [...desktopViewports, ...mobileViewports]) {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });

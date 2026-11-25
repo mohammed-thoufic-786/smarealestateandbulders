@@ -28,7 +28,7 @@ function todayPlus(days: number) {
 
 export function SiteVisitModal({
   propertyTitle,
-  triggerLabel = "Schedule site visit",
+  triggerLabel = "Schedule Site Visit",
   triggerVariant = "outline",
   triggerSize = "md",
   triggerClassName,

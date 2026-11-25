@@ -25,7 +25,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem;
   -webkit-text-size-adjust: 100%;
+}
+
+section[id],
+h2[id] {
+  scroll-margin-top: 6.5rem;
 }
 
 body {
@@ -83,6 +89,50 @@ body {
 }
 
 @layer components {
+  .page-transition {
+    animation: pageFade 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .page-transition h1,
+  .page-transition h2 {
+    animation: headingEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .interactive-card {
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .interactive-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -30px rgba(11, 45, 32, 0.45);
+  }
+
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -6px;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-link:hover::after,
+  .nav-link[data-active="true"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
   .container-x {
     @apply w-full max-w-full px-5 sm:px-8;
   }
@@ -203,6 +253,42 @@ body {
     -webkit-mask-image: linear-gradient(to right, #000 80%, transparent);
     mask-image: linear-gradient(to right, #000 80%, transparent);
   }
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes headingEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes sectionEnter {
+  from {
+    opacity: 0.7;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+section[id]:target,
+h2[id]:target {
+  animation: sectionEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {

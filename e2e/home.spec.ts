@@ -36,6 +36,13 @@ test("primary navigation reaches the buy page", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });
 
+test("home hero uses the exact premium positioning copy", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    /^Explore premium residential plots and villas in Villupuram, Salem and across Tamil Nadu with SMA Real Estate & Builders\.$/,
+  );
+});
+
 test("home page shows the supplied customer reviews and avatars", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByText(/Naanga plot vaanganum nu search pannitu irundhom/)).toBeVisible();
