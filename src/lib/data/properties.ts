@@ -56,14 +56,14 @@ export const OFFICIAL_PROPERTIES: Property[] = [
     images: [
       {
         url: "/properties/kurunji-garden/property-site.jpg",
-        alt: "Aerial site image of KURUNJI GARDEN from the original brochure",
+        alt: "Aerial view of KURUNJI GARDEN DTCP approved plots, Narasinganur, Villupuram",
         width: 1079,
         height: 581,
         isCover: true,
       },
       {
         url: "/properties/kurunji-garden/layout.png",
-        alt: "Original DTCP-approved layout drawing of KURUNJI GARDEN",
+        alt: "Original DTCP-approved layout drawing of KURUNJI GARDEN, Narasinganur, Villupuram",
         width: 2776,
         height: 1570,
       },
@@ -97,7 +97,7 @@ export const OFFICIAL_PROPERTIES: Property[] = [
     images: [
       {
         url: "/properties/kmb-garden/layout.jpg",
-        alt: "Original approved layout drawing of K.M.B GARDEN",
+        alt: "Original approved layout drawing of K.M.B GARDEN, Omalur, Salem",
         width: 3369,
         height: 2382,
         isCover: true,
@@ -131,14 +131,14 @@ export const OFFICIAL_PROPERTIES: Property[] = [
     images: [
       {
         url: "/properties/sma-garden/property-site.jpg",
-        alt: "Site image of S.M.A GARDEN from the original brochure",
+        alt: "Site view of S.M.A GARDEN plots, Orathur, Villupuram",
         width: 1445,
         height: 965,
         isCover: true,
       },
       {
         url: "/properties/sma-garden/layout.jpg",
-        alt: "Original layout drawing of S.M.A GARDEN",
+        alt: "Original layout drawing of S.M.A GARDEN, Orathur, Villupuram",
         width: 1600,
         height: 1131,
       },
@@ -172,14 +172,14 @@ export const OFFICIAL_PROPERTIES: Property[] = [
     images: [
       {
         url: "/properties/prestige-garden/card.webp",
-        alt: "PRESTIGE GARDEN plotted development card image from the original brochure",
+        alt: "PRESTIGE GARDEN DTCP-approved plotted development, Karipatti, Salem",
         width: 500,
         height: 375,
         isCover: true,
       },
       {
         url: "/properties/prestige-garden/layout.jpg",
-        alt: "Original DTCP-approved layout plan of PRESTIGE GARDEN",
+        alt: "Original DTCP-approved layout plan of PRESTIGE GARDEN, Karipatti, Salem",
         width: 3369,
         height: 2382,
       },

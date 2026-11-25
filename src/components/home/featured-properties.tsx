@@ -18,7 +18,7 @@ export async function FeaturedProperties() {
           <PropertyCard
             key={property._id}
             property={property}
-            priority={i < 4}
+            priority={i === 0}
             showLocation={false}
             compactTypography
           />

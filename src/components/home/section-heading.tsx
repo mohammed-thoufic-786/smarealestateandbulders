@@ -28,14 +28,14 @@ export function SectionHeading({
       )}
     >
       <div className={cn("max-w-2xl", align === "center" && "mx-auto")}>
-        <h3
+        <h2
           className={
             `text-balance font-display text-heading font-bold ` +
             (inverted ? "text-white" : "text-foreground")
           }
         >
           {title}
-        </h3>
+        </h2>
         {subtitle && (
           <p
             className={

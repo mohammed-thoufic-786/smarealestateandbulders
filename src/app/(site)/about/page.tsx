@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { buttonVariants } from "@/components/ui/button";
 import { SmartImage } from "@/components/ui/smart-image";
 import { getSiteStats } from "@/lib/data/repository";
+import { LOCATIONS_SERVED, YEARS_EXPERIENCE } from "@/lib/data/site-metrics";
 import { founder } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -45,8 +46,8 @@ export default async function AboutPage() {
             <div className="mt-6 grid grid-cols-3 gap-6 sm:mt-8">
               {[
                 { label: "Listings", value: stats.properties },
-                { label: "Locations", value: 9 },
-                { label: "Years", value: 40 },
+                { label: "Locations", value: LOCATIONS_SERVED },
+                { label: "Years", value: YEARS_EXPERIENCE },
               ].map((s) => (
                 <div key={s.label}>
                   <p className="font-display text-2xl font-bold text-foreground">{s.value}+</p>

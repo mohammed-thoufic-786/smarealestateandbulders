@@ -30,8 +30,9 @@ export function PropertyCard({
   priceClassName?: string;
 }) {
   const cardImage = CARD_IMAGE_OVERRIDES[property.slug];
+  const displayLocation = property.location.shortLocation ?? property.location.address;
   const cover = cardImage
-    ? { url: cardImage, alt: `${property.title} card image` }
+    ? { url: cardImage, alt: `${property.title} brochure image, ${displayLocation}` }
     : property.images.find((i) => i.isCover) ?? property.images[0];
   const isList = variant === "list";
 

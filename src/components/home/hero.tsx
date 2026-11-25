@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowRight, KeyRound, MapPin, PhoneCall, ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { SmartImage } from "@/components/ui/smart-image";
+import { LOCATIONS_SERVED } from "@/lib/data/site-metrics";
 import { site, founder } from "@/lib/site";
 import styles from "./hero.module.css";
 
@@ -12,6 +14,14 @@ export function Hero() {
 
   return (
     <section className={styles.hero} aria-label="SMA Estates & Builders">
+      <SmartImage
+        src="/home/sma-hero-background.png"
+        alt="SMA Real Estate & Builders homes and plotted developments in Tamil Nadu"
+        fill
+        priority
+        sizes="100vw"
+        className={styles.heroImage}
+      />
       <div className={styles.copy}>
         <motion.div
           className={styles.copyInner}
@@ -20,9 +30,10 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className={`${styles.title} text-balance font-display`}>
-            <span className={styles.titleLine}>Trust Begins Here,</span>{" "}
-            <span className={styles.titleAccent}>Your Future Starts Here.</span>
+            <span className={styles.titleLine}>DTCP-Approved Plots &amp; Villas</span>{" "}
+            <span className={styles.titleAccent}>in Villupuram, Salem &amp; Tamil Nadu</span>
           </h1>
+          <p className={styles.subtitle}>Trust Begins Here, Your Future Starts Here.</p>
 
           <p className={`${styles.description} text-pretty`}>
             {site.name} is a Tamil Nadu real-estate company led by {founder.name}. We help families
@@ -57,7 +68,7 @@ export function Hero() {
         </span>
         <span className={styles.trustDot}>·</span>
         <span className={styles.trustItem}>
-          <MapPin className={`${styles.trustIcon} h-3.5 w-3.5`} /> 5 operating districts across Tamil Nadu
+          <MapPin className={`${styles.trustIcon} h-3.5 w-3.5`} /> {LOCATIONS_SERVED} towns across Tamil Nadu
         </span>
       </p>
 
