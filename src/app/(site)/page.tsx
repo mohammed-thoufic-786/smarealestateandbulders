@@ -17,6 +17,7 @@ import styles from "./home.module.css";
 export function generateMetadata(): Metadata {
   return pageMetadata({
     title: HOME_TITLE,
+    absoluteTitle: HOME_TITLE,
     description: HOME_DESCRIPTION,
     path: "/",
   });

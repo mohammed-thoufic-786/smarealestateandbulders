@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
   return pageMetadata({
-    title: "Terms & Conditions | SMA Real Estate",
+    title: "Terms & Conditions",
     description:
       "Terms governing the use of the SMA Real Estate & Builders website, its property information and enquiry services.",
     path: "/terms",

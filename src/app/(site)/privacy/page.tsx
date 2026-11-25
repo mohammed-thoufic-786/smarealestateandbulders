@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
   return pageMetadata({
-    title: "Privacy Policy | SMA Real Estate",
+    title: "Privacy Policy",
     description:
       "How SMA Real Estate & Builders collects, uses, shares and protects personal information submitted through this website.",
     path: "/privacy",

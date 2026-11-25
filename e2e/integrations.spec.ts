@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 const WHATSAPP_NUMBER = "919150128777";
 const FACEBOOK_URL = "https://www.facebook.com/share/1UP65RyDmK/";
-const INSTAGRAM_URL = "https://www.instagram.com/s.m.a_realestate_and_builders/";
+const INSTAGRAM_URL = "https://www.instagram.com/s.m.a_realestate_and_builders";
 const GENERAL_MESSAGE =
   "Hello SMA Real Estate & Builders, I would like to enquire about your properties and services. Please contact me.";
 

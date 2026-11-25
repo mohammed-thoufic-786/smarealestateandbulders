@@ -37,6 +37,7 @@ export interface PageMetaInput {
   path: string;
   image?: MetaImage;
   maxDescription?: number;
+  absoluteTitle?: string;
 }
 
 export function pageMetadata({
@@ -45,12 +46,14 @@ export function pageMetadata({
   path,
   image = { url: DEFAULT_OG_IMAGE, width: 1200, height: 630 },
   maxDescription = 160,
+  absoluteTitle,
 }: PageMetaInput): Metadata {
   const canonical = metaPath(path);
   const trimmed = trimAtWordBoundary(description, maxDescription);
+  const resolvedTitle = absoluteTitle ?? title;
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: absoluteTitle } : title,
     description: trimmed,
     alternates: { canonical },
     openGraph: {
@@ -58,13 +61,13 @@ export function pageMetadata({
       locale: SITE.locale,
       url: canonical,
       siteName: SITE.name,
-      title,
+      title: resolvedTitle,
       description: trimmed,
       images: [image],
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: resolvedTitle,
       description: trimmed,
       images: [image.url],
     },
@@ -82,8 +85,8 @@ export function propertyPlace(property: Property): { locality: string; district:
 }
 
 export function propertyTitle(property: Property): string {
-  const { locality, district } = propertyPlace(property);
-  return `${property.title} – Plots in ${locality}, ${district}`;
+  const { locality } = propertyPlace(property);
+  return trimAtWordBoundary(`${property.title} – Plots in ${locality}`, 41);
 }
 
 export function propertyDescription(property: Property): string {

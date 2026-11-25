@@ -24,8 +24,8 @@ test("home page features only the official SMA properties", async ({ page }) => 
 
 test("home page keeps property type and location exploration separate", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 3, name: "Find your fit" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 3, name: "Where we operate" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Find your fit" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Where we operate" })).toBeVisible();
   await expect(page.getByRole("link", { name: /Villupuram/ }).first()).toBeVisible();
 });
 

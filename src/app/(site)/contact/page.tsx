@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
   return pageMetadata({
-    title: "Contact SMA Real Estate | Villupuram Office",
+    title: "Contact Us | Villupuram",
     description: `Contact SMA Real Estate & Builders in Villupuram, Tamil Nadu. Call ${SITE.displayPhone}, email ${SITE.email} or send an enquiry.`,
     path: "/contact",
   });

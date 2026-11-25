@@ -7,7 +7,7 @@ import styles from "./buy.module.css";
 
 export function generateMetadata(): Metadata {
   return pageMetadata({
-    title: "Plots, Villas & Land for Sale in Tamil Nadu",
+    title: "Plots & Villas for Sale in Tamil Nadu",
     description:
       "Browse DTCP-approved residential plots, villas, agricultural land and homes for sale across Villupuram, Salem and Tamil Nadu. Price on request.",
     path: "/buy",

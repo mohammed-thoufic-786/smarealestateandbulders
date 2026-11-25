@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 
 const OFFICIAL_SLUGS = [
   "kurunji-garden",
@@ -13,8 +13,14 @@ const OFFICIAL_TITLES = [
   "PRESTIGE GARDEN",
 ];
 
+async function gotoReady(page: Page, url: string) {
+  await page.goto(url, { waitUntil: "domcontentloaded" });
+  await page.waitForLoadState("load", { timeout: 5_000 }).catch(() => {});
+  await page.waitForTimeout(250);
+}
+
 test("browse page lists only the four official SMA properties", async ({ page }) => {
-  await page.goto("/buy");
+  await gotoReady(page, "/buy");
   await expect(page.getByText(/4 properties found/)).toBeVisible();
 
   for (const slug of OFFICIAL_SLUGS) {
@@ -33,7 +39,7 @@ test("browse page lists only the four official SMA properties", async ({ page })
 });
 
 test("browse page keeps all four price-on-request labels compact", async ({ page }) => {
-  await page.goto("/buy");
+  await gotoReady(page, "/buy");
 
   const prices = page.getByText("Price on request", { exact: true });
   await expect(prices).toHaveCount(4);
@@ -48,7 +54,7 @@ test("browse page keeps all four price-on-request labels compact", async ({ page
 });
 
 test("browse page opens an official detail page with the layout viewer", async ({ page }) => {
-  await page.goto("/buy");
+  await gotoReady(page, "/buy");
   await page.locator('a[href="/property/kurunji-garden"]').first().click();
 
   await expect(page).toHaveURL(/\/property\/kurunji-garden$/);
@@ -65,7 +71,7 @@ test("browse page opens an official detail page with the layout viewer", async (
 test("layout preview opens a clean full-screen image view on desktop and mobile", async ({ page }) => {
   for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
     await page.setViewportSize(viewport);
-    await page.goto("/property/kurunji-garden");
+    await gotoReady(page, "/property/kurunji-garden");
 
     const preview = page.getByRole("button", { name: /open full-screen view of kurunji garden layout/i });
     await preview.click();
@@ -85,7 +91,7 @@ test("layout preview opens a clean full-screen image view on desktop and mobile"
 });
 
 test("URL query narrows the catalogue and can be cleared", async ({ page }) => {
-  await page.goto("/buy?q=Villupuram");
+  await gotoReady(page, "/buy?q=Villupuram");
   await expect(page.getByText(/2 properties found/)).toBeVisible();
   await expect(page.getByRole("button", { name: /Villupuram/ })).toBeVisible();
 
@@ -95,7 +101,7 @@ test("URL query narrows the catalogue and can be cleared", async ({ page }) => {
 });
 
 test("enquiry opens WhatsApp with the selected official property", async ({ page }) => {
-  await page.goto("/property/kmb-garden");
+  await gotoReady(page, "/property/kmb-garden");
 
   const link = page.getByRole("link", { name: /enquire now/i }).first();
   const href = (await link.getAttribute("href")) ?? "";

@@ -33,7 +33,7 @@ export async function generateMetadata({
   }
 
   return pageMetadata({
-    title: `${type.label} for Sale in Tamil Nadu | SMA`,
+    title: `${type.label} for Sale in Tamil Nadu`,
     description: `${type.intro} View official SMA listings, layout plans and enquiry options.`,
     path: `/buy/type/${type.slug}`,
   });

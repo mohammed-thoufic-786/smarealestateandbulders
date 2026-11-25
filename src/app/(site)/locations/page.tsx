@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
   return pageMetadata({
-    title: "Locations We Serve: Villupuram, Salem, Ulundurpet & More",
+    title: "Locations We Serve in Tamil Nadu",
     description:
       "Explore the Tamil Nadu towns we cover, including Villupuram, Salem, Ulundurpet, Vikravandi and Kanchipuram. See SMA properties by location.",
     path: "/locations",
