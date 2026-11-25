@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { site } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions",
-  description: `The terms governing your use of the ${site.name} platform.`,
-  alternates: { canonical: "/terms" },
-};
+export function generateMetadata(): Metadata {
+  return pageMetadata({
+    title: "Terms & Conditions | SMA Real Estate",
+    description:
+      "Terms governing the use of the SMA Real Estate & Builders website, its property information and enquiry services.",
+    path: "/terms",
+  });
+}
 
 const SECTIONS = [
   {

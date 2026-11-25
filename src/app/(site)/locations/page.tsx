@@ -4,13 +4,16 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { SmartImage } from "@/components/ui/smart-image";
 import { getLocationStats, listProperties } from "@/lib/data/repository";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Explore Locations in Tamil Nadu",
-  description:
-    "Explore the exact locations of the four official SMA properties in Tamil Nadu.",
-  alternates: { canonical: "/locations" },
-};
+export function generateMetadata(): Metadata {
+  return pageMetadata({
+    title: "Locations We Serve: Villupuram, Salem, Ulundurpet & More",
+    description:
+      "Explore the Tamil Nadu towns we cover, including Villupuram, Salem, Ulundurpet, Vikravandi and Kanchipuram. See SMA properties by location.",
+    path: "/locations",
+  });
+}
 
 export default async function LocationsPage() {
   const locations = await Promise.all(

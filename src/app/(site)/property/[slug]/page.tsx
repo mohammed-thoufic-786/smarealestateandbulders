@@ -9,6 +9,7 @@ import { LayoutViewer } from "@/components/property/layout-viewer";
 import { PropertyMap } from "@/components/property/property-map";
 import { EnquiryPanel, MobileActionBar } from "@/components/property/property-contact";
 import { PropertyCard } from "@/components/property/property-card";
+import { pageMetadata, propertyMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -17,24 +18,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const property = await getPropertyBySlug(slug);
-  if (!property) return { title: "Property not found" };
+  if (!property) {
+    return pageMetadata({
+      title: "Property not found",
+      description: "The requested SMA property is not available.",
+      path: "/property/not-found",
+    });
+  }
 
-  const cover = property.images.find((i) => i.isCover)?.url ?? property.images[0]?.url;
-  const title = `${property.title} — Official SMA property`;
-  const description = property.description.slice(0, 160);
-
-  return {
-    title,
-    description,
-    alternates: { canonical: `/property/${property.slug}` },
-    openGraph: {
-      title,
-      description,
-      url: `/property/${property.slug}`,
-      images: cover ? [{ url: cover }] : undefined,
-      type: "article",
-    },
-  };
+  return propertyMetadata(property);
 }
 
 export default async function PropertyPage({

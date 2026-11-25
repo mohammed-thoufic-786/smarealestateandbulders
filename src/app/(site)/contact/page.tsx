@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { Mail, MapPin, Clock } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactForm } from "./contact-form";
-import { formatAddress, site } from "@/lib/site";
+import { formatAddress, SITE, site } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description: `Get in touch with ${site.name} — email us, visit our office or send an enquiry through WhatsApp.`,
-  alternates: { canonical: "/contact" },
-};
+export function generateMetadata(): Metadata {
+  return pageMetadata({
+    title: "Contact SMA Real Estate | Villupuram Office",
+    description: `Contact SMA Real Estate & Builders in Villupuram, Tamil Nadu. Call ${SITE.displayPhone}, email ${SITE.email} or send an enquiry.`,
+    path: "/contact",
+  });
+}
 
 export default function ContactPage() {
   const address = formatAddress();

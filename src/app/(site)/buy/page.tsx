@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { ListingView } from "@/components/property/listing-view";
+import { pageMetadata } from "@/lib/seo";
 import type { RawSearchParams } from "@/lib/search-params";
 import styles from "./buy.module.css";
 
-export const metadata: Metadata = {
-  title: "Buy Properties in Tamil Nadu",
-  description:
-    "Browse verified plots, villas, apartments, houses and commercial properties for sale across Tamil Nadu.",
-  alternates: { canonical: "/buy" },
-};
+export function generateMetadata(): Metadata {
+  return pageMetadata({
+    title: "Plots, Villas & Land for Sale in Tamil Nadu",
+    description:
+      "Browse DTCP-approved residential plots, villas, agricultural land and homes for sale across Villupuram, Salem and Tamil Nadu. Price on request.",
+    path: "/buy",
+  });
+}
 
 export default async function BuyPage({
   searchParams,

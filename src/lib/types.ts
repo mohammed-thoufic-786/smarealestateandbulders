@@ -120,6 +120,8 @@ export interface Property {
   floorPlanUrl?: string;
   documents: PropertyDocument[];
   approvalNotes?: string;
+  dtcpNumber?: string;
+  tnreraRegistration?: string;
   owner: { _id: string; name: string; phone?: string };
   assignedAgent?: { _id: string; name: string; phone?: string; avatar?: string };
   approvalStatus: ApprovalStatus;

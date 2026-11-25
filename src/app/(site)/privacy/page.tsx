@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
-import { site } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: `How ${site.name} collects, uses and protects your personal information.`,
-  alternates: { canonical: "/privacy" },
-};
+export function generateMetadata(): Metadata {
+  return pageMetadata({
+    title: "Privacy Policy | SMA Real Estate",
+    description:
+      "How SMA Real Estate & Builders collects, uses, shares and protects personal information submitted through this website.",
+    path: "/privacy",
+  });
+}
 
 const SECTIONS = [
   {

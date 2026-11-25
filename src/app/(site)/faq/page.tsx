@@ -3,13 +3,17 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { Accordion } from "@/components/ui/accordion";
 import { FAQS } from "@/lib/data/site-content";
+import { pageMetadata } from "@/lib/seo";
 import { site, whatsappLink } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
-  description: `Answers to common questions about buying, selling, renting and listing property with ${site.name}.`,
-  alternates: { canonical: "/faq" },
-};
+export function generateMetadata(): Metadata {
+  return pageMetadata({
+    title: "Property Buying FAQs | Tamil Nadu | SMA",
+    description:
+      "Answers about DTCP-approved plots, layout drawings, site visits, pricing on request and buying property in Tamil Nadu with SMA Real Estate.",
+    path: "/faq",
+  });
+}
 
 export default function FaqPage() {
   const jsonLd = {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HOME_DESCRIPTION, HOME_TITLE, pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/hero";
 import { Founder } from "@/components/home/founder";
 import { SuccessInNumbers } from "@/components/home/success-in-numbers";
@@ -11,14 +12,15 @@ import { Testimonials } from "@/components/home/testimonials";
 import { FinalCta } from "@/components/home/final-cta";
 import { AboutUs } from "@/components/home/about-us";
 import { StoryCommitment } from "@/components/home/story-commitment";
-import { site } from "@/lib/site";
 import styles from "./home.module.css";
 
-export const metadata: Metadata = {
-  title: `${site.name} — ${site.tagline}`,
-  description: site.description,
-  alternates: { canonical: "/" },
-};
+export function generateMetadata(): Metadata {
+  return pageMetadata({
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    path: "/",
+  });
+}
 
 export default function HomePage() {
   return (

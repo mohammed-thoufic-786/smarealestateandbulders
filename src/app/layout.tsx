@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { AppProviders } from "@/components/providers/app-providers";
 import { SITE } from "@/lib/site";
+import { HOME_DESCRIPTION, HOME_TITLE } from "@/lib/seo";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -18,16 +19,13 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
-const defaultTitle = "DTCP Approved Plots in Villupuram & Salem | SMA Real Estate";
-const defaultDescription = `DTCP-approved plots, villas and land in Villupuram, Salem and across Tamil Nadu. Document-first process, 40+ years experience. Call us on ${SITE.displayPhone}.`;
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: defaultTitle,
+    default: HOME_TITLE,
     template: "%s | SMA Real Estate",
   },
-  description: defaultDescription,
+  description: HOME_DESCRIPTION,
   authors: [{ name: SITE.legalName }],
   icons: {
     icon: [{ url: "/brand/sma-logo.png", type: "image/png", sizes: "1024x1024" }],
@@ -39,8 +37,8 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "/",
     siteName: SITE.name,
-    title: defaultTitle,
-    description: defaultDescription,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     images: [
       {
         url: "/og-home.jpg",
@@ -52,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: defaultTitle,
-    description: defaultDescription,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     images: ["/og-home.jpg"],
   },
   robots: { index: true, follow: true },

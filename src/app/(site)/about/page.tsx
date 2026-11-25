@@ -5,14 +5,17 @@ import { PageHeader } from "@/components/layout/page-header";
 import { buttonVariants } from "@/components/ui/button";
 import { SmartImage } from "@/components/ui/smart-image";
 import { getSiteStats } from "@/lib/data/repository";
-import { site, founder } from "@/lib/site";
+import { founder } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    `${site.name} is a Tamil Nadu real estate company building transparent property buying with clear paperwork and fair pricing.`,
-  alternates: { canonical: "/about" },
-};
+export function generateMetadata(): Metadata {
+  return pageMetadata({
+    title: "About SMA Real Estate | Villupuram, Tamil Nadu",
+    description:
+      "Meet SMA Real Estate & Builders of Villupuram, led by Haji S.M. Abdul Hakkim. 40+ years of document-first property guidance in Tamil Nadu.",
+    path: "/about",
+  });
+}
 
 const VALUES = [
   { icon: Compass, title: "Clarity over noise", body: "Every page is designed to help you to understand and decide." },
