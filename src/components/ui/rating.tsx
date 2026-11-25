@@ -3,7 +3,11 @@ import { Star } from "lucide-react";
 
 export function Rating({ value, size = 14, className }: { value: number; size?: number; className?: string }) {
   return (
-    <div className={cn("flex items-center gap-0.5", className)} aria-label={`${value} out of 5`}>
+    <div
+      className={cn("flex items-center gap-0.5", className)}
+      role="img"
+      aria-label={`${value} out of 5`}
+    >
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}

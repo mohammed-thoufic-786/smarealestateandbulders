@@ -1,4 +1,15 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { MapPin, Navigation } from "lucide-react";
+
+const MapEmbed = dynamic(
+  () => import("./map-embed").then((module) => module.MapEmbed),
+  {
+    ssr: false,
+    loading: () => <div className="aspect-[16/9] w-full animate-pulse bg-ivory-200" aria-hidden="true" />,
+  },
+);
 
 export function PropertyMap({
   lat,
@@ -27,14 +38,7 @@ export function PropertyMap({
 
   return (
     <div className="overflow-hidden rounded-2xl border border-gold/25">
-      <iframe
-        title={`Map of ${label}`}
-        src={src}
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        className="aspect-[16/9] w-full grayscale-[0.3]"
-        style={{ border: 0 }}
-      />
+      <MapEmbed src={src} title={`Map of ${label}`} />
       <div className="flex items-center justify-between gap-3 bg-espresso px-5 py-3.5">
         <p className="flex items-center gap-2 text-body text-white">
           <MapPin className="h-4 w-4 text-gold" /> {label}

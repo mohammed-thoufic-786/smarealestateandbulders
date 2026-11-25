@@ -77,7 +77,7 @@ export async function ListingView({
                     key={property._id}
                     property={property}
                     variant={view}
-                    priority={i < 3}
+                    priority={i === 0}
                     priceClassName="text-[13px]"
                   />
                 ))}

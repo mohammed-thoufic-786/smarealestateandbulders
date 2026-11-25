@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { LazyContactMap } from "@/components/contact/lazy-contact-map";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactForm } from "./contact-form";
 import { formatAddress, SITE } from "@/lib/site";
@@ -70,15 +71,10 @@ export default function ContactPage() {
               <p className="text-body text-white/60">Sunday · By appointment</p>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-gold/25">
-              <iframe
-                title={`${SITE.name} office location`}
-                src={`https://www.google.com/maps?q=${mapQuery}&z=14&output=embed`}
-                loading="lazy"
-                className="aspect-[16/10] w-full max-w-full grayscale-[0.3]"
-                style={{ border: 0 }}
-              />
-            </div>
+            <LazyContactMap
+              src={`https://www.google.com/maps?q=${mapQuery}&z=14&output=embed`}
+              title={`${SITE.name} office location`}
+            />
           </div>
 
           <ContactForm />

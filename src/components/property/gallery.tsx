@@ -56,7 +56,7 @@ export function Gallery({
             src={current.url}
             alt={current.alt || title}
             fill
-            priority
+            loading="lazy"
             sizes="(max-width: 1024px) 100vw, 66vw"
             className="object-cover"
           />
@@ -150,6 +150,7 @@ export function Gallery({
                 <button
                   key={i}
                   onClick={() => setIndex(i)}
+                  aria-label={`View image ${i + 1}: ${img.alt}`}
                   className={cn(
                     "relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2",
                     i === index ? "border-gold" : "border-transparent opacity-60",

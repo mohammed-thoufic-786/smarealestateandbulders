@@ -51,7 +51,7 @@ export function LayoutViewer({
           alt={alt}
           fill
           unoptimized
-          priority
+          loading="lazy"
           sizes="100vw"
           className="object-contain"
         />

@@ -92,7 +92,7 @@ export function MobileActionBar({ property }: { property: Summary }) {
         <a
           href={`tel:${site.phone.replace(/\s/g, "")}`}
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold/30 text-white transition-colors hover:border-gold hover:text-gold"
-          aria-label="Call"
+          aria-label={`Call ${site.displayPhone}`}
         >
           <Phone className="h-4 w-4" />
         </a>
@@ -101,7 +101,7 @@ export function MobileActionBar({ property }: { property: Summary }) {
           target="_blank"
           rel="noopener noreferrer"
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold/30 text-white transition-colors hover:border-gold hover:text-gold"
-          aria-label="WhatsApp"
+          aria-label="Chat with SMA Real Estate & Builders on WhatsApp"
         >
           <MessageCircle className="h-4 w-4" />
         </a>
