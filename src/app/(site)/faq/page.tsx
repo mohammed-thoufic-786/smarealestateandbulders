@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/layout/page-header";
 import { Accordion } from "@/components/ui/accordion";
 import { FAQS } from "@/lib/data/site-content";
+import { faqJsonLd } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 import { site, whatsappLink } from "@/lib/site";
 
@@ -16,19 +18,9 @@ export function generateMetadata(): Metadata {
 }
 
 export default function FaqPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
-
   return (
     <div className="bg-cream">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={faqJsonLd(FAQS)} />
       <PageHeader
         eyebrow="Support"
         title="Frequently asked questions"

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { JsonLd } from "@/components/JsonLd";
 import { AppProviders } from "@/components/providers/app-providers";
+import { siteJsonLd } from "@/lib/schema";
 import { SITE } from "@/lib/site";
 import { HOME_DESCRIPTION, HOME_TITLE } from "@/lib/seo";
 import "./globals.css";
@@ -68,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={`overflow-x-clip ${playfair.variable} ${inter.variable}`}>
       <body className="min-h-0 overflow-x-clip bg-background text-foreground antialiased sm:min-h-screen">
+        <JsonLd data={siteJsonLd()} />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-primary-deep focus:px-4 focus:py-2 focus:text-gold"

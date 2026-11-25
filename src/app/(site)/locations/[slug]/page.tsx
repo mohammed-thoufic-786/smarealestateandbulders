@@ -10,6 +10,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { PropertyCard } from "@/components/property/property-card";
 import { getPropertiesByIds } from "@/lib/data/repository";
 import { SERVICE_LOCATIONS, getServiceLocation } from "@/lib/data/locations";
+import { faqJsonLd } from "@/lib/schema";
 import { pageMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/site";
 
@@ -68,16 +69,6 @@ export default async function LocationPage({
       a: `Yes. Send a WhatsApp message or use the contact form and tell us which type of property you are looking for in ${location.name}. Our team will reply with the next steps.`,
     },
   ];
-
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: { "@type": "Answer", text: faq.a },
-    })),
-  };
 
   return (
     <div className="bg-cream">
@@ -167,7 +158,7 @@ export default async function LocationPage({
           <div className="mt-5">
             <Accordion items={faqs} />
           </div>
-          <JsonLd data={faqJsonLd} />
+          <JsonLd data={faqJsonLd(faqs)} />
         </section>
 
         <section className="mt-12">

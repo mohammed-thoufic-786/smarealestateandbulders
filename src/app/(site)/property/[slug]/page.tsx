@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, BadgeCheck, FileText, LayoutTemplate, MapPin } from "lucide-react";
 import { getPropertyBySlug, getSimilarProperties } from "@/lib/data/repository";
+import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { SmartImage } from "@/components/ui/smart-image";
@@ -10,6 +11,7 @@ import { LayoutViewer } from "@/components/property/layout-viewer";
 import { PropertyMap } from "@/components/property/property-map";
 import { EnquiryPanel, MobileActionBar } from "@/components/property/property-contact";
 import { PropertyCard } from "@/components/property/property-card";
+import { propertyJsonLd } from "@/lib/schema";
 import { pageMetadata, propertyMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -45,20 +47,6 @@ export default async function PropertyPage({
   const siteImage = property.images.find((image) => image.url.includes("site"));
   const brochure = property.documents.find((doc) => doc.url?.endsWith(".pdf"))?.url;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Residence",
-    name: property.title,
-    description: property.description,
-    image: property.images.map((image) => image.url),
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: property.location.address,
-      addressRegion: property.location.state,
-      addressCountry: "IN",
-    },
-  };
-
   const displayLocation = property.location.shortLocation ?? property.location.address;
 
   const summary = {
@@ -73,7 +61,7 @@ export default async function PropertyPage({
 
   return (
     <div className="bg-cream pb-12 pt-24 sm:pb-24 sm:pt-24 lg:pb-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={propertyJsonLd(property)} />
 
       <div className="container-x">
         <Breadcrumbs
