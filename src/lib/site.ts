@@ -107,17 +107,12 @@ export const FOOTER_LINKS = {
   explore: [
     { href: "/buy", label: "Buy Properties" },
     { href: "/locations", label: "Explore Locations" },
-    { href: "/contact", label: "Book a Call" },
   ],
   tools: [
     { href: "/faq", label: "Help & FAQ" },
-    { href: "/contact", label: "Book a Call" },
+    { href: "/contact", label: "Contact Us" },
   ],
-  company: [
-    { href: "/about", label: "About Us" },
-    { href: "/contact", label: "Contact" },
-    { href: "/faq", label: "FAQ" },
-  ],
+  company: [{ href: "/about", label: "About Us" }],
   legal: [
     { href: "/privacy", label: "Privacy Policy" },
     { href: "/terms", label: "Terms & Conditions" },

@@ -179,7 +179,7 @@ export function Navbar() {
                   href={`tel:${site.phone.replace(/\s/g, "")}`}
                   className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-muted"
                 >
-                  <Phone className="h-4 w-4 shrink-0 text-primary" /> {site.phone}
+                  <Phone className="h-4 w-4 shrink-0 text-primary" /> {site.displayPhone}
                 </a>
                 <p className="pt-1 text-center text-sm text-muted">
                   Available 9am–8pm · Tamil Nadu

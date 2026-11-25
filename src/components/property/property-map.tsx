@@ -1,4 +1,4 @@
-import { ChevronDown, MapPin, Navigation } from "lucide-react";
+import { MapPin, Navigation } from "lucide-react";
 
 export function PropertyMap({
   lat,
@@ -13,28 +13,12 @@ export function PropertyMap({
 }) {
   if (lat == null || lng == null) {
     return (
-      <details className="group overflow-hidden rounded-2xl border border-gold/25 bg-espresso">
-        <summary className="flex cursor-pointer list-none items-center gap-3 p-5 [&::-webkit-details-marker]:hidden">
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold/10 text-gold">
-            <MapPin className="h-5 w-5" />
-          </span>
-          <span className="min-w-0 flex-1">
-            <span className="block text-nav font-semibold text-white">{label}</span>
-            <span className="block text-sm text-white/60">Verified map coordinates not available yet</span>
-          </span>
-          <span className="inline-flex shrink-0 items-center gap-1.5 text-nav font-semibold text-gold">
-            View location
-            <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-          </span>
-        </summary>
-        <div className="space-y-2 border-t border-gold/25 px-5 py-4 text-body text-white/85">
-          <p className="font-medium text-white">{address ?? label}</p>
-          <p className="text-sm leading-relaxed text-white/60">
-            We only display a map when exact coordinates have been verified. This location text comes
-            from the original brochure and can be updated with a verified map location later.
-          </p>
-        </div>
-      </details>
+      <div className="rounded-2xl border border-gold/25 bg-espresso p-5">
+        <p className="flex items-center gap-2 text-nav font-semibold text-white">
+          <MapPin className="h-4 w-4 shrink-0 text-gold" /> {label}
+        </p>
+        <p className="mt-2 text-body leading-relaxed text-white/70">{address ?? label}</p>
+      </div>
     );
   }
 

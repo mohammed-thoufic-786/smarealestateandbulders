@@ -56,7 +56,7 @@ export default function FaqPage() {
                 href={`tel:${site.phone.replace(/\s/g, "")}`}
                 className="rounded-full border border-gold/30 px-6 py-3 text-nav font-semibold text-white transition-colors hover:border-gold hover:text-gold"
               >
-                {site.phone}
+                {site.displayPhone}
               </a>
             </div>
           </div>

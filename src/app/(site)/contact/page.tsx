@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Clock } from "lucide-react";
+import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactForm } from "./contact-form";
-import { formatAddress, SITE, site } from "@/lib/site";
+import { formatAddress, SITE } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
@@ -17,7 +17,8 @@ export default function ContactPage() {
   const address = formatAddress();
   const mapQuery = encodeURIComponent(address);
   const items = [
-    { icon: Mail, label: "Email", value: site.email, href: `mailto:${site.email}` },
+    { icon: Phone, label: "Phone", value: SITE.displayPhone, href: `tel:${SITE.phone}` },
+    { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
     {
       icon: MapPin,
       label: "Office",
@@ -38,6 +39,9 @@ export default function ContactPage() {
       <div className="container-x py-8 sm:py-14">
         <div data-testid="contact-grid" className="grid items-start gap-6 sm:gap-9 lg:grid-cols-[45fr_55fr] lg:gap-10">
           <div data-testid="contact-details" className="min-w-0 space-y-6">
+            <h2 className="font-display text-subheading font-semibold text-foreground">
+              {SITE.name}
+            </h2>
             <div className="space-y-3">
               {items.map((item) => (
                 <a
@@ -68,7 +72,7 @@ export default function ContactPage() {
 
             <div className="overflow-hidden rounded-2xl border border-gold/25">
               <iframe
-                title={`${site.name} office location`}
+                title={`${SITE.name} office location`}
                 src={`https://www.google.com/maps?q=${mapQuery}&z=14&output=embed`}
                 loading="lazy"
                 className="aspect-[16/10] w-full max-w-full grayscale-[0.3]"

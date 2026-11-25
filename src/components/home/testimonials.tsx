@@ -4,6 +4,7 @@ import { Rating } from "@/components/ui/rating";
 import { SmartImage } from "@/components/ui/smart-image";
 import { SectionHeading } from "./section-heading";
 
+// TODO: Every review must be genuine and verified before any Review or AggregateRating schema is added.
 export function Testimonials() {
   const testimonials = getTestimonials();
   if (testimonials.length === 0) return null;

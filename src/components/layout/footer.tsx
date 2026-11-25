@@ -27,13 +27,14 @@ export function Footer() {
               {site.description}
             </p>
             <div className="mt-6 space-y-3 text-body text-cream/80">
+              <p className="font-semibold text-white">{site.name}</p>
               <p className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 shrink-0 text-gold/80" /> {formatAddress()}
               </p>
               <p className="flex items-center gap-3">
                 <Phone className="h-4 w-4 shrink-0 text-gold/80" />
                 <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:text-white">
-                  {site.phone}
+                  {site.displayPhone}
                 </a>
               </p>
               <p className="flex items-center gap-3">
