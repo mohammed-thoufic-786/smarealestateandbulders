@@ -1,23 +1,8 @@
+import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { whatsappLink } from "@/lib/business-config";
+import { SERVICE_LOCATIONS } from "@/lib/data/locations";
 import { SectionHeading } from "./section-heading";
-
-function locationWhatsappMessage(location: string) {
-  return `Hello SMA Real Estate & Builders, I am interested in properties in ${location}. Please share more details about the available properties in this location. Thank you.`;
-}
-
-const LOCATIONS = [
-  "Salem",
-  "Ulundurpet",
-  "Villupuram",
-  "Vikaravandi",
-  "Acharapakam",
-  "Melmaruvathur",
-  "Madurantakam",
-  "Kanchipuram",
-  "Vandavasi",
-] as const;
 
 export function ExploreByLocation() {
   return (
@@ -29,13 +14,11 @@ export function ExploreByLocation() {
         action={{ href: "/locations", label: "All locations" }}
       />
       <div className="mt-6 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
-        {LOCATIONS.map((location) => (
-          <a
-            key={location}
-            href={whatsappLink(locationWhatsappMessage(location))}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Enquire about properties in ${location}`}
+        {SERVICE_LOCATIONS.map((location) => (
+          <Link
+            key={location.slug}
+            href={`/locations/${location.slug}`}
+            aria-label={`View properties and enquiries in ${location.name}`}
             className={buttonVariants({
               variant: "ghost",
               size: "md",
@@ -51,13 +34,15 @@ export function ExploreByLocation() {
                 <span className="block text-eyebrow font-semibold uppercase tracking-[0.16em] text-muted">
                   Location
                 </span>
-                <span className="mt-1 block font-display text-subheading font-semibold text-foreground">{location}</span>
+                <span className="mt-1 block font-display text-subheading font-semibold text-foreground">
+                  {location.name}
+                </span>
               </span>
             </span>
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line text-muted transition-all group-hover:border-gold group-hover:text-gold-600">
               <ArrowUpRight className="h-4 w-4" />
             </span>
-          </a>
+          </Link>
         ))}
       </div>
     </section>

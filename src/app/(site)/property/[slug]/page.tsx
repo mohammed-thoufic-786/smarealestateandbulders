@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, BadgeCheck, FileText, LayoutTemplate, MapPin } from "lucide-react";
 import { getPropertyBySlug, getSimilarProperties } from "@/lib/data/repository";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { SmartImage } from "@/components/ui/smart-image";
 import { LayoutViewer } from "@/components/property/layout-viewer";
@@ -75,13 +76,12 @@ export default async function PropertyPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className="container-x">
-        <nav className="flex flex-wrap items-center gap-2 text-sm text-muted">
-          <Link href="/" className="hover:text-gold">Home</Link>
-          <span>/</span>
-          <Link href="/buy" className="hover:text-gold">Properties</Link>
-          <span>/</span>
-          <span className="truncate text-foreground/80">{property.title}</span>
-        </nav>
+        <Breadcrumbs
+          items={[
+            { label: "Buy", href: "/buy" },
+            { label: property.title },
+          ]}
+        />
 
         <div className="mt-5 flex flex-wrap items-start justify-between gap-6">
           <div className="max-w-3xl">

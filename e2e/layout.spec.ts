@@ -262,23 +262,25 @@ test("explore by location cards expand with the section", async ({ page }) => {
   }
 });
 
-test("locations page counts match listing results for Villupuram and Salem", async ({ page }) => {
+test("locations page links to crawlable location pages", async ({ page }) => {
   for (const viewport of [...desktopViewports, ...mobileViewports]) {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await page.goto("/locations");
 
-    const cards = page.locator('a[href^="/buy?q="]');
-    await expect(cards).toHaveCount(2);
+    const cards = page.locator('a[href^="/locations/"]');
+    await expect(cards).toHaveCount(9);
     await expect(page.getByRole("heading", { name: "Villupuram", exact: true })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Salem", exact: true })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Omalur", exact: true })).toHaveCount(0);
 
-    for (const city of ["Villupuram", "Salem"]) {
-      const card = page.locator(`a[href="/buy?q=${city}"]`);
+    for (const city of ["villupuram", "salem"]) {
+      const card = page.locator(`a[href="/locations/${city}"]`);
       await expect(card.getByText(/2 properties/)).toBeVisible();
       await card.click();
-      await expect(page).toHaveURL(`/buy?q=${city}`);
-      await expect(page.getByText(/2 properties found/)).toBeVisible();
+      await expect(page).toHaveURL(`/locations/${city}`);
+      await expect(page.getByRole("heading", { level: 1 })).toContainText(
+        city === "villupuram" ? "Villupuram" : "Salem",
+      );
       await page.goto("/locations");
     }
   }
