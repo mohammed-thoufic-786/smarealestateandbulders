@@ -27,8 +27,18 @@ export function stripTrackingParams(value: string): string {
   }
 }
 
+function normalizeSiteUrl(value: string): string {
+  try {
+    const url = new URL(value);
+    if (url.hostname === "smarealestates.com") url.hostname = "www.smarealestates.com";
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return "https://www.smarealestates.com";
+  }
+}
+
 export const SITE = {
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.smarealestates.com",
+  url: normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.smarealestates.com"),
   name: "SMA Real Estate & Builders",
   legalName: "SMA Real Estate & Builders",
   tagline: "Trust begins here, your future starts here.",

@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Compass, Home, Search } from "lucide-react";
 import { Logo } from "@/components/layout/logo";
+
+export const metadata: Metadata = {
+  title: "Page not found | SMA Real Estate",
+  description: "The page you requested is not available. Browse SMA properties, locations or contact our team.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: "/" },
+};
 
 export default function NotFound() {
   return (

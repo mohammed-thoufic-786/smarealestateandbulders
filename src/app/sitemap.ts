@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/lib/site";
-import { listProperties } from "@/lib/data/repository";
-import { TN_CITIES } from "@/lib/constants";
+import { SERVICE_LOCATIONS } from "@/lib/data/locations";
+import { OFFICIAL_PROPERTIES } from "@/lib/data/properties";
+import { PROPERTY_TYPE_PAGES } from "@/lib/data/property-types";
+import { SITE } from "@/lib/site";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = site.url.replace(/\/$/, "");
+export default function sitemap(): MetadataRoute.Sitemap {
+  const base = SITE.url.replace(/\/$/, "");
   const now = new Date();
 
   const staticRoutes = [
@@ -25,25 +26,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "/" ? 1 : 0.7,
   }));
 
-  try {
-    const { items } = await listProperties({ limit: 48 });
-    for (const p of items) {
-      entries.push({
-        url: `${base}/property/${p.slug}`,
-        lastModified: new Date(p.updatedAt),
-        changeFrequency: "weekly",
-        priority: 0.8,
-      });
-    }
-  } catch {
-    /* ignore */
+  for (const property of OFFICIAL_PROPERTIES) {
+    entries.push({
+      url: `${base}/property/${property.slug}`,
+      lastModified: new Date(property.updatedAt),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    });
   }
 
-  for (const city of TN_CITIES) {
+  for (const location of SERVICE_LOCATIONS) {
     entries.push({
-      url: `${base}/buy?city=${encodeURIComponent(city)}`,
-      changeFrequency: "weekly",
+      url: `${base}/locations/${location.slug}`,
+      changeFrequency: "monthly",
       priority: 0.6,
+    });
+  }
+
+  for (const type of PROPERTY_TYPE_PAGES) {
+    entries.push({
+      url: `${base}/buy/type/${type.slug}`,
+      changeFrequency: "monthly",
+      priority: 0.5,
     });
   }
 
