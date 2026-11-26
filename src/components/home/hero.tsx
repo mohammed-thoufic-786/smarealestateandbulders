@@ -24,14 +24,13 @@ export function Hero() {
       <div className={styles.copy}>
         <div className={styles.copyInner}>
           <h1 className={`${styles.title} text-balance font-display`}>
-            Explore premium residential plots and villas in Villupuram, Salem and across Tamil Nadu{" "}
-            <span className={styles.titleAccent}>with SMA Real Estate &amp; Builders.</span>
+            <span className={styles.titleLine}>Plots &amp; Villas in</span>{" "}
+            <span className={styles.titleAccent}>Villupuram, Salem &amp; Tamil Nadu</span>
           </h1>
           <p className={styles.subtitle}>Trust Begins Here, Your Future Starts Here.</p>
 
           <p className={`${styles.description} text-pretty`}>
-            Buy DTCP-approved plots, villas and land in Villupuram, Salem &amp; Tamil Nadu. Documents
-            checked, fair pricing.
+            Clear paperwork, checked documents and fair pricing, with advisors who answer the phone.
           </p>
 
           <div className={styles.actions}>
