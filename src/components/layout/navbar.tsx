@@ -161,7 +161,7 @@ export function Navbar() {
                     href={link.href}
                     onClick={(event) => handleNavClick(event, link.href)}
                     className={cn(
-                      "flex items-center justify-between rounded-2xl px-4 py-3.5 text-nav font-semibold transition-all duration-300 ease-smooth active:scale-[0.98]",
+                      "flex items-center justify-between rounded-2xl px-4 py-3.5 text-nav font-semibold transition-all duration-300 ease-smooth active:scale-[0.98] motion-reduce:transform-none",
                       isActive(link.href)
                         ? "bg-primary text-white"
                         : "text-muted hover:bg-primary/5 hover:text-primary",

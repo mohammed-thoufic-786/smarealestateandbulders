@@ -36,7 +36,7 @@ export function Logo({ className, light = false }: { className?: string; light?:
         width={1024}
         height={1024}
         priority
-        className="h-9 w-auto shrink-0 object-contain transition-transform duration-300 group-hover:scale-105 lg:h-10"
+        className="h-9 w-auto shrink-0 object-contain transition-transform duration-300 group-hover:scale-105 motion-reduce:transform-none lg:h-10"
       />
       <span className="flex flex-col leading-none">
         <span

@@ -66,7 +66,7 @@ export function SectionHeading({
           )}
         >
           {action.label}
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transform-none" />
         </Link>
       )}
     </div>

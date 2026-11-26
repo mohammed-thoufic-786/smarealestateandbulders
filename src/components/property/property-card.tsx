@@ -66,7 +66,7 @@ export function PropertyCard({
                   ? "(max-width: 640px) 100vw, 40vw"
                   : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               }
-              className="object-cover transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06]"
+              className="object-cover transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06] motion-reduce:transform-none"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent opacity-80" />
@@ -90,7 +90,7 @@ export function PropertyCard({
               </Link>
             </h3>
           </div>
-          <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transform-none" />
         </div>
 
         {showLocation && (

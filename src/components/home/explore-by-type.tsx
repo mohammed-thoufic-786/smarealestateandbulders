@@ -67,7 +67,7 @@ export function ExploreByType() {
                     alt={`${type.label} illustration`}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className={`transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06] ${
+                    className={`transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06] motion-reduce:transform-none ${
                       imageStyle.fit === "contain" ? "object-contain" : "object-cover"
                     }`}
                     style={{ objectPosition: imageStyle.position }}

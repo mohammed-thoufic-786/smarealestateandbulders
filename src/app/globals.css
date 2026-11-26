@@ -108,9 +108,9 @@ body {
 
   .interactive-card {
     transition:
-      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      transform var(--motion-normal) var(--motion-ease),
+      box-shadow var(--motion-normal) var(--motion-ease),
+      border-color var(--motion-normal) var(--motion-ease);
   }
 
   .interactive-card:hover {
@@ -122,8 +122,8 @@ body {
     position: relative;
     isolation: isolate;
     transition:
-      color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      color var(--motion-fast) var(--motion-ease),
+      transform var(--motion-fast) var(--motion-ease);
   }
 
   .nav-link::before {
@@ -136,8 +136,8 @@ body {
     opacity: 0;
     transform: scale(0.96);
     transition:
-      opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity var(--motion-fast) var(--motion-ease),
+      transform var(--motion-fast) var(--motion-ease);
   }
 
   .nav-link:hover::before,
@@ -161,7 +161,7 @@ body {
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform var(--motion-normal) var(--motion-ease);
   }
 
   .nav-link:hover::after,
@@ -234,7 +234,7 @@ body {
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform var(--motion-normal) var(--motion-ease);
   }
   .link-underline:hover::after {
     transform: scaleX(1);
@@ -362,5 +362,10 @@ h2[id]:target {
 
   html[data-motion="ready"] [data-motion-reveal] {
     opacity: 1 !important;
+  }
+
+  .interactive-card:hover,
+  .nav-link:active {
+    transform: none !important;
   }
 }
