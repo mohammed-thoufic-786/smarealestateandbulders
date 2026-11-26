@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MapPinned, KeyRound, Target, Eye, ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
+import { Reveal } from "@/components/ui/reveal";
 
 const STEPS = [
   {
@@ -32,7 +33,7 @@ export function AboutUs() {
   return (
     <section className="border-t border-gold/25 bg-foreground">
       <div className="container-x py-10 sm:py-20">
-        <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
+        <Reveal data-motion-cards className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
           <div>
             <p className="eyebrow text-gold">About us</p>
             <h2 className="mt-3 text-balance font-display text-display-3 font-bold text-white">
@@ -68,9 +69,9 @@ export function AboutUs() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="mt-6 grid gap-5 sm:mt-8 sm:grid-cols-2 sm:gap-6">
+        <Reveal data-motion-cards className="mt-6 grid gap-5 sm:mt-8 sm:grid-cols-2 sm:gap-6">
           {PRINCIPLES.map((principle) => (
             <div
               key={principle.title}
@@ -85,7 +86,7 @@ export function AboutUs() {
               </div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -60,6 +60,7 @@ export function PropertyCard({
         >
           {cover && (
             <SmartImage
+              data-motion-image
               src={cover.url}
               alt={cover.alt || property.title}
               fill

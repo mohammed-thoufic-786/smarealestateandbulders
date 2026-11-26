@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/ui/reveal";
 
 export function SectionHeading({
   title,
@@ -20,7 +21,7 @@ export function SectionHeading({
   inverted?: boolean;
 }) {
   return (
-    <div
+    <Reveal
       className={cn(
         "flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-5",
         align === "center" && "sm:flex-col sm:items-center sm:text-center",
@@ -29,12 +30,17 @@ export function SectionHeading({
     >
       <div className={cn("max-w-2xl", align === "center" && "mx-auto")}>
         <h2
+          data-motion-heading
           className={
             `text-balance font-display text-heading font-bold ` +
             (inverted ? "text-white" : "text-foreground")
           }
         >
-          {title}
+          <span data-motion-heading-line className="block overflow-hidden">
+            <span data-motion-heading-inner className="block">
+              {title}
+            </span>
+          </span>
         </h2>
         {subtitle && (
           <p
@@ -69,6 +75,6 @@ export function SectionHeading({
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Link>
       )}
-    </div>
+    </Reveal>
   );
 }

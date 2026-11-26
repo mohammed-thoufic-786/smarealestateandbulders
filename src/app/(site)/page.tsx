@@ -12,6 +12,7 @@ import { Testimonials } from "@/components/home/testimonials";
 import { FinalCta } from "@/components/home/final-cta";
 import { AboutUs } from "@/components/home/about-us";
 import { StoryCommitment } from "@/components/home/story-commitment";
+import { MotionLoader } from "@/components/ui/motion-loader";
 import styles from "./home.module.css";
 
 export function generateMetadata(): Metadata {
@@ -26,6 +27,7 @@ export function generateMetadata(): Metadata {
 export default function HomePage() {
   return (
     <div className={styles.home}>
+      <MotionLoader />
       {/* 01 */} <Hero />
       {/* 02 */} <Founder />
       {/* 03 */} <SuccessInNumbers />

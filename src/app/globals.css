@@ -17,6 +17,7 @@
   --deep-rgb: 11, 45, 32;
   --border-rgb: 216, 198, 158;
   --line: rgba(198, 160, 82, 0.28);
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -285,6 +286,68 @@ body {
   .mask-fade-r {
     -webkit-mask-image: linear-gradient(to right, #000 80%, transparent);
     mask-image: linear-gradient(to right, #000 80%, transparent);
+  }
+}
+
+.motion-reveal {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-reveal.is-revealing {
+    animation: fadeUp 500ms var(--ease-premium) both;
+    animation-delay: var(--reveal-delay, 0ms);
+    will-change: transform, opacity;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-nav-fade {
+    animation: navFade 400ms var(--ease-premium) both;
+  }
+
+  .motion-fade-up {
+    animation: fadeUp 500ms var(--ease-premium) both;
+    animation-delay: var(--motion-delay, 0ms);
+  }
+
+  .motion-fade-in {
+    animation: navFade 180ms ease-out both;
+  }
+
+  .motion-panel-in {
+    animation: panelIn 250ms var(--ease-premium) both;
+  }
+}
+
+@keyframes navFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -16px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 

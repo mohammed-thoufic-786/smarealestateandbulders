@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { SERVICE_LOCATIONS } from "@/lib/data/locations";
 import { SectionHeading } from "./section-heading";
 
@@ -13,7 +14,7 @@ export function ExploreByLocation() {
         description="Find properties across the Tamil Nadu locations we serve, including plots for sale with enquiries handled directly in Villupuram and Salem."
         action={{ href: "/locations", label: "All locations" }}
       />
-      <div className="mt-6 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal data-motion-cards className="mt-6 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
         {SERVICE_LOCATIONS.map((location) => (
           <Link
             key={location.slug}
@@ -41,7 +42,7 @@ export function ExploreByLocation() {
             </span>
           </Link>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

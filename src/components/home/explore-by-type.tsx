@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SmartImage } from "@/components/ui/smart-image";
+import { Reveal } from "@/components/ui/reveal";
 import { PROPERTY_TYPE_PAGES } from "@/lib/data/property-types";
 import { SectionHeading } from "./section-heading";
 
@@ -15,7 +16,7 @@ export function ExploreByType() {
           action={{ href: "/buy", label: "View all properties" }}
           inverted
         />
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <Reveal data-motion-cards className="mt-6 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {PROPERTY_TYPE_PAGES.map((type) => (
             <Link
               key={type.slug}
@@ -47,7 +48,7 @@ export function ExploreByType() {
               </div>
             </Link>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Landmark, Home, Check, ArrowRight } from "lucide-react";
 import { SectionHeading } from "./section-heading";
+import { Reveal } from "@/components/ui/reveal";
 
 const LOANS = [
   {
@@ -26,7 +27,7 @@ export function AvailabilityOfLoans() {
         description="Buying land or a home is easier with the right funding. We help you connect with lending partners for plot loans and home loans across Tamil Nadu."
         action={{ href: "/contact", label: "Talk to our team" }}
       />
-      <div className="mt-6 grid gap-5 sm:mt-10 lg:grid-cols-2">
+      <Reveal className="mt-6 grid gap-5 sm:mt-10 lg:grid-cols-2" data-motion-tilt-group>
         {LOANS.map((loan) => (
           <div
             key={loan.title}
@@ -54,7 +55,7 @@ export function AvailabilityOfLoans() {
             </Link>
           </div>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

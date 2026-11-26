@@ -1,6 +1,7 @@
 import { FileCheck2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SectionHeading } from "./section-heading";
+import { Reveal } from "@/components/ui/reveal";
 
 const COMMITMENTS = [
   {
@@ -13,7 +14,7 @@ const COMMITMENTS = [
 export function StoryCommitment() {
   return (
     <section className="container-x bg-cream py-10 sm:py-20">
-      <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
+      <Reveal data-motion-cards className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
         <div>
           <SectionHeading
             title="Our story"
@@ -60,7 +61,7 @@ export function StoryCommitment() {
             </div>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

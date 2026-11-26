@@ -3,6 +3,7 @@ import { getTestimonials } from "@/lib/data/repository";
 import { Rating } from "@/components/ui/rating";
 import { SmartImage } from "@/components/ui/smart-image";
 import { SectionHeading } from "./section-heading";
+import { Reveal } from "@/components/ui/reveal";
 
 export function Testimonials() {
   const testimonials = getTestimonials();
@@ -17,7 +18,7 @@ export function Testimonials() {
           description="Customer feedback shared with SMA Real Estate & Builders."
           inverted
         />
-        <div className="mt-6 grid gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-2">
+        <Reveal data-motion-cards className="mt-6 grid gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-2">
           {testimonials.map((t) => (
             <figure
               key={t._id}
@@ -47,7 +48,7 @@ export function Testimonials() {
               </figcaption>
             </figure>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
