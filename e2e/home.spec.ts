@@ -24,9 +24,29 @@ test("home page features only the official SMA properties", async ({ page }) => 
 
 test("home page keeps property type and location exploration separate", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 2, name: "Find your fit" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 2, name: "Where we operate" })).toBeVisible();
-  await expect(page.getByRole("link", { name: /Villupuram/ }).first()).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "Residential plots, villas, land & more",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("Explore by property type", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      level: 2,
+      name: "Plots & land across Tamil Nadu",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByText("Where we operate", { exact: true })).toBeVisible();
+
+  const villupuramLink = page.getByRole("link", {
+    name: "View properties and enquiries in Villupuram",
+    exact: true,
+  });
+  await expect(villupuramLink).toBeVisible();
+  await expect(villupuramLink).toHaveAttribute("href", "/locations/villupuram");
 });
 
 test("primary navigation reaches the buy page", async ({ page }) => {
@@ -39,7 +59,7 @@ test("primary navigation reaches the buy page", async ({ page }) => {
 test("home hero uses the exact premium positioning copy", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    /^Explore premium residential plots and villas in Villupuram, Salem and across Tamil Nadu with SMA Real Estate & Builders\.$/,
+    "Plots & Villas in Villupuram, Salem & Tamil Nadu",
   );
 });
 
