@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type MouseEvent } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import { Logo } from "./logo";
 import { NAV_LINKS, site } from "@/lib/site";
@@ -16,6 +17,7 @@ const BRAND_SIZE =
 
 export function Navbar() {
   const pathname = usePathname();
+  const reduceMotion = Boolean(useReducedMotion());
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -49,7 +51,6 @@ export function Navbar() {
     setOpen(false);
     if (href === pathname && window.scrollY > 0) {
       event.preventDefault();
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     }
   }
@@ -59,7 +60,7 @@ export function Navbar() {
       <header
         data-testid="site-header"
         className={cn(
-          "motion-nav-fade fixed inset-x-0 top-0 z-50 h-20 border-b sm:h-[88px]",
+          "fixed inset-x-0 top-0 z-50 h-20 border-b sm:h-[88px]",
           NAVBAR_BG,
           NAVBAR_BORDER,
           scrolled && "shadow-[0_8px_24px_rgba(11,45,32,0.08)]",
@@ -118,18 +119,29 @@ export function Navbar() {
         </div>
       </header>
 
-      {open && (
-        <div className="motion-fade-in fixed inset-0 z-[90] md:hidden">
-          <div className="absolute inset-0 bg-primary-deep/50 backdrop-blur-sm" onClick={() => setOpen(false)} />
-
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label="Site navigation"
-            className={cn(
-              "motion-panel-in absolute inset-x-3 bottom-3 top-3 flex flex-col overflow-hidden rounded-[28px] border border-line bg-background shadow-lift",
-            )}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[90] md:hidden"
           >
+            <div className="absolute inset-0 bg-primary-deep/50 backdrop-blur-sm" onClick={() => setOpen(false)} />
+
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Site navigation"
+              initial={{ opacity: 0, y: -16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -16, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className={cn(
+                "absolute inset-x-3 bottom-3 top-3 flex flex-col overflow-hidden rounded-[28px] border border-line bg-background shadow-lift",
+              )}
+            >
               <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
                 <Logo className={BRAND_SIZE} />
                 <button
@@ -185,9 +197,10 @@ export function Navbar() {
                   Available 9am–8pm · Tamil Nadu
                 </p>
               </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

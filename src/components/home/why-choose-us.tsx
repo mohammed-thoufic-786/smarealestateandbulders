@@ -1,6 +1,5 @@
 import { UserRound, Headphones, Clock4 } from "lucide-react";
 import { SectionHeading } from "./section-heading";
-import { Reveal } from "@/components/ui/reveal";
 
 const ITEMS = [
   {
@@ -31,7 +30,7 @@ export function WhyChooseUs() {
           align="center"
           inverted
         />
-        <Reveal className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3" data-motion-tilt-group>
+        <div className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
           {ITEMS.map((item) => (
             <div
               key={item.title}
@@ -44,7 +43,7 @@ export function WhyChooseUs() {
               <p className="mt-2 text-body leading-relaxed text-white/70">{item.body}</p>
             </div>
           ))}
-        </Reveal>
+        </div>
       </div>
     </section>
   );

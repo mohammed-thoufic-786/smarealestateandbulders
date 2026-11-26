@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { MessageCircle, PhoneCall, ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { Reveal } from "@/components/ui/reveal";
 import { DEFAULT_WHATSAPP_MESSAGE, whatsappLink } from "@/lib/business-config";
 
 export function FinalCta() {
   return (
     <section className="container-x bg-cream py-12 sm:py-28">
-      <Reveal className="relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-deep via-foreground to-foreground px-6 py-10 text-center shadow-luxe sm:px-12 sm:py-20">
+      <div className="relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-deep via-foreground to-foreground px-6 py-10 text-center shadow-luxe sm:px-12 sm:py-20">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 -top-40 mx-auto h-80 w-80 rounded-full bg-gold/10 blur-[100px]" />
         <div className="pointer-events-none absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-gold/[0.05] blur-[110px]" />
@@ -55,7 +54,7 @@ export function FinalCta() {
             </Link>
           </div>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

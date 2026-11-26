@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Expand, X, Play } from "lucide-react";
 import { SmartImage } from "@/components/ui/smart-image";
 import { cn } from "@/lib/utils";
@@ -97,8 +98,14 @@ export function Gallery({
         </div>
       </div>
 
-      {open && (
-        <div className="motion-fade-in fixed inset-0 z-[120] flex flex-col bg-espresso/95">
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[120] flex flex-col bg-espresso/95"
+          >
             <div className="flex items-center justify-between px-4 py-4 text-white">
               <span className="text-sm">
                 {index + 1} / {count}
@@ -153,8 +160,9 @@ export function Gallery({
                 </button>
               ))}
             </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

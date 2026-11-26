@@ -2,18 +2,16 @@ import { Quote, MapPin, BadgeCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { founder } from "@/lib/site";
 import { SmartImage } from "@/components/ui/smart-image";
-import { Reveal } from "@/components/ui/reveal";
 
 export function Founder() {
   return (
     <section className="container-x bg-cream py-12 sm:py-24">
-      <Reveal className="grid items-center gap-8 sm:gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
+      <div className="grid items-center gap-8 sm:gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
         <div className="relative mx-auto w-full max-w-md">
           <div className="pointer-events-none absolute -inset-4 rounded-[2rem] border border-gold/40" />
           <div className="pointer-events-none absolute -bottom-8 right-0 h-40 w-40 rounded-full bg-gold/10 blur-3xl" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-line">
             <SmartImage
-              data-motion-image
               src={founder.image}
               alt={founder.name}
               fill
@@ -79,7 +77,7 @@ export function Founder() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

@@ -1,7 +1,6 @@
 import { Building2, Layers, MapPinned, Building, CalendarCheck2, MapPin } from "lucide-react";
 import { Counter } from "@/components/ui/counter";
 import { SectionHeading } from "./section-heading";
-import { Reveal } from "@/components/ui/reveal";
 
 const METRICS = [
   { icon: Building2, value: 100, suffix: "+", label: "Delivered projects" },
@@ -23,7 +22,7 @@ export function SuccessInNumbers() {
           inverted
         />
 
-        <Reveal data-motion-cards className="mt-8 grid grid-cols-2 gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-3">
           {METRICS.map((m) => (
             <div
               key={m.label}
@@ -38,7 +37,7 @@ export function SuccessInNumbers() {
               <p className="text-sm text-white/70">{m.label}</p>
             </div>
           ))}
-        </Reveal>
+        </div>
       </div>
     </section>
   );
