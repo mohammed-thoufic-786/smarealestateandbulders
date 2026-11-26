@@ -17,6 +17,10 @@
   --deep-rgb: 11, 45, 32;
   --border-rgb: 216, 198, 158;
   --line: rgba(198, 160, 82, 0.28);
+  --motion-fast: 160ms;
+  --motion-normal: 260ms;
+  --motion-slow: 420ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -286,6 +290,14 @@ body {
     -webkit-mask-image: linear-gradient(to right, #000 80%, transparent);
     mask-image: linear-gradient(to right, #000 80%, transparent);
   }
+
+  html[data-motion="ready"] [data-motion-reveal] {
+    transition: opacity var(--motion-slow) var(--motion-ease);
+  }
+
+  html[data-motion="ready"] [data-motion-reveal]:not([data-motion-visible]) {
+    opacity: 0;
+  }
 }
 
 @keyframes pageFade {
@@ -330,6 +342,15 @@ body {
   }
 }
 
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 section[id]:target,
 h2[id]:target {
   animation: sectionEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -343,5 +364,9 @@ h2[id]:target {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  html[data-motion="ready"] [data-motion-reveal] {
+    opacity: 1 !important;
   }
 }
