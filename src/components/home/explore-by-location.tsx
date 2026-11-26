@@ -6,7 +6,7 @@ import { SectionHeading } from "./section-heading";
 
 export function ExploreByLocation() {
   return (
-    <section className="container-x bg-cream py-12 sm:py-24">
+    <section data-motion-reveal className="container-x bg-cream py-12 sm:py-24">
       <SectionHeading
         title="Where we operate"
         subtitle="Explore by location"

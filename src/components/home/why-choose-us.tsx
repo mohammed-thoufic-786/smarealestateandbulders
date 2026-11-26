@@ -22,7 +22,7 @@ const ITEMS = [
 export function WhyChooseUs() {
   return (
     <section className="border-y border-gold/25 bg-foreground">
-      <div className="container-x py-12 sm:py-24">
+      <div data-motion-reveal className="container-x py-12 sm:py-24">
         <SectionHeading
           title="Why SMA"
           subtitle="Why choose SMA"

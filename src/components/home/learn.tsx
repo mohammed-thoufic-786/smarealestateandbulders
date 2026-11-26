@@ -19,7 +19,7 @@ const LOANS = [
 
 export function AvailabilityOfLoans() {
   return (
-    <section className="container-x bg-cream py-12 sm:py-24">
+    <section data-motion-reveal className="container-x bg-cream py-12 sm:py-24">
       <SectionHeading
         title="Finance support"
         subtitle="Availability of Loans"

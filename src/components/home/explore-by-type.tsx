@@ -23,7 +23,7 @@ const PROPERTY_TYPE_IMAGE_STYLES: Record<string, PropertyTypeImageStyle> = {
 export function ExploreByType() {
   return (
     <section className="border-y border-gold/25 bg-foreground">
-      <div className="container-x py-12 sm:py-24">
+      <div data-motion-reveal className="container-x py-12 sm:py-24">
         <SectionHeading
           title="Find your fit"
           subtitle="Explore by property type"

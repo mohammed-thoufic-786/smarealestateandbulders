@@ -10,7 +10,7 @@ export function Testimonials() {
 
   return (
     <section className="border-y border-gold/25 bg-foreground">
-      <div className="container-x py-12 sm:py-24">
+      <div data-motion-reveal className="container-x py-12 sm:py-24">
         <SectionHeading
           title="In their words"
           subtitle="What our customers say"
