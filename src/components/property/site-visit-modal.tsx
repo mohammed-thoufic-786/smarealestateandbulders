@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CalendarCheck } from "lucide-react";
 import { Modal } from "@/components/ui/modal";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -26,6 +26,17 @@ function todayPlus(days: number) {
   return d.toISOString().slice(0, 10);
 }
 
+function initialForm() {
+  return {
+    customerName: "",
+    phone: "",
+    email: "",
+    preferredDate: todayPlus(2),
+    preferredTime: "11:00",
+    notes: "",
+  };
+}
+
 export function SiteVisitModal({
   propertyTitle,
   triggerLabel = "Schedule Site Visit",
@@ -34,16 +45,10 @@ export function SiteVisitModal({
   triggerClassName,
 }: Props) {
   const { toast } = useToast();
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [form, setForm] = useState({
-    customerName: "",
-    phone: "",
-    email: "",
-    preferredDate: todayPlus(2),
-    preferredTime: "11:00",
-    notes: "",
-  });
+  const [form, setForm] = useState(initialForm);
 
   function validate() {
     const e: Record<string, string> = {};
@@ -77,9 +82,16 @@ export function SiteVisitModal({
     setErrors({});
   }
 
+  function closeAndReset() {
+    setOpen(false);
+    setForm(initialForm());
+    setErrors({});
+  }
+
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setOpen(true)}
         className={cn(buttonVariants({ variant: triggerVariant, size: triggerSize }), triggerClassName)}
@@ -90,15 +102,34 @@ export function SiteVisitModal({
       <Modal
         open={open}
         onClose={() => setOpen(false)}
+        returnFocusRef={triggerRef}
         title="Schedule a site visit"
         description="Pick a date and time that works for you — your request opens in WhatsApp."
+        footer={
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button type="submit" form="site-visit-form" className="w-full sm:w-auto sm:flex-1">
+              <CalendarCheck className="h-4 w-4" />
+              Continue on WhatsApp
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={closeAndReset}
+              className="w-full shrink-0 border-gold/45 bg-white/5 text-white hover:border-gold hover:bg-white/10 hover:text-white focus-visible:outline-gold active:bg-white/15 sm:w-auto"
+            >
+              Cancel
+            </Button>
+          </div>
+        }
       >
-        <form onSubmit={submit} className="space-y-4">
+        <form id="site-visit-form" onSubmit={submit} className="space-y-4">
           <div className="rounded-xl border border-gold/25 bg-espresso/50 px-4 py-3">
             <p className="text-eyebrow font-semibold uppercase tracking-wide text-white/60">Property</p>
             <p className="mt-0.5 line-clamp-1 text-nav font-semibold text-white">{propertyTitle}</p>
           </div>
           <Input
+            autoFocus
+            data-autofocus
             label="Full name"
             name="customerName"
             value={form.customerName}
@@ -155,21 +186,9 @@ export function SiteVisitModal({
             value={form.notes}
             onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
             placeholder="Anything we should know before the visit?"
+            rows={3}
+            className="min-h-0"
           />
-          <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-            <Button type="submit" className="w-full sm:w-auto sm:flex-1">
-              <CalendarCheck className="h-4 w-4" />
-              Continue on WhatsApp
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setOpen(false)}
-              className="w-full shrink-0 border-gold/45 bg-white/5 text-white hover:border-gold hover:bg-white/10 hover:text-white focus-visible:outline-gold active:bg-white/15 sm:w-auto"
-            >
-              Cancel
-            </Button>
-          </div>
         </form>
       </Modal>
     </>
