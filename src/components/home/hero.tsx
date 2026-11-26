@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowRight, KeyRound, MapPin, PhoneCall, ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { SmartImage } from "@/components/ui/smart-image";
@@ -9,8 +6,6 @@ import { LOCATIONS_SERVED } from "@/lib/data/site-metrics";
 import styles from "./hero.module.css";
 
 export function Hero() {
-  const reduceMotion = Boolean(useReducedMotion());
-
   return (
     <section className={styles.hero} aria-label="SMA Estates & Builders">
       <SmartImage
@@ -65,12 +60,7 @@ export function Hero() {
         </span>
       </p>
 
-      <motion.div
-        className={styles.guidanceCard}
-        initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <div className={styles.guidanceCard}>
         <span className={styles.guidanceIcon}>
           <KeyRound className="h-4 w-4" />
         </span>
@@ -80,7 +70,7 @@ export function Hero() {
             Expert guidance to help you find the right property.
           </span>
         </span>
-      </motion.div>
+      </div>
 
       <div className={styles.scrollIndicator}>
         <span>SCROLL TO EXPLORE</span>
