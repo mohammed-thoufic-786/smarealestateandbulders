@@ -17,10 +17,6 @@
   --deep-rgb: 11, 45, 32;
   --border-rgb: 216, 198, 158;
   --line: rgba(198, 160, 82, 0.28);
-  --motion-fast: 160ms;
-  --motion-normal: 260ms;
-  --motion-slow: 420ms;
-  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -94,23 +90,23 @@ body {
 
 @layer components {
   .page-transition {
-    animation: pageFade var(--motion-normal) var(--motion-ease) both;
+    animation: pageFade 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .page-transition main {
-    animation: contentEnter var(--motion-normal) var(--motion-ease) backwards;
+    animation: contentEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
   }
 
   .page-transition h1,
   .page-transition h2 {
-    animation: headingEnter var(--motion-slow) var(--motion-ease) both;
+    animation: headingEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .interactive-card {
     transition:
-      transform var(--motion-normal) var(--motion-ease),
-      box-shadow var(--motion-normal) var(--motion-ease),
-      border-color var(--motion-normal) var(--motion-ease);
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .interactive-card:hover {
@@ -122,8 +118,8 @@ body {
     position: relative;
     isolation: isolate;
     transition:
-      color var(--motion-fast) var(--motion-ease),
-      transform var(--motion-fast) var(--motion-ease);
+      color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .nav-link::before {
@@ -136,8 +132,8 @@ body {
     opacity: 0;
     transform: scale(0.96);
     transition:
-      opacity var(--motion-fast) var(--motion-ease),
-      transform var(--motion-fast) var(--motion-ease);
+      opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .nav-link:hover::before,
@@ -161,7 +157,7 @@ body {
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform var(--motion-normal) var(--motion-ease);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .nav-link:hover::after,
@@ -234,7 +230,7 @@ body {
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform var(--motion-normal) var(--motion-ease);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .link-underline:hover::after {
     transform: scaleX(1);
@@ -290,14 +286,6 @@ body {
     -webkit-mask-image: linear-gradient(to right, #000 80%, transparent);
     mask-image: linear-gradient(to right, #000 80%, transparent);
   }
-
-  html[data-motion="ready"] [data-motion-reveal] {
-    transition: opacity var(--motion-slow) var(--motion-ease);
-  }
-
-  html[data-motion="ready"] [data-motion-reveal]:not([data-motion-visible]) {
-    opacity: 0;
-  }
 }
 
 @keyframes pageFade {
@@ -312,36 +300,33 @@ body {
 @keyframes contentEnter {
   from {
     opacity: 0.72;
+    transform: translate3d(0, 10px, 0);
   }
   to {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes headingEnter {
   from {
     opacity: 0;
+    transform: translate3d(0, 8px, 0);
   }
   to {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 @keyframes sectionEnter {
   from {
     opacity: 0.7;
+    transform: translate3d(0, 6px, 0);
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes shimmer {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(100%);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -358,14 +343,5 @@ h2[id]:target {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-
-  html[data-motion="ready"] [data-motion-reveal] {
-    opacity: 1 !important;
-  }
-
-  .interactive-card:hover,
-  .nav-link:active {
-    transform: none !important;
   }
 }

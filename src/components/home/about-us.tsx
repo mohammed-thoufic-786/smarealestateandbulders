@@ -31,7 +31,7 @@ const PRINCIPLES = [
 export function AboutUs() {
   return (
     <section className="border-t border-gold/25 bg-foreground">
-      <div data-motion-reveal className="container-x py-10 sm:py-20">
+      <div className="container-x py-10 sm:py-20">
         <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-10">
           <div>
             <p className="eyebrow text-gold">About us</p>

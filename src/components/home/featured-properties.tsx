@@ -6,7 +6,7 @@ export async function FeaturedProperties() {
   const properties = await getFeaturedProperties(4);
 
   return (
-    <section data-motion-reveal className="container-x bg-cream py-12 sm:py-24">
+    <section className="container-x bg-cream py-12 sm:py-24">
       <SectionHeading
         title="Our official projects"
         subtitle="Featured properties"

@@ -13,7 +13,7 @@ const COMMITMENTS = [
 export function StoryCommitment() {
   return (
     <section className="container-x bg-cream py-10 sm:py-20">
-      <div data-motion-reveal className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
+      <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
         <div>
           <SectionHeading
             title="Our story"

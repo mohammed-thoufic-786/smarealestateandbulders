@@ -44,30 +44,22 @@
 .copyInner {
   width: 100%;
   max-width: 720px;
-  animation: heroCopyIn var(--motion-slow) var(--motion-ease) both;
+  animation: heroCopyIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes heroCopyIn {
   from {
     opacity: 0;
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes guidanceCardIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .copyInner,
-  .guidanceCard {
+  .copyInner {
     animation: none;
   }
 }
@@ -200,7 +192,6 @@
   background: #f8f5ee;
   color: #103d2e;
   box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2);
-  animation: guidanceCardIn var(--motion-slow) var(--motion-ease) 0.12s both;
 }
 
 .guidanceIcon {

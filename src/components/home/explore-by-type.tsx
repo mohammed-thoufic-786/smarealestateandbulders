@@ -23,7 +23,7 @@ const PROPERTY_TYPE_IMAGE_STYLES: Record<string, PropertyTypeImageStyle> = {
 export function ExploreByType() {
   return (
     <section className="border-y border-gold/25 bg-foreground">
-      <div data-motion-reveal className="container-x py-12 sm:py-24">
+      <div className="container-x py-12 sm:py-24">
         <SectionHeading
           title="Find your fit"
           subtitle="Explore by property type"
@@ -67,7 +67,7 @@ export function ExploreByType() {
                     alt={`${type.label} illustration`}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className={`transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06] motion-reduce:transform-none ${
+                    className={`transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06] ${
                       imageStyle.fit === "contain" ? "object-contain" : "object-cover"
                     }`}
                     style={{ objectPosition: imageStyle.position }}

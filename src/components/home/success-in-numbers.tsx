@@ -14,7 +14,7 @@ const METRICS = [
 export function SuccessInNumbers() {
   return (
     <section className="border-y border-gold/25 bg-foreground">
-      <div data-motion-reveal className="container-x py-12 sm:py-24">
+      <div className="container-x py-12 sm:py-24">
         <SectionHeading
           title="Our success in numbers"
           description="Four decades of building across Tamil Nadu — delivered projects, homes handed over and the ground we cover today."

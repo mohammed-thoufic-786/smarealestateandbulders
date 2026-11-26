@@ -5,7 +5,7 @@ import { SmartImage } from "@/components/ui/smart-image";
 
 export function Founder() {
   return (
-    <section data-motion-reveal className="container-x bg-cream py-12 sm:py-24">
+    <section className="container-x bg-cream py-12 sm:py-24">
       <div className="grid items-center gap-8 sm:gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
         <div className="relative mx-auto w-full max-w-md">
           <div className="pointer-events-none absolute -inset-4 rounded-[2rem] border border-gold/40" />
