@@ -156,12 +156,17 @@ export function SiteVisitModal({
             onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
             placeholder="Anything we should know before the visit?"
           />
-          <div className="flex gap-3 pt-1">
-            <Button type="submit" className="flex-1">
+          <div className="flex flex-col gap-3 pt-1 sm:flex-row">
+            <Button type="submit" className="w-full sm:w-auto sm:flex-1">
               <CalendarCheck className="h-4 w-4" />
               Continue on WhatsApp
             </Button>
-            <Button type="button" variant="outline" onClick={() => setOpen(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setOpen(false)}
+              className="w-full shrink-0 border-gold/45 bg-white/5 text-white hover:border-gold hover:bg-white/10 hover:text-white focus-visible:outline-gold active:bg-white/15 sm:w-auto"
+            >
               Cancel
             </Button>
           </div>
