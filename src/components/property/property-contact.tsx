@@ -14,6 +14,7 @@ interface Summary {
   title: string;
   location: string;
   slug: string;
+  category: string;
   price: number;
   listingType: string;
   verified: boolean;
@@ -26,7 +27,14 @@ export function EnquiryPanel({ property }: { property: Summary }) {
     trackAnalyticsEvent("Lead", { content_name: "Property enquiry", content_category: property.slug });
 
   return (
-    <div className="space-y-4 sm:sticky sm:top-24">
+    <div
+      data-analytics-location="property_detail"
+      data-analytics-property-id={property.id}
+      data-analytics-property-name={property.title}
+      data-analytics-property-location={property.location}
+      data-analytics-property-category={property.category}
+      className="space-y-4 sm:sticky sm:top-24"
+    >
       <div className="rounded-2xl border border-gold/30 bg-espresso p-6">
         <p className="text-eyebrow font-semibold uppercase tracking-wide text-white/60">Price</p>
         <p className="mt-1 font-display text-price font-bold text-white">{priceText}</p>
@@ -43,6 +51,7 @@ export function EnquiryPanel({ property }: { property: Summary }) {
           </a>
           <SiteVisitModal
             propertyTitle={property.title}
+            analyticsLocation="property_detail"
             triggerLabel={
               <>
                 <CalendarCheck className="h-4 w-4" /> Schedule Site Visit
@@ -70,6 +79,9 @@ export function EnquiryPanel({ property }: { property: Summary }) {
           </div>
           <a
             href="#brochure"
+            data-analytics-event="select_content"
+            data-analytics-content-id="brochure"
+            data-analytics-content-name="Property brochure"
             className="flex items-center justify-center gap-2 rounded-full border border-gold/30 py-2.5 text-nav font-semibold text-white transition-colors hover:border-gold hover:text-gold"
           >
             <FileDown className="h-4 w-4" /> Download brochure
@@ -94,7 +106,14 @@ export function MobileActionBar({ property }: { property: Summary }) {
     trackAnalyticsEvent("Lead", { content_name: "Property enquiry", content_category: property.slug });
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-espresso/95 px-3 py-2.5 backdrop-blur-lg lg:hidden">
+    <div
+      data-analytics-location="property_mobile_bar"
+      data-analytics-property-id={property.id}
+      data-analytics-property-name={property.title}
+      data-analytics-property-location={property.location}
+      data-analytics-property-category={property.category}
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-espresso/95 px-3 py-2.5 backdrop-blur-lg lg:hidden"
+    >
       <div className="flex items-center gap-2">
         <a
           href={`tel:${site.phone.replace(/\s/g, "")}`}

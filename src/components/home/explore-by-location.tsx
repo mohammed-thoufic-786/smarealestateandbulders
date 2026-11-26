@@ -18,6 +18,10 @@ export function ExploreByLocation() {
           <Link
             key={location.slug}
             href={`/locations/${location.slug}`}
+            data-analytics-event="select_content"
+            data-analytics-content-id="explore_location"
+            data-analytics-content-name={location.name}
+            data-analytics-location="home_explore_by_location"
             aria-label={`View properties and enquiries in ${location.name}`}
             className={buttonVariants({
               variant: "ghost",

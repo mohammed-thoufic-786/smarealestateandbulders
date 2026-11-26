@@ -7,6 +7,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input, Select, Textarea } from "@/components/ui/input";
 import { useToast } from "@/components/providers/app-providers";
 import { trackAnalyticsEvent } from "@/lib/analytics";
+import { getGa4PageContext, safeWhatsappUrl, trackGa4Event } from "@/lib/ga4";
 import { isValidMobile } from "@/lib/validation";
 import { siteVisitWhatsappMessage } from "@/lib/business-config";
 import { openWhatsApp } from "@/lib/whatsapp";
@@ -14,6 +15,7 @@ import { cn } from "@/lib/utils";
 
 interface Props {
   propertyTitle: string;
+  analyticsLocation?: string;
   triggerLabel?: React.ReactNode;
   triggerVariant?: "primary" | "secondary" | "ghost" | "light" | "outline" | "danger";
   triggerSize?: "sm" | "md" | "lg" | "icon";
@@ -39,6 +41,7 @@ function initialForm() {
 
 export function SiteVisitModal({
   propertyTitle,
+  analyticsLocation = "page",
   triggerLabel = "Schedule Site Visit",
   triggerVariant = "outline",
   triggerSize = "md",
@@ -77,6 +80,20 @@ export function SiteVisitModal({
       }),
     );
     trackAnalyticsEvent("Lead", { content_name: "Site visit request", content_category: propertyTitle });
+    const page = getGa4PageContext();
+    trackGa4Event(
+      "whatsapp_click",
+      {
+        ...page,
+        link_url: safeWhatsappUrl("https://wa.me/"),
+        link_text: "Continue on WhatsApp",
+        button_location: "site_visit_form",
+        property_name: propertyTitle,
+        form_id: "site_visit_form",
+        transport_type: "beacon",
+      },
+      { dedupeKey: `whatsapp:site_visit_form:${propertyTitle}:${page.page_path}` },
+    );
     toast("Your site visit request is ready in WhatsApp. Please press send there.", "success");
     setOpen(false);
     setErrors({});
@@ -94,6 +111,10 @@ export function SiteVisitModal({
         ref={triggerRef}
         type="button"
         onClick={() => setOpen(true)}
+        data-analytics-event="select_content"
+        data-analytics-content-id="site_visit"
+        data-analytics-content-name={propertyTitle}
+        data-analytics-location={analyticsLocation}
         className={cn(buttonVariants({ variant: triggerVariant, size: triggerSize }), triggerClassName)}
       >
         {triggerLabel}

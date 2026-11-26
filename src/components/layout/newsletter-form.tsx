@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { useToast } from "@/components/providers/app-providers";
+import { getGa4PageContext, trackGa4Event } from "@/lib/ga4";
 
 export function NewsletterForm() {
   const { toast } = useToast();
@@ -23,6 +24,18 @@ export function NewsletterForm() {
         body: JSON.stringify({ email }),
       });
       if (!res.ok) throw new Error();
+      trackGa4Event(
+        "generate_lead",
+        {
+          ...getGa4PageContext(),
+          form_id: "newsletter",
+          form_location: "footer",
+          lead_source: "newsletter",
+          submission_status: "confirmed",
+          content_name: "Newsletter subscription",
+        },
+        { dedupeKey: "generate_lead:newsletter" },
+      );
       toast("You're subscribed. Welcome aboard.", "success");
       setEmail("");
     } catch {

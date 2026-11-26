@@ -41,6 +41,10 @@ export function PropertyCard({
 
   return (
     <article
+      data-analytics-property-id={property._id}
+      data-analytics-property-name={property.title}
+      data-analytics-property-location={displayLocation}
+      data-analytics-property-category={property.category}
       className={cn(
         "interactive-card group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-cream text-foreground transition-all duration-500 ease-smooth hover:border-gold/60 hover:shadow-glow",
         isList && "sm:flex-row",
@@ -125,6 +129,10 @@ export function PropertyCard({
         <div className="mt-auto flex flex-wrap gap-2 pt-5">
           <Link
             href={`/property/${property.slug}`}
+            data-analytics-event="select_content"
+            data-analytics-content-id="property_details"
+            data-analytics-content-name={property.title}
+            data-analytics-location="property_card"
             className={cn(
               "inline-flex items-center justify-center rounded-full border border-line px-4 py-2.5 text-foreground transition-colors hover:border-gold hover:bg-gold hover:text-foreground",
               compactTypography ? "text-[12px] font-medium" : "text-nav font-semibold",
@@ -136,6 +144,7 @@ export function PropertyCard({
             href={whatsappLink(propertyWhatsappMessage(property.title, property.slug))}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-location="property_card"
             className={cn(
               buttonVariants({ variant: "primary", size: "sm" }),
               compactTypography ? "text-[12px] font-medium" : undefined,

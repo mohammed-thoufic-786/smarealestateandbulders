@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import { useToast } from "@/components/providers/app-providers";
 import { trackAnalyticsEvent } from "@/lib/analytics";
+import { getGa4PageContext, safeWhatsappUrl, trackGa4Event } from "@/lib/ga4";
 import { isValidMobile } from "@/lib/validation";
 import { contactWhatsappMessage } from "@/lib/business-config";
 import { openWhatsApp } from "@/lib/whatsapp";
@@ -36,6 +37,19 @@ export function ContactForm() {
 
     openWhatsApp(contactWhatsappMessage(form));
     trackAnalyticsEvent("Contact", { content_name: "Contact form" });
+    const page = getGa4PageContext();
+    trackGa4Event(
+      "whatsapp_click",
+      {
+        ...page,
+        link_url: safeWhatsappUrl("https://wa.me/"),
+        link_text: "Send via WhatsApp",
+        button_location: "contact_form",
+        form_id: "contact_form",
+        transport_type: "beacon",
+      },
+      { dedupeKey: `whatsapp:contact_form:${page.page_path}` },
+    );
     toast("Your enquiry is ready in WhatsApp. Please press send there.", "success");
     setErrors({});
     setForm(emptyForm());

@@ -47,6 +47,10 @@ export function PropertyMap({
           href={directions}
           target="_blank"
           rel="noopener noreferrer"
+          data-analytics-event="select_content"
+          data-analytics-content-id="get_directions"
+          data-analytics-content-name={label}
+          data-analytics-location="property_map"
           className="flex items-center gap-1.5 text-nav font-semibold text-gold hover:underline"
         >
           <Navigation className="h-3.5 w-3.5" /> Get directions

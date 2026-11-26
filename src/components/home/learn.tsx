@@ -47,6 +47,10 @@ export function AvailabilityOfLoans() {
             </ul>
             <Link
               href="/contact"
+              data-analytics-event="select_content"
+              data-analytics-content-id="contact_us"
+              data-analytics-content-name={loan.title}
+              data-analytics-location="home_finance"
               className="mt-6 inline-flex items-center gap-1.5 text-nav font-semibold text-foreground hover:text-gold-600"
             >
               Enquire about {loan.title.toLowerCase()}

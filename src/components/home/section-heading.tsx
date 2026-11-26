@@ -19,6 +19,16 @@ export function SectionHeading({
   className?: string;
   inverted?: boolean;
 }) {
+  const actionContentId = !action
+    ? undefined
+    : action.href.startsWith("/buy")
+      ? "view_properties"
+      : action.href.startsWith("/contact")
+        ? "contact_us"
+        : action.href.startsWith("/locations")
+          ? "explore_locations"
+          : undefined;
+
   return (
     <div
       className={cn(
@@ -60,6 +70,9 @@ export function SectionHeading({
       {action && (
         <Link
           href={action.href}
+          data-analytics-event={actionContentId ? "select_content" : undefined}
+          data-analytics-content-id={actionContentId}
+          data-analytics-location="home_section"
           className={cn(
             "group inline-flex shrink-0 items-center gap-2 text-nav font-semibold",
             inverted ? "text-white hover:text-gold" : "text-foreground hover:text-gold-600",

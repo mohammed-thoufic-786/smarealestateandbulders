@@ -33,13 +33,13 @@ export function Footer() {
               </p>
               <p className="flex items-center gap-3">
                 <Phone className="h-4 w-4 shrink-0 text-gold/80" />
-                <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:text-white">
+                <a href={`tel:${site.phone.replace(/\s/g, "")}`} data-analytics-location="footer" className="hover:text-white">
                   {site.displayPhone}
                 </a>
               </p>
               <p className="flex items-center gap-3">
                 <Mail className="h-4 w-4 shrink-0 text-gold/80" />
-                <a href={`mailto:${site.email}`} className="hover:text-white">
+                <a href={`mailto:${site.email}`} data-analytics-location="footer" className="hover:text-white">
                   {site.email}
                 </a>
               </p>
@@ -78,6 +78,7 @@ export function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-analytics-location="footer"
                 aria-label={label}
                 className="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-gold transition-colors hover:border-gold hover:bg-gold hover:text-primary-deep"
               >

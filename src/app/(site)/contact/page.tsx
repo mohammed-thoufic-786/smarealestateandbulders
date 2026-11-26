@@ -50,6 +50,10 @@ export default function ContactPage() {
                   href={item.href}
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
+                  data-analytics-location="contact_page"
+                  data-analytics-event={item.label === "Office" ? "select_content" : undefined}
+                  data-analytics-content-id={item.label === "Office" ? "get_directions" : undefined}
+                  data-analytics-content-name={item.label === "Office" ? "Office directions" : undefined}
                   className="flex items-start gap-4 rounded-2xl border border-gold/25 bg-espresso p-5 transition-colors hover:border-gold/60"
                 >
                   <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gold/10 text-gold">

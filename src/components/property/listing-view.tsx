@@ -31,6 +31,7 @@ function BuyEmptyState() {
         href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
         target="_blank"
         rel="noopener noreferrer"
+        data-analytics-location="listing_empty_state"
         className={cn(buttonVariants({ size: "lg" }), "mt-6")}
       >
         Tell us what you need

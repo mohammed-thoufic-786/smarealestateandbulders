@@ -11,6 +11,7 @@ import { LayoutViewer } from "@/components/property/layout-viewer";
 import { PropertyMap } from "@/components/property/property-map";
 import { EnquiryPanel, MobileActionBar } from "@/components/property/property-contact";
 import { PropertyCard } from "@/components/property/property-card";
+import { PropertyViewTracker } from "@/components/analytics/property-view-tracker";
 import { propertyJsonLd } from "@/lib/schema";
 import { pageMetadata, propertyMetadata } from "@/lib/seo";
 
@@ -56,6 +57,7 @@ export default async function PropertyPage({
     title: property.title,
     slug: property.slug,
     location: displayLocation,
+    category: property.category,
     price: property.price,
     listingType: property.listingType,
     verified: property.verified,
@@ -64,6 +66,12 @@ export default async function PropertyPage({
   return (
     <div className="bg-cream pb-12 pt-24 sm:pb-24 sm:pt-24 lg:pb-16">
       <JsonLd data={propertyJsonLd(property)} />
+      <PropertyViewTracker
+        propertyId={property._id}
+        propertyName={property.title}
+        propertyLocation={displayLocation}
+        propertyCategory={property.category}
+      />
 
       <div className="container-x">
         <Breadcrumbs
@@ -90,6 +98,9 @@ export default async function PropertyPage({
           </div>
           <Link
             href="/buy"
+            data-analytics-event="select_content"
+            data-analytics-content-id="view_properties"
+            data-analytics-location="property_detail"
             className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2.5 text-nav font-semibold text-foreground transition-colors hover:border-gold hover:text-gold"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> Back to properties

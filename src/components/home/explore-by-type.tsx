@@ -20,6 +20,10 @@ export function ExploreByType() {
             <Link
               key={type.slug}
               href={`/buy/type/${type.slug}`}
+              data-analytics-event="select_content"
+              data-analytics-content-id="explore_property_type"
+              data-analytics-content-name={type.label}
+              data-analytics-location="home_explore_by_type"
               aria-label={`Browse ${type.label} information`}
               className="group relative block aspect-[16/11] w-full overflow-hidden rounded-3xl border border-gold/25 isolate transform-gpu bg-deep transition-[transform,border-color,box-shadow] duration-300 ease-smooth focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold [@media(hover:hover)]:hover:-translate-y-1 [@media(hover:hover)]:hover:border-gold [@media(hover:hover)]:hover:shadow-glow sm:aspect-[4/3]"
             >

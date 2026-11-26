@@ -36,12 +36,18 @@ export function Hero() {
           <div className={styles.actions}>
             <Link
               href="/buy"
+              data-analytics-event="select_content"
+              data-analytics-content-id="view_properties"
+              data-analytics-location="hero"
               className={buttonVariants({ size: "lg", className: styles.primaryButton })}
             >
               Explore Properties <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/contact"
+              data-analytics-event="select_content"
+              data-analytics-content-id="contact_us"
+              data-analytics-location="hero"
               className={buttonVariants({
                 variant: "outline",
                 size: "lg",

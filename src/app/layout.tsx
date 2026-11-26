@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import { Suspense } from "react";
 import { JsonLd } from "@/components/JsonLd";
 import { AnalyticsProvider } from "@/components/analytics/analytics";
+import { AnalyticsClickTracker } from "@/components/analytics/analytics-click-tracker";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { AppProviders } from "@/components/providers/app-providers";
 import { siteJsonLd } from "@/lib/schema";
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={null}>
           <GoogleAnalytics />
         </Suspense>
+        <AnalyticsClickTracker />
         <JsonLd data={siteJsonLd()} />
         <a
           href="#main"

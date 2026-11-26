@@ -117,6 +117,7 @@ export default async function PropertyTypePage({
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-analytics-location="property_type_empty_state"
                 className={buttonVariants({ size: "lg", className: "mt-5" })}
               >
                 <MessageCircle className="h-4 w-4" /> Enquire on WhatsApp
@@ -134,6 +135,10 @@ export default async function PropertyTypePage({
               <Link
                 key={item.slug}
                 href={`/buy/type/${item.slug}`}
+                data-analytics-event="select_content"
+                data-analytics-content-id="explore_property_type"
+                data-analytics-content-name={item.label}
+                data-analytics-location="property_type_page"
                 className="rounded-full border border-gold/40 px-5 py-2.5 text-nav font-semibold text-foreground hover:border-gold hover:text-gold"
               >
                 {item.label}
@@ -141,6 +146,9 @@ export default async function PropertyTypePage({
             ))}
             <Link
               href="/buy"
+              data-analytics-event="select_content"
+              data-analytics-content-id="view_properties"
+              data-analytics-location="property_type_page"
               className="rounded-full border border-gold/40 px-5 py-2.5 text-nav font-semibold text-foreground hover:border-gold hover:text-gold"
             >
               All properties <ArrowRight className="ml-1 inline h-4 w-4" />

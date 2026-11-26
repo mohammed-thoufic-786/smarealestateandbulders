@@ -26,6 +26,7 @@ export function FinalCta() {
               href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-location="home_final_cta"
               className={buttonVariants({ size: "lg" })}
             >
               Find Your Property <ArrowRight className="h-4 w-4" />
@@ -34,6 +35,7 @@ export function FinalCta() {
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
+              data-analytics-location="home_final_cta"
               className={buttonVariants({
                 variant: "secondary",
                 size: "lg",
@@ -44,6 +46,9 @@ export function FinalCta() {
             </a>
             <Link
               href="/contact"
+              data-analytics-event="select_content"
+              data-analytics-content-id="contact_us"
+              data-analytics-location="home_final_cta"
               className={buttonVariants({
                 variant: "ghost",
                 size: "lg",

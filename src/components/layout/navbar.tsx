@@ -95,12 +95,18 @@ export function Navbar() {
           <div className="ml-auto hidden shrink-0 items-center gap-5 md:flex lg:gap-[42px]">
             <Link
               href="/contact"
+              data-analytics-event="select_content"
+              data-analytics-content-id="contact_us"
+              data-analytics-location="header"
               className="whitespace-nowrap text-sm font-semibold text-primary transition-colors hover:text-primary-deep lg:text-[17px]"
             >
               Contact Us
             </Link>
             <Link
               href="/buy"
+              data-analytics-event="select_content"
+              data-analytics-content-id="view_properties"
+              data-analytics-location="header"
               className="inline-flex h-10 -translate-y-[2px] items-center justify-center whitespace-nowrap rounded-full bg-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-primary-deep lg:h-11 lg:px-[25px] lg:text-[17px]"
             >
               Browse Properties
@@ -174,11 +180,20 @@ export function Navbar() {
               </div>
 
               <div className="space-y-2.5 border-t border-line p-5" onClick={() => setOpen(false)}>
-                <Link href="/contact" className={buttonVariants({ size: "lg", className: "w-full whitespace-nowrap" })}>
+                <Link
+                  href="/contact"
+                  data-analytics-event="select_content"
+                  data-analytics-content-id="contact_us"
+                  data-analytics-location="mobile_menu"
+                  className={buttonVariants({ size: "lg", className: "w-full whitespace-nowrap" })}
+                >
                   Contact Us
                 </Link>
                 <Link
                   href="/buy"
+                  data-analytics-event="select_content"
+                  data-analytics-content-id="view_properties"
+                  data-analytics-location="mobile_menu"
                   className={buttonVariants({
                     size: "lg",
                     className: "w-full whitespace-nowrap border-transparent text-white",
@@ -189,6 +204,7 @@ export function Navbar() {
                 </Link>
                 <a
                   href={`tel:${site.phone.replace(/\s/g, "")}`}
+                  data-analytics-location="mobile_menu"
                   className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-muted"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-primary" /> {site.displayPhone}

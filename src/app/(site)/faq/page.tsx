@@ -40,6 +40,9 @@ export default function FaqPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link
                 href="/contact"
+                data-analytics-event="select_content"
+                data-analytics-content-id="contact_us"
+                data-analytics-location="faq"
                 className="rounded-full bg-gold px-6 py-3 text-nav font-semibold text-ink transition-colors hover:bg-gold-400"
               >
                 Contact us
@@ -48,12 +51,14 @@ export default function FaqPage() {
                 href={whatsappLink()}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-analytics-location="faq"
                 className="rounded-full border border-gold/30 px-6 py-3 text-nav font-semibold text-white transition-colors hover:border-gold hover:text-gold"
               >
                 WhatsApp
               </a>
               <a
                 href={`tel:${site.phone.replace(/\s/g, "")}`}
+                data-analytics-location="faq"
                 className="rounded-full border border-gold/30 px-6 py-3 text-nav font-semibold text-white transition-colors hover:border-gold hover:text-gold"
               >
                 {site.displayPhone}

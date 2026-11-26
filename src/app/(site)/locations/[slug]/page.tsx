@@ -135,11 +135,18 @@ export default async function LocationPage({
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-analytics-location="location_empty_state"
                   className={buttonVariants({ size: "lg" })}
                 >
                   <MessageCircle className="h-4 w-4" /> Enquire on WhatsApp
                 </a>
-                <Link href="/contact" className={buttonVariants({ variant: "outline", size: "lg" })}>
+                <Link
+                  href="/contact"
+                  data-analytics-event="select_content"
+                  data-analytics-content-id="contact_us"
+                  data-analytics-location="location_empty_state"
+                  className={buttonVariants({ variant: "outline", size: "lg" })}
+                >
                   Contact us <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -160,6 +167,7 @@ export default async function LocationPage({
             )}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-location="location_page"
             className={buttonVariants({ size: "lg", className: "mt-5" })}
           >
             <MessageCircle className="h-4 w-4" /> Chat about {location.name}
@@ -181,12 +189,18 @@ export default async function LocationPage({
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/buy"
+              data-analytics-event="select_content"
+              data-analytics-content-id="view_properties"
+              data-analytics-location="location_page"
               className="rounded-full border border-gold/40 px-5 py-2.5 text-nav font-semibold text-foreground hover:border-gold hover:text-gold"
             >
               All properties <ArrowRight className="ml-1 inline h-4 w-4" />
             </Link>
             <Link
               href="/locations"
+              data-analytics-event="select_content"
+              data-analytics-content-id="explore_locations"
+              data-analytics-location="location_page"
               className="rounded-full border border-gold/40 px-5 py-2.5 text-nav font-semibold text-foreground hover:border-gold hover:text-gold"
             >
               All locations
