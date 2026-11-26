@@ -8,9 +8,9 @@ export function ExploreByLocation() {
   return (
     <section className="container-x bg-cream py-12 sm:py-24">
       <SectionHeading
-        title="Where we operate"
-        subtitle="Explore by location"
-        description="Find properties by the Tamil Nadu locations we serve."
+        title="Plots & land across Tamil Nadu"
+        subtitle="Where we operate"
+        description="Find properties across the Tamil Nadu locations we serve, including plots for sale with enquiries handled directly in Villupuram and Salem."
         action={{ href: "/locations", label: "All locations" }}
       />
       <div className="mt-6 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -31,10 +31,7 @@ export function ExploreByLocation() {
                 <MapPin className="h-5 w-5" />
               </span>
               <span>
-                <span className="block text-eyebrow font-semibold uppercase tracking-[0.16em] text-muted">
-                  Location
-                </span>
-                <span className="mt-1 block font-display text-subheading font-semibold text-foreground">
+                <span className="block font-display text-subheading font-semibold text-foreground">
                   {location.name}
                 </span>
               </span>

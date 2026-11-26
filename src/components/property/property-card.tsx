@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { SmartImage } from "@/components/ui/smart-image";
 import { buttonVariants } from "@/components/ui/button";
 import { whatsappLink, propertyWhatsappMessage } from "@/lib/business-config";
-import { cn } from "@/lib/utils";
+import { cn, formatINR } from "@/lib/utils";
 
 const CARD_IMAGE_OVERRIDES: Record<string, string> = {
   "kmb-garden": "/properties/kmb-garden/card.jpg",
@@ -20,6 +20,7 @@ export function PropertyCard({
   compactTypography = false,
   className,
   priceClassName,
+  priceLabel = "Price on request",
 }: {
   property: Property;
   priority?: boolean;
@@ -28,6 +29,7 @@ export function PropertyCard({
   compactTypography?: boolean;
   className?: string;
   priceClassName?: string;
+  priceLabel?: string;
 }) {
   const cardImage = CARD_IMAGE_OVERRIDES[property.slug];
   const displayLocation = property.location.shortLocation ?? property.location.address;
@@ -35,6 +37,7 @@ export function PropertyCard({
     ? { url: cardImage, alt: `${property.title} brochure image, ${displayLocation}` }
     : property.images.find((i) => i.isCover) ?? property.images[0];
   const isList = variant === "list";
+  const priceText = property.price > 0 ? formatINR(property.price, { compact: true }) : priceLabel;
 
   return (
     <article
@@ -116,7 +119,7 @@ export function PropertyCard({
             showLocation ? "mt-3" : "mt-4",
           )}
         >
-          Price on request
+          {priceText}
         </p>
 
         <div className="mt-auto flex flex-wrap gap-2 pt-5">

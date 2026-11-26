@@ -8,9 +8,9 @@ export async function FeaturedProperties() {
   return (
     <section className="container-x bg-cream py-12 sm:py-24">
       <SectionHeading
-        title="Our official projects"
-        subtitle="Featured properties"
-        description="our genuine SMA properties, each with its original layout drawing and a direct enquiry line to our team."
+        title="Plots for sale in Villupuram & Salem"
+        subtitle="Our official projects"
+        description="Browse plots for sale and ask our team about official options in Villupuram and Salem. Explore genuine SMA properties, each with its original layout drawing and a direct enquiry line to our team."
         action={{ href: "/buy", label: "View all properties" }}
       />
       <div className="mt-6 grid gap-6 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -20,6 +20,7 @@ export async function FeaturedProperties() {
             property={property}
             showLocation={false}
             compactTypography
+            priceLabel="Call for price"
           />
         ))}
       </div>

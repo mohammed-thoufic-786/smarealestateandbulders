@@ -9,9 +9,9 @@ export function ExploreByType() {
     <section className="border-y border-gold/25 bg-foreground">
       <div className="container-x py-12 sm:py-24">
         <SectionHeading
-          title="Find your fit"
+          title="Residential plots, villas, land & more"
           subtitle="Explore by property type"
-          description="Browse the kinds of properties we handle, from residential plots to commercial spaces."
+          description="Browse the kinds of properties we handle, from villas and land to homes and commercial spaces."
           action={{ href: "/buy", label: "View all properties" }}
           inverted
         />
@@ -34,10 +34,7 @@ export function ExploreByType() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent via-[45%]" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 transform-gpu isolate p-5">
                 <div>
-                  <p className="text-eyebrow font-semibold uppercase tracking-[0.16em] text-white/85 [text-shadow:0_1px_3px_rgba(0,0,0,0.7)]">
-                    Property type
-                  </p>
-                  <h3 className="mt-1.5 font-display text-subheading font-semibold text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.75)]">
+                  <h3 className="font-display text-subheading font-semibold text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.75)]">
                     {type.label}
                   </h3>
                 </div>
