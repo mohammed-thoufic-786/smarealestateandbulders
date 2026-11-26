@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
 import { CheckCircle2, Info, X, AlertTriangle } from "lucide-react";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------- Toasts ---------------------------------- */
@@ -32,7 +33,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 
   return (
     <ToastContext.Provider value={toastValue}>
-      {children}
+      <MotionProvider>{children}</MotionProvider>
       <div className="pointer-events-none fixed inset-x-0 bottom-4 z-[100] flex flex-col items-center gap-2 px-4 sm:bottom-6">
         {toasts.map((t) => (
           <div
