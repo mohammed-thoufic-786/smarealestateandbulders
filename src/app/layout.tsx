@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { Suspense } from "react";
 import { JsonLd } from "@/components/JsonLd";
 import { AnalyticsProvider } from "@/components/analytics/analytics";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { AppProviders } from "@/components/providers/app-providers";
 import { siteJsonLd } from "@/lib/schema";
 import { SITE } from "@/lib/site";
@@ -47,6 +49,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={`overflow-x-clip ${playfair.variable} ${inter.variable}`}>
       <body className="min-h-0 overflow-x-clip bg-background text-foreground antialiased sm:min-h-screen">
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         <JsonLd data={siteJsonLd()} />
         <a
           href="#main"
