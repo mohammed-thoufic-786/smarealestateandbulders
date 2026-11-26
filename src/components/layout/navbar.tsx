@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type MouseEvent } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import { Logo } from "./logo";
 import { NAV_LINKS, site } from "@/lib/site";
@@ -17,7 +16,6 @@ const BRAND_SIZE =
 
 export function Navbar() {
   const pathname = usePathname();
-  const reduceMotion = Boolean(useReducedMotion());
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -51,6 +49,7 @@ export function Navbar() {
     setOpen(false);
     if (href === pathname && window.scrollY > 0) {
       event.preventDefault();
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     }
   }
@@ -119,88 +118,76 @@ export function Navbar() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[90] md:hidden"
+      {open && (
+        <div className="fixed inset-0 z-[90] md:hidden animate-fade-in motion-reduce:animate-none">
+          <div className="absolute inset-0 bg-primary-deep/50 backdrop-blur-sm" onClick={() => setOpen(false)} />
+
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+            className={cn(
+              "absolute inset-x-3 bottom-3 top-3 flex flex-col overflow-hidden rounded-[28px] border border-line bg-background shadow-lift animate-fade-in motion-reduce:animate-none",
+            )}
           >
-            <div className="absolute inset-0 bg-primary-deep/50 backdrop-blur-sm" onClick={() => setOpen(false)} />
+            <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
+              <Logo className={BRAND_SIZE} />
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-primary transition-colors hover:bg-primary/5"
+                aria-label="Close menu"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
 
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-label="Site navigation"
-              initial={{ opacity: 0, y: -16, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -16, scale: 0.98 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className={cn(
-                "absolute inset-x-3 bottom-3 top-3 flex flex-col overflow-hidden rounded-[28px] border border-line bg-background shadow-lift",
-              )}
-            >
-              <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
-                <Logo className={BRAND_SIZE} />
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-primary transition-colors hover:bg-primary/5"
-                  aria-label="Close menu"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-y-auto px-3 py-4" onClick={() => setOpen(false)}>
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={(event) => handleNavClick(event, link.href)}
-                    className={cn(
-                      "flex items-center justify-between rounded-2xl px-4 py-3.5 text-nav font-semibold transition-all duration-300 ease-smooth active:scale-[0.98] motion-reduce:transform-none",
-                      isActive(link.href)
-                        ? "bg-primary text-white"
-                        : "text-muted hover:bg-primary/5 hover:text-primary",
-                    )}
-                  >
-                    {link.label === "Locations" ? "Location" : link.label}
-                    <ChevronRight className="h-4 w-4 opacity-40" />
-                  </Link>
-                ))}
-              </div>
-
-              <div className="space-y-2.5 border-t border-line p-5" onClick={() => setOpen(false)}>
-                <Link href="/contact" className={buttonVariants({ size: "lg", className: "w-full whitespace-nowrap" })}>
-                  Contact Us
-                </Link>
+            <div className="flex-1 overflow-y-auto px-3 py-4" onClick={() => setOpen(false)}>
+              {NAV_LINKS.map((link) => (
                 <Link
-                  href="/buy"
-                  className={buttonVariants({
-                    size: "lg",
-                    className: "w-full whitespace-nowrap border-transparent text-white",
-                    variant: "primary",
-                  })}
+                  key={link.href}
+                  href={link.href}
+                  onClick={(event) => handleNavClick(event, link.href)}
+                  className={cn(
+                    "flex items-center justify-between rounded-2xl px-4 py-3.5 text-nav font-semibold transition-all duration-300 ease-smooth active:scale-[0.98] motion-reduce:transform-none",
+                    isActive(link.href)
+                      ? "bg-primary text-white"
+                      : "text-muted hover:bg-primary/5 hover:text-primary",
+                  )}
                 >
-                  Browse Properties <ArrowRight className="h-4 w-4" />
+                  {link.label === "Locations" ? "Location" : link.label}
+                  <ChevronRight className="h-4 w-4 opacity-40" />
                 </Link>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-muted"
-                >
-                  <Phone className="h-4 w-4 shrink-0 text-primary" /> {site.displayPhone}
-                </a>
-                <p className="pt-1 text-center text-sm text-muted">
-                  Available 9am–8pm · Tamil Nadu
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              ))}
+            </div>
+
+            <div className="space-y-2.5 border-t border-line p-5" onClick={() => setOpen(false)}>
+              <Link href="/contact" className={buttonVariants({ size: "lg", className: "w-full whitespace-nowrap" })}>
+                Contact Us
+              </Link>
+              <Link
+                href="/buy"
+                className={buttonVariants({
+                  size: "lg",
+                  className: "w-full whitespace-nowrap border-transparent text-white",
+                  variant: "primary",
+                })}
+              >
+                Browse Properties <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a
+                href={`tel:${site.phone.replace(/\s/g, "")}`}
+                className="flex items-center justify-center gap-2 py-2 text-sm font-semibold text-muted"
+              >
+                <Phone className="h-4 w-4 shrink-0 text-primary" /> {site.displayPhone}
+              </a>
+              <p className="pt-1 text-center text-sm text-muted">
+                Available 9am–8pm · Tamil Nadu
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
