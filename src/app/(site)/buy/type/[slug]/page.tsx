@@ -29,6 +29,7 @@ export async function generateMetadata({
       title: "Property type not found",
       description: "The requested SMA property type is not available.",
       path: "/buy",
+      canonical: null,
       robots: { index: false, follow: false },
     });
   }
@@ -82,6 +83,7 @@ export default async function PropertyTypePage({
             { label: "Buy", href: "/buy" },
             { label: type.label },
           ]}
+          path={`/buy/type/${slug}`}
         />
 
         <section className="mt-8 max-w-3xl">

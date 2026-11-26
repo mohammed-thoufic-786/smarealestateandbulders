@@ -232,6 +232,20 @@ export async function getPropertiesByIds(ids: string[]): Promise<Property[]> {
     .filter((p): p is Property => Boolean(p));
 }
 
+export async function listPublishedProperties(): Promise<Property[]> {
+  if (isDatabaseEnabled()) {
+    try {
+      await connectDB();
+      const docs = await PropertyModel.find(PUBLIC_PROPERTY_FILTER).lean();
+      return safeJson(docs, []) as Property[];
+    } catch {
+      // fall back to the published official catalogue
+    }
+  }
+
+  return allProperties().filter(isPublishedProperty);
+}
+
 export async function getFeaturedProperties(limit = 6): Promise<Property[]> {
   const properties = allProperties();
   const featured = properties.filter((p) => p.featured);

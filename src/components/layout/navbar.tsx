@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState, type MouseEvent } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import { Logo } from "./logo";
 import { NAV_LINKS, site } from "@/lib/site";
@@ -17,6 +17,7 @@ const BRAND_SIZE =
 
 export function Navbar() {
   const pathname = usePathname();
+  const reduceMotion = Boolean(useReducedMotion());
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -46,6 +47,14 @@ export function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  function handleNavClick(event: MouseEvent<HTMLAnchorElement>, href: string) {
+    setOpen(false);
+    if (href === pathname && window.scrollY > 0) {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    }
+  }
+
   return (
     <>
       <header
@@ -68,10 +77,11 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={(event) => handleNavClick(event, link.href)}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 data-active={isActive(link.href)}
                 className={cn(
-                  "nav-link whitespace-nowrap text-sm font-medium transition-colors lg:text-[18px]",
+                  "nav-link whitespace-nowrap text-sm font-medium transition-all duration-300 ease-smooth lg:text-[18px]",
                   isActive(link.href)
                     ? "text-primary"
                     : "text-muted hover:text-primary",
@@ -149,8 +159,9 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
+                    onClick={(event) => handleNavClick(event, link.href)}
                     className={cn(
-                      "flex items-center justify-between rounded-2xl px-4 py-3.5 text-nav font-semibold transition-colors",
+                      "flex items-center justify-between rounded-2xl px-4 py-3.5 text-nav font-semibold transition-all duration-300 ease-smooth active:scale-[0.98]",
                       isActive(link.href)
                         ? "bg-primary text-white"
                         : "text-muted hover:bg-primary/5 hover:text-primary",

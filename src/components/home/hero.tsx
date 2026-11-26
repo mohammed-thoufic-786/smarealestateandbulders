@@ -6,7 +6,6 @@ import { ArrowDown, ArrowRight, KeyRound, MapPin, PhoneCall, ShieldCheck } from 
 import { buttonVariants } from "@/components/ui/button";
 import { SmartImage } from "@/components/ui/smart-image";
 import { LOCATIONS_SERVED } from "@/lib/data/site-metrics";
-import { site, founder } from "@/lib/site";
 import styles from "./hero.module.css";
 
 export function Hero() {
@@ -31,9 +30,8 @@ export function Hero() {
           <p className={styles.subtitle}>Trust Begins Here, Your Future Starts Here.</p>
 
           <p className={`${styles.description} text-pretty`}>
-            {site.name} is a Tamil Nadu real-estate company led by {founder.name}. We help families
-            and investors buy residential plots, villas, apartments, agricultural land and commercial
-            space — with clear paperwork, fair pricing and advisors who answer the phone.
+            Buy DTCP-approved plots, villas and land in Villupuram, Salem &amp; Tamil Nadu. Documents
+            checked, fair pricing.
           </p>
 
           <div className={styles.actions}>

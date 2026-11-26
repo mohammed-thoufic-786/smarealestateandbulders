@@ -4,7 +4,8 @@ import { propertyDescription, propertyPlace } from "./seo";
 import { founder, SITE } from "./site";
 
 function absolute(path: string): string {
-  return `${SITE.url}${path.startsWith("/") ? path : `/${path}`}`;
+  if (path === "/") return SITE.url;
+  return `${SITE.url}/${path.replace(/^\/+|\/+$/g, "")}`;
 }
 
 export function siteJsonLd() {
@@ -54,12 +55,12 @@ export function siteJsonLd() {
   };
 }
 
-export function breadcrumbJsonLd(items: { label: string; href?: string }[]) {
+export function breadcrumbJsonLd(items: { label: string; href?: string }[], path = "/") {
   const trail = [{ label: "Home", href: "/" }, ...items];
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "@id": `${SITE.url}#breadcrumb`,
+    "@id": `${absolute(path)}#breadcrumb`,
     itemListElement: trail.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -71,11 +72,11 @@ export function breadcrumbJsonLd(items: { label: string; href?: string }[]) {
   };
 }
 
-export function faqJsonLd(faqs: { q: string; a: string }[]) {
+export function faqJsonLd(faqs: { q: string; a: string }[], path = "/faq") {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "@id": `${SITE.url}/faq#faq`,
+    "@id": `${absolute(path)}#faq`,
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.q,
@@ -86,6 +87,7 @@ export function faqJsonLd(faqs: { q: string; a: string }[]) {
 
 export function propertyJsonLd(property: Property) {
   const { locality, district } = propertyPlace(property);
+  const coordinates = property.location.coordinates;
 
   return {
     "@context": "https://schema.org",
@@ -101,6 +103,14 @@ export function propertyJsonLd(property: Property) {
       addressRegion: district,
       addressCountry: "IN",
     },
-    publisher: { "@id": `${SITE.url}#organization` },
+    ...(coordinates
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: coordinates.lat,
+            longitude: coordinates.lng,
+          },
+        }
+      : {}),
   };
 }

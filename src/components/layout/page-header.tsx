@@ -20,7 +20,11 @@ export function PageHeader({
 }) {
   return (
     <>
-      {breadcrumb && <JsonLd data={breadcrumbJsonLd(breadcrumb)} />}
+      {breadcrumb && (
+        <JsonLd
+          data={breadcrumbJsonLd(breadcrumb, breadcrumb[breadcrumb.length - 1]?.href)}
+        />
+      )}
       <header className="border-b border-gold/20 bg-primary-deep pt-20 sm:pt-28">
         <div className="container-x py-8 sm:py-16">
           {breadcrumb && (

@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
   return pageMetadata({
-    title: "About SMA Real Estate",
+    title: "About Us",
     description:
       "Meet SMA Real Estate & Builders of Villupuram, led by Haji S.M. Abdul Hakkim. Document-first property guidance in Tamil Nadu.",
     path: "/about",

@@ -3,7 +3,17 @@ import { ArrowUpRight } from "lucide-react";
 import { SmartImage } from "@/components/ui/smart-image";
 import { buttonVariants } from "@/components/ui/button";
 import { PROPERTY_TYPE_PAGES } from "@/lib/data/property-types";
+import { cn } from "@/lib/utils";
 import { SectionHeading } from "./section-heading";
+
+const PROPERTY_TYPE_IMAGE_FIT: Record<string, string> = {
+  "residential-plot": "object-contain",
+  "agricultural-land": "object-contain",
+  villa: "object-contain",
+  apartment: "object-cover",
+  "independent-house": "object-cover",
+  "commercial-space": "object-cover",
+};
 
 export function ExploreByType() {
   return (
@@ -35,7 +45,10 @@ export function ExploreByType() {
                   alt={`${type.label} illustration`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06]"
+                  className={cn(
+                    "object-center transition-transform duration-[900ms] ease-smooth group-hover:scale-[1.06]",
+                    PROPERTY_TYPE_IMAGE_FIT[type.slug] ?? "object-cover",
+                  )}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/30 to-transparent" />
               </div>

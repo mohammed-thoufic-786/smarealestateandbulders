@@ -61,7 +61,6 @@ export default function PrivacyPage() {
       />
       <div className="container-x py-8 sm:py-14">
         <div className="mx-auto max-w-3xl space-y-6 sm:space-y-8">
-          <p className="text-sm text-muted">Last updated: {new Date().toLocaleDateString("en-IN", { month: "long", year: "numeric" })}</p>
           {SECTIONS.map((s) => (
             <section key={s.h}>
               <h2 className="font-display text-subheading font-semibold text-foreground">{s.h}</h2>

@@ -49,7 +49,7 @@ export function EnquiryPanel({ property }: { property: Summary }) {
               </>
             }
             triggerSize="lg"
-            triggerClassName="w-full"
+            triggerClassName="w-full border-gold/45 bg-white/5 text-white hover:border-gold hover:bg-white/10 hover:text-white focus-visible:outline-gold active:bg-white/15"
           />
           <div className="grid grid-cols-2 gap-2.5">
             <a

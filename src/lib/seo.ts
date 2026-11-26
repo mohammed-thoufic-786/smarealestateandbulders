@@ -3,6 +3,8 @@ import { SITE } from "./site";
 import type { Property } from "./types";
 
 const DEFAULT_OG_IMAGE = "/og-home.jpg";
+const DEFAULT_OG_IMAGE_ALT = "SMA Real Estate & Builders — plots and villas in Tamil Nadu";
+const BRAND_SUFFIX = "SMA Real Estate";
 export const HOME_TITLE = "Plots & Villas in Villupuram & Salem | SMA Real Estate";
 
 export const HOME_DESCRIPTION = `Official plots, villas and land enquiries in Villupuram, Salem and across Tamil Nadu. Document-first process. Call us on ${SITE.displayPhone}.`;
@@ -38,6 +40,7 @@ export interface PageMetaInput {
   image?: MetaImage;
   maxDescription?: number;
   absoluteTitle?: string;
+  canonical?: string | null;
   robots?: Metadata["robots"];
 }
 
@@ -45,35 +48,40 @@ export function pageMetadata({
   title,
   description,
   path,
-  image = { url: DEFAULT_OG_IMAGE, width: 1200, height: 630 },
+  image = { url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: DEFAULT_OG_IMAGE_ALT },
   maxDescription = 160,
   absoluteTitle,
+  canonical,
   robots,
 }: PageMetaInput): Metadata {
-  const canonical = metaPath(path);
+  const resolvedCanonical = canonical === undefined ? metaPath(path) : canonical;
   const trimmed = trimAtWordBoundary(description, maxDescription);
-  const resolvedTitle = absoluteTitle ?? title;
+  const resolvedTitle = absoluteTitle ?? `${title} | ${BRAND_SUFFIX}`;
 
   return {
     title: absoluteTitle ? { absolute: absoluteTitle } : title,
     description: trimmed,
     ...(robots ? { robots } : {}),
-    alternates: { canonical },
-    openGraph: {
-      type: "website",
-      locale: SITE.locale,
-      url: canonical,
-      siteName: SITE.name,
-      title: resolvedTitle,
-      description: trimmed,
-      images: [image],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: resolvedTitle,
-      description: trimmed,
-      images: [image.url],
-    },
+    alternates: { canonical: resolvedCanonical },
+    openGraph: resolvedCanonical
+      ? {
+          type: "website",
+          locale: SITE.locale,
+          url: resolvedCanonical,
+          siteName: SITE.name,
+          title: resolvedTitle,
+          description: trimmed,
+          images: [{ ...image, alt: image.alt ?? DEFAULT_OG_IMAGE_ALT }],
+        }
+      : null,
+    twitter: resolvedCanonical
+      ? {
+          card: "summary_large_image",
+          title: resolvedTitle,
+          description: trimmed,
+          images: [image.url],
+        }
+      : null,
   };
 }
 
@@ -112,7 +120,7 @@ export function propertyMetadata(property: Property): Metadata {
         height: cover.height,
         alt: cover.alt || `${property.title}, ${propertyPlace(property).locality}`,
       }
-    : { url: DEFAULT_OG_IMAGE, width: 1200, height: 630 };
+    : { url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: DEFAULT_OG_IMAGE_ALT };
 
   return pageMetadata({
     title: propertyTitle(property),

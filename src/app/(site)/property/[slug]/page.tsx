@@ -26,6 +26,7 @@ export async function generateMetadata({
       title: "Property not found",
       description: "The requested SMA property is not available.",
       path: "/buy",
+      canonical: null,
       robots: { index: false, follow: false },
     });
   }
@@ -70,6 +71,7 @@ export default async function PropertyPage({
             { label: "Buy", href: "/buy" },
             { label: property.title },
           ]}
+          path={`/property/${slug}`}
         />
 
         <div className="mt-5 flex flex-wrap items-start justify-between gap-6">
@@ -190,7 +192,7 @@ export default async function PropertyPage({
             <h2 className="font-display text-display-3 font-bold text-foreground">Other properties</h2>
             <div className="mt-6 grid gap-6 sm:mt-8 sm:grid-cols-2 lg:grid-cols-3">
               {others.map((item) => (
-                <PropertyCard key={item._id} property={item} />
+                <PropertyCard key={item._id} property={item} compactTypography />
               ))}
             </div>
           </section>

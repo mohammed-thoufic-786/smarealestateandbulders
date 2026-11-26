@@ -7,9 +7,18 @@ export interface BreadcrumbItem {
   href?: string;
 }
 
-export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+export function Breadcrumbs({
+  items,
+  path,
+}: {
+  items: BreadcrumbItem[];
+  path?: string;
+}) {
   const trail: BreadcrumbItem[] = [{ label: "Home", href: "/" }, ...items];
-  const jsonLd = breadcrumbJsonLd(items);
+  const jsonLd = breadcrumbJsonLd(
+    items,
+    path ?? items[items.length - 1]?.href ?? "/",
+  );
 
   return (
     <>

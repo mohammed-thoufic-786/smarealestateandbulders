@@ -39,7 +39,7 @@ export default async function LocationsPage() {
       />
 
       <div className="container-x py-8 sm:py-14">
-        <Breadcrumbs items={[{ label: "Locations" }]} />
+        <Breadcrumbs items={[{ label: "Locations" }]} path="/locations" />
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {locations.map((location) => (
             <Link

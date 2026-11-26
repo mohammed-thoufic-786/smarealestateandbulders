@@ -35,30 +35,6 @@ export const metadata: Metadata = {
     shortcut: ["/brand/sma-logo.png"],
     apple: [{ url: "/brand/sma-logo.png", type: "image/png", sizes: "1024x1024" }],
   },
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: "/",
-    siteName: SITE.name,
-    title: HOME_TITLE,
-    description: HOME_DESCRIPTION,
-    images: [
-      {
-        url: "/og-home.jpg",
-        width: 1200,
-        height: 630,
-        alt: "SMA Real Estate & Builders — plots and villas in Tamil Nadu",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: HOME_TITLE,
-    description: HOME_DESCRIPTION,
-    images: ["/og-home.jpg"],
-  },
-  robots: { index: true, follow: true },
-  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {

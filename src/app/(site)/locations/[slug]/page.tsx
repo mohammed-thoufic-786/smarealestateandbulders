@@ -32,6 +32,7 @@ export async function generateMetadata({
       title: "Location not found",
       description: "The requested SMA service location is not available.",
       path: "/locations",
+      canonical: null,
       robots: { index: false, follow: false },
     });
   }
@@ -98,6 +99,7 @@ export default async function LocationPage({
             { label: "Locations", href: "/locations" },
             { label: location.name },
           ]}
+          path={`/locations/${location.slug}`}
         />
 
         <section className="mt-8 max-w-3xl">
@@ -171,7 +173,7 @@ export default async function LocationPage({
           <div className="mt-5">
             <Accordion items={faqs} />
           </div>
-          <JsonLd data={faqJsonLd(faqs)} />
+          <JsonLd data={faqJsonLd(faqs, `/locations/${location.slug}`)} />
         </section>
 
         <section className="mt-12">

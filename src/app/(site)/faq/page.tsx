@@ -10,7 +10,7 @@ import { site, whatsappLink } from "@/lib/site";
 
 export function generateMetadata(): Metadata {
   return pageMetadata({
-    title: "Property Buying FAQs | Tamil Nadu | SMA",
+    title: "Property Buying FAQs | Tamil Nadu",
     description:
       "Answers about plots, layout drawings, site visits, pricing on request and buying property in Tamil Nadu with SMA Real Estate.",
     path: "/faq",
